@@ -76,6 +76,7 @@ class _HomeState extends State<Home> {
                 margin: EdgeInsets.only(top: 10.0),
                 color: Color(0xffeeeeee),
               ),
+              // -------------------เริ่มต้น------------------------
               Container(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
@@ -115,36 +116,41 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                     Container(
+                      margin: EdgeInsets.only(top: 5.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Container(
                                 child: Image.asset('assets/images/image1.png'),
                               ),
                               Container(
+                                margin: EdgeInsets.only(top: 5.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text('ระดับเริ่มต้น'),
-                                    Text('Beginner')
+                                    Text('คุณชื่ออะไร'),
+                                    Text("what's your name?")
                                   ],
                                 ),
                               ),
                             ],
                           ),
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Container(
                                 child: Image.asset('assets/images/image2.png'),
                               ),
                               Container(
+                                margin: EdgeInsets.only(top: 5.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text('ระดับเริ่มต้น'),
-                                    Text('Beginner')
+                                    Text('คุณมาจากไหน'),
+                                    Text('Where are you from?')
                                   ],
                                 ),
                               ),
@@ -155,7 +161,194 @@ class _HomeState extends State<Home> {
                     )
                   ],
                 ),
-              )
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 5.0),
+                margin: EdgeInsets.only(top: 10.0),
+                color: Color(0xffeeeeee),
+              ),
+              // --------------------- กลาง ----------------------
+              Container(
+                padding: EdgeInsets.all(10.0),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('ระดับกลาง'),
+                              Text('Intermediate')
+                            ],
+                          ),
+                        ),
+                        Container(
+                            child: RaisedButton(
+                          color: Color(0xffffab40),
+                          onPressed: () {},
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                'More',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Icon(
+                                Icons.navigate_next,
+                                color: Colors.white,
+                              )
+                            ],
+                          ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0))),
+                        )),
+                      ],
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Image.asset('assets/images/image1.png'),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text('คุณชื่ออะไร'),
+                                    Text("what's your name?")
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Image.asset('assets/images/image2.png'),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text('คุณมาจากไหน'),
+                                    Text('Where are you from?')
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 5.0),
+                margin: EdgeInsets.only(top: 10.0),
+                color: Color(0xffeeeeee),
+              ),
+              // ----------------------- สูง -------------------------
+              Container(
+                padding: EdgeInsets.all(10.0),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('ระดับสูง'),
+                              Text('Advanced')
+                            ],
+                          ),
+                        ),
+                        Container(
+                            child: RaisedButton(
+                          color: Color(0xffffab40),
+                          onPressed: () {},
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                'More',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Icon(
+                                Icons.navigate_next,
+                                color: Colors.white,
+                              )
+                            ],
+                          ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0))),
+                        )),
+                      ],
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Image.asset('assets/images/image1.png'),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text('คุณชื่ออะไร'),
+                                    Text("what's your name?")
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Image.asset('assets/images/image2.png'),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text('คุณมาจากไหน'),
+                                    Text('Where are you from?')
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 5.0),
+                margin: EdgeInsets.only(top: 10.0),
+                color: Color(0xffeeeeee),
+              ),
             ],
           ),
         ),
