@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'forgetPssword.dart';
 import 'signupWith.dart';
+import 'home.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -71,7 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 320,
                       height: 45,
                       child: RaisedButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(context,
+                         MaterialPageRoute(builder:
+                         (context) => Home())),
                         child: Text('Log in'),
                         color: Color(0xffffab40),
                         shape: RoundedRectangleBorder(
