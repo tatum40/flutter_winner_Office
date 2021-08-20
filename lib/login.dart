@@ -23,7 +23,6 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-// -------------------------------------------------------------------หน้า log in
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -44,9 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       margin: EdgeInsets.only(top: 50.0, bottom: 15.0),
                       width: 320,
-                      height: 45,
                       child: TextField(
                         decoration: InputDecoration(
+                          isDense: true,
                           border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30.0))),
@@ -57,9 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       margin: EdgeInsets.only(bottom: 15.0),
                       width: 320,
-                      height: 45,
                       child: TextField(
                         decoration: InputDecoration(
+                          isDense: true,
                           border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30.0))),

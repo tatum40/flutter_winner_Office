@@ -44,9 +44,9 @@ class ForgetPassword extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 30.0, bottom: 15.0),
               width: 320,
-              height: 45,
               child: TextField(
                 decoration: InputDecoration(
+                  isDense: true,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30.0))),
                   hintText: 'Email',
