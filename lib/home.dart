@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'homeMenu.dart';
+import 'categoryMenu.dart';
+import 'profileMenu.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -8,351 +11,46 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int _currentItem = 0;
+  final _tabSelection = [
+    HomeMenu(),
+    CategoryMenu(),
+    ProfileMenu(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: 35.0, bottom: 15.0),
-                width: 340,
-                child: TextField(
-                  decoration: InputDecoration(
-                      isDense: true,
-                      border: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(30.0))),
-                      hintText: 'Search here....',
-                      prefixIcon: Icon(
-                        Icons.search,
-                        size: 30,
-                        color: Colors.grey,
-                      )),
-                ),
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                        margin: EdgeInsets.all(10.0),
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Color(0xffc4c4c4),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
-                    Container(
-                        margin: EdgeInsets.all(10.0),
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Color(0xffc4c4c4),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
-                    Container(
-                        margin: EdgeInsets.all(10.0),
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Color(0xffc4c4c4),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
-                    Container(
-                        margin: EdgeInsets.all(10.0),
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Color(0xffc4c4c4),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 5.0),
-                margin: EdgeInsets.only(top: 10.0),
-                color: Color(0xffeeeeee),
-              ),
-              // -------------------เริ่มต้น------------------------
-              Container(
-                padding: EdgeInsets.all(10.0),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text('ระดับเริ่มต้น'),
-                              Text('Beginner')
-                            ],
-                          ),
-                        ),
-                        Container(
-                            child: RaisedButton(
-                          color: Color(0xffffab40),
-                          onPressed: () {},
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'More',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Icon(
-                                Icons.navigate_next,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0))),
-                        )),
-                      ],
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 5.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                child: Image.asset('assets/images/image1.png'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 5.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('คุณชื่ออะไร'),
-                                    Text("what's your name?")
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                child: Image.asset('assets/images/image2.png'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 5.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('คุณมาจากไหน'),
-                                    Text('Where are you from?')
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 5.0),
-                margin: EdgeInsets.only(top: 10.0),
-                color: Color(0xffeeeeee),
-              ),
-              // --------------------- กลาง ----------------------
-              Container(
-                padding: EdgeInsets.all(10.0),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text('ระดับกลาง'),
-                              Text('Intermediate')
-                            ],
-                          ),
-                        ),
-                        Container(
-                            child: RaisedButton(
-                          color: Color(0xffffab40),
-                          onPressed: () {},
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'More',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Icon(
-                                Icons.navigate_next,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0))),
-                        )),
-                      ],
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 5.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                child: Image.asset('assets/images/image1.png'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 5.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('คุณชื่ออะไร'),
-                                    Text("what's your name?")
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                child: Image.asset('assets/images/image2.png'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 5.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('คุณมาจากไหน'),
-                                    Text('Where are you from?')
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 5.0),
-                margin: EdgeInsets.only(top: 10.0),
-                color: Color(0xffeeeeee),
-              ),
-              // ----------------------- สูง -------------------------
-              Container(
-                padding: EdgeInsets.all(10.0),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text('ระดับสูง'),
-                              Text('Advanced')
-                            ],
-                          ),
-                        ),
-                        Container(
-                            child: RaisedButton(
-                          color: Color(0xffffab40),
-                          onPressed: () {},
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'More',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Icon(
-                                Icons.navigate_next,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0))),
-                        )),
-                      ],
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 5.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                child: Image.asset('assets/images/image1.png'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 5.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('คุณชื่ออะไร'),
-                                    Text("what's your name?")
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                child: Image.asset('assets/images/image2.png'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 5.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('คุณมาจากไหน'),
-                                    Text('Where are you from?')
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 5.0),
-                margin: EdgeInsets.only(top: 10.0),
-                color: Color(0xffeeeeee),
-              ),
-            ],
+      // Bottom Menu Bar
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentItem,
+        type: BottomNavigationBarType.fixed,
+        fixedColor: Colors.blue,
+
+        onTap: (index) {
+          setState(() {
+            _currentItem = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.widgets),
+            label: 'Category',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
       ),
+      body: _tabSelection[_currentItem],
     );
   }
 }
+
+
+
+
