@@ -56,6 +56,13 @@ flutter:
     - "assets/images/imageM4.png"
     - "assets/images/imageM5.png"
     - "assets/images/visa.png"
+    - "assets/images/expression.png"
+    - "assets/images/speaking.png"
+    - "assets/images/practice.png"
+    - "assets/images/vocab.png"
+    - "assets/images/grammar.png"
+    - "assets/images/phonics.png"
+    - "assets/images/game.png"
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
