@@ -20,8 +20,10 @@ class HomeMenu extends StatelessWidget {
                   decoration: InputDecoration(
                       isDense: true,
                       border: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(30.0))),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30.0),
+                        ),
+                      ),
                       hintText: 'Search here....',
                       prefixIcon: Icon(
                         Icons.search,
@@ -35,37 +37,41 @@ class HomeMenu extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Container(
-                        margin: EdgeInsets.all(10.0),
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Color(0xffc4c4c4),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
+                      margin: EdgeInsets.all(10.0),
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Color(0xffc4c4c4),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
                     Container(
-                        margin: EdgeInsets.all(10.0),
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Color(0xffc4c4c4),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
+                      margin: EdgeInsets.all(10.0),
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Color(0xffc4c4c4),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
                     Container(
-                        margin: EdgeInsets.all(10.0),
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Color(0xffc4c4c4),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
+                      margin: EdgeInsets.all(10.0),
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Color(0xffc4c4c4),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
                     Container(
-                        margin: EdgeInsets.all(10.0),
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Color(0xffc4c4c4),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
+                      margin: EdgeInsets.all(10.0),
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Color(0xffc4c4c4),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -92,28 +98,33 @@ class HomeMenu extends StatelessWidget {
                           ),
                         ),
                         Container(
-                            child: RaisedButton(
-                          color: Color(0xffffab40),
-                          onPressed: () => Navigator.push(
+                          child: RaisedButton(
+                            color: Color(0xffffab40),
+                            onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomeDetail())),
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'More',
-                                style: TextStyle(color: Colors.white),
+                                builder: (context) => HomeDetail(),
                               ),
-                              Icon(
-                                Icons.navigate_next,
-                                color: Colors.white,
-                              )
-                            ],
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'More',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Icon(
+                                  Icons.navigate_next,
+                                  color: Colors.white,
+                                )
+                              ],
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30.0),
+                              ),
+                            ),
                           ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0))),
-                        )),
+                        ),
                       ],
                     ),
                     Container(
@@ -202,8 +213,10 @@ class HomeMenu extends StatelessWidget {
                             ],
                           ),
                           shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0))),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(30.0),
+                            ),
+                          ),
                         )),
                       ],
                     ),
@@ -293,8 +306,10 @@ class HomeMenu extends StatelessWidget {
                             ],
                           ),
                           shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0))),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(30.0),
+                            ),
+                          ),
                         )),
                       ],
                     ),
@@ -398,7 +413,10 @@ class HomeDetail extends StatelessWidget {
                 margin: EdgeInsets.only(left: 10.0),
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
                   onPressed: () => {Navigator.pop(context), dialogBuy(context)},
                   child: const Text(
                     'Yes',
@@ -554,7 +572,10 @@ class HomeDetail extends StatelessWidget {
                   ),
                   color: Color(0xffffab40),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
                 ),
               ),
 
@@ -588,7 +609,10 @@ class HomeDetail extends StatelessWidget {
             margin: EdgeInsets.only(left: 10.0),
             child: RaisedButton(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30.0),
+                ),
+              ),
               onPressed: () => {Navigator.pop(context)},
               child: const Text(
                 'Yes',
@@ -601,6 +625,17 @@ class HomeDetail extends StatelessWidget {
       ),
     );
   }
+
+  final String titleEng1 = 'What’s your name?';
+  final String titleEng2 = 'Where are you from?';
+  final String titleEng3 = 'How old are you';
+  final String titleEng4 = 'Do you have any brothers \nor sisters?';
+  final String titleEng5 = 'Which school do you go to?';
+  final String titleTh1 = 'คุณชื่ออะไร';
+  final String titleTh2 = 'คุณมาจากไหน';
+  final String titleTh3 = 'คุณอายุเท่าไหร่';
+  final String titleTh4 = 'คุณมีพี่ชายหรือพี่สาวไหม';
+  final String titleTh5 = 'คุณเรียนที่โรงเรียนไหน';
 
   @override
   Widget build(BuildContext context) {
@@ -621,8 +656,12 @@ class HomeDetail extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     IconButton(
-                        onPressed: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Home())),
+                        onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Home(),
+                              ),
+                            ),
                         icon: Icon(Icons.arrow_back)),
                     Container(
                       height: 200,
@@ -644,11 +683,11 @@ class HomeDetail extends StatelessWidget {
                 ),
               ),
               // ---------------------
-              lessonBox(context, 1),
-              lessonBox(context, 2),
-              lessonBox(context, 3),
-              lessonBox(context, 4),
-              lessonBox(context, 5),
+              detailBox(context, 1),
+              detailBox(context, 2),
+              detailBox(context, 3),
+              detailBox(context, 4),
+              detailBox(context, 5),
             ],
           ),
         ),
@@ -656,7 +695,7 @@ class HomeDetail extends StatelessWidget {
     );
   }
 
-  Widget lessonBox(BuildContext context, num) {
+  Widget detailBox(context, num) {
     return Column(
       children: <Widget>[
         Container(
@@ -681,27 +720,27 @@ class HomeDetail extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             num == 1
-                                ? 'What’s your name?'
+                                ? titleEng1
                                 : num == 2
-                                    ? 'Where are you from?'
+                                    ? titleEng2
                                     : num == 3
-                                        ? 'How old are you'
+                                        ? titleEng3
                                         : num == 4
-                                            ? 'Do you have any brothers \nor sisters?'
-                                            : 'Which school do you go to?',
+                                            ? titleEng4
+                                            : titleEng5,
                             style: TextStyle(fontSize: 16.0),
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
                             num == 1
-                                ? 'คุณชื่ออะไร'
+                                ? titleTh1
                                 : num == 2
-                                    ? 'คุณมาจากไหน'
+                                    ? titleTh2
                                     : num == 3
-                                        ? 'คุณอายุเท่าไหร่'
+                                        ? titleTh3
                                         : num == 4
-                                            ? 'คุณมีพี่ชายหรือพี่สาวไหม'
-                                            : 'คุณเรียนที่โรงเรียนไหน',
+                                            ? titleTh4
+                                            : titleTh5,
                             style: TextStyle(fontSize: 16.0),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -786,6 +825,16 @@ class HomeDetail extends StatelessWidget {
                       onTap: () {
                         if (num > 2) {
                           dialogUnlock(context);
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeLesson(
+                                      titleEng1: titleEng1,
+                                      titleEng2: titleEng2,
+                                      titleTh1: titleTh1,
+                                      titleTh2: titleTh2,
+                                      num: num)));
                         }
                       },
                       child: Padding(
@@ -812,6 +861,203 @@ class HomeDetail extends StatelessWidget {
       ],
     );
   }
+}
 
-  Future DialogUnlock(context) async {}
+class HomeLesson extends StatelessWidget {
+  const HomeLesson(
+      {Key? key,
+      required this.titleEng1,
+      required this.titleTh1,
+      required this.titleEng2,
+      required this.titleTh2,
+      required this.num})
+      : super(key: key);
+
+  final String titleEng1;
+  final String titleTh1;
+  final String titleEng2;
+  final String titleTh2;
+  final int num;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          padding: EdgeInsets.only(top: 25.0),
+          child: Column(
+            children: <Widget>[
+              Container(
+                color: Colors.white,
+                height: 170,
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        IconButton(
+                            onPressed: () => Navigator.pop(context),
+                            icon: Icon(Icons.arrow_back)),
+                      ],
+                    ),
+                    Container(
+                      height: 120,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            num == 1 ? titleEng1 : titleEng2,
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 10.0),
+                            child: Text(
+                              num == 1 ? titleTh1 : titleTh2,
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10.0),
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: <Widget>[
+                    lessonBox(1),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        lessonBox(2),
+                        lessonBox(3),
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget lessonBox(num) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Stack(
+            children: <Widget>[
+              Container(
+                width: 125,
+                height: 170,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                        width: 4,
+                        color:
+                            num != 3 ? Color(0xff7dd958) : Color(0xffd8d8d8)),
+                    color: Colors.white),
+                child: FlatButton(
+                  shape: CircleBorder(),
+                  color: Colors.white,
+                  onPressed: () {},
+                  child: num == 1
+                      ? Image.asset('assets/images/expression.png')
+                      : num == 2
+                          ? Image.asset('assets/images/speaking.png')
+                          : Image.asset('assets/images/practice.png'),
+                ),
+              ),
+              Positioned(
+                child: star(num),
+                left: 23.0,
+                top: 132.0,
+              ),
+            ],
+          ),
+          Container(
+            child: Text(
+              num == 1
+                  ? 'Expression'
+                  : num == 2
+                      ? 'Speaking'
+                      : 'Pratice',
+              style: TextStyle(fontSize: 18),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget star(num) {
+    if (num != 1) {
+      return Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Positioned(
+                  left: 1.0,
+                  top: 1.7,
+                  child: Icon(
+                    Icons.star,
+                    color: Colors.black12,
+                    size: 26,
+                  ),
+                ),
+                Icon(
+                  Icons.star,
+                  color: num < 3 ? Color(0xffffab40) : Color(0xff9b9b9b),
+                  size: 24,
+                ),
+              ],
+            ),
+            Stack(
+              children: <Widget>[
+                Positioned(
+                  left: 1.0,
+                  top: 1.7,
+                  child: Icon(
+                    Icons.star,
+                    color: Colors.black12,
+                    size: 32,
+                  ),
+                ),
+                Icon(
+                  Icons.star,
+                  color: num < 3 ? Color(0xffffab40) : Color(0xff9b9b9b),
+                  size: 30,
+                ),
+              ],
+            ),
+            Stack(
+              children: <Widget>[
+                Positioned(
+                  left: 1.0,
+                  top: 1.7,
+                  child: Icon(
+                    Icons.star,
+                    color: Colors.black12,
+                    size: 26,
+                  ),
+                ),
+                Icon(
+                  Icons.star,
+                  color: num < 3 ? Color(0xffffab40) : Color(0xff9b9b9b),
+                  size: 24,
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
 }
