@@ -269,8 +269,10 @@ class Signupfacebook extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign up'),
-      ),
+          backgroundColor: Color(0xfff4f4f4),
+          title: Text('Sign up',style: TextStyle(fontSize: 16)),
+          centerTitle: true,
+        ),
       body: Center(
         child: Column(
           children: <Widget>[

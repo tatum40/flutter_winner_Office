@@ -7,40 +7,30 @@ class ForgetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Color(0xfff4f4f4),
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          title: Text("Forget password",style: TextStyle(fontSize: 16)),
+          centerTitle: true,
+          actions: [
+            // action button
+            IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+          leading: Container()
+          // IconButton(
+          //   icon: Image.asset('assets/images/google.png'),
+          //   onPressed: () {},
+          // ),
+          ),
       body: Center(
         child: Column(
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 25.0),
-              padding: EdgeInsets.only(left: 20.0, right: 20.0),
-              height: 50,
-              color: Color(0xfff4f4f4),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    'Forget password',
-                    textAlign: TextAlign.center,
-                  ),
-                  Container(
-                    width: 50,
-                    child: FlatButton(
-                      padding: EdgeInsets.all(0.0),
-                      onPressed: () => 
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  MyHomePage(title: 'Flutter Demo'))),
-                      child: Icon(Icons.close),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            
             Container(
               margin: EdgeInsets.only(top: 30.0, bottom: 15.0),
               width: 320,
@@ -61,19 +51,22 @@ class ForgetPassword extends StatelessWidget {
                 onPressed: () => showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                    content: const Text('A new password has been sent to your email.'),
+                    content: const Text(
+                        'A new password has been sent to your email.'),
                     actions: <Widget>[
                       Center(
                         child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30.0))),
-                        onPressed: () => 
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> MyHomePage(title: ''))),
-                        child: const Text('OK'),
-                        color: Color(0xffffab40),
-                      ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0))),
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyHomePage(title: ''))),
+                          child: const Text('OK'),
+                          color: Color(0xffffab40),
+                        ),
                       )
-                      
                     ],
                   ),
                 ),
