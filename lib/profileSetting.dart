@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/login.dart';
 import 'package:flutter_winner_office/profileCamera.dart';
 import 'package:flutter_winner_office/profileContact.dart';
+import 'package:flutter_winner_office/profileCredit.dart';
 import 'package:flutter_winner_office/profileInformation.dart';
 import 'package:flutter_winner_office/profilePassword.dart';
 
@@ -88,33 +89,38 @@ class SettingPage extends StatelessWidget {
               color: Color(0xffe4e4e4),
             ),
             // --------------- Credit account ------------
-            Container(
-              height: 40.0,
-              margin: EdgeInsets.only(top: 10.0, left: 15.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        child: Icon(
-                          Icons.account_balance_wallet,
-                          color: Color(0xffffd056),
-                          size: 22,
+            GestureDetector(
+              onTap: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Credit())),
+              child: Container(
+                height: 40.0,
+                margin: EdgeInsets.only(top: 10.0, left: 15.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          child: Icon(
+                            Icons.account_balance_wallet,
+                            color: Color(0xffffd056),
+                            size: 22,
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 15.0),
-                        child: Text(
-                          'Credit account',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
-                  )
-                ],
+                        Container(
+                          margin: EdgeInsets.only(left: 15.0),
+                          child: Text(
+                            'Credit account',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
+
             Container(
               margin: EdgeInsets.only(top: 15.0),
               padding: EdgeInsets.only(top: 1.0),
