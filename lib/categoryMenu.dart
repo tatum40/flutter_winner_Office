@@ -127,318 +127,320 @@ class CategoryVocab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffeeeeee),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 5.0),
-                margin: EdgeInsets.only(top: 25.0),
-                color: Color(0xffeeeeee),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    IconButton(
-                        padding: EdgeInsets.all(0.0),
-                        onPressed: () => Navigator.pop(context),
-                        icon: Icon(Icons.arrow_back)),
-                    Container(
-                      padding: EdgeInsets.only(top: 25.0),
-                      height: 200,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Text(
-                            'ระดับเริ่มต้น',
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                          Text(
-                            'Beginner',
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color(0xffeeeeee),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  color: Color(0xffeeeeee),
                 ),
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(
-                          top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                      width: 112,
-                      height: 40,
-                      child: RaisedButton(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0))),
-                        onPressed: () {},
+                Container(
+                  color: Colors.white,
+                  padding: EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      IconButton(
+                          padding: EdgeInsets.all(0.0),
+                          onPressed: () => Navigator.pop(context),
+                          icon: Icon(Icons.arrow_back)),
+                      Container(
+                        padding: EdgeInsets.only(top: 25.0),
+                        height: 200,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
-                            Container(child: Text('ชีวิตประจำวัน'))
+                            Text(
+                              'ระดับเริ่มต้น',
+                              style: TextStyle(fontSize: 20.0),
+                            ),
+                            Text(
+                              'Beginner',
+                              style: TextStyle(fontSize: 18.0),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                          top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                      width: 112,
-                      height: 40,
-                      child: RaisedButton(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0))),
-                        onPressed: () {},
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[Container(child: Text('วัยรุ่น'))],
+                    ],
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                        width: 112,
+                        height: 40,
+                        child: RaisedButton(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0))),
+                          onPressed: () {},
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(child: Text('ชีวิตประจำวัน'))
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                          top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                      width: 112,
-                      height: 40,
-                      child: RaisedButton(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0))),
-                        onPressed: () {},
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[Container(child: Text('Toeic'))],
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                        width: 112,
+                        height: 40,
+                        child: RaisedButton(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0))),
+                          onPressed: () {},
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(child: Text('วัยรุ่น'))
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                          top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                      width: 112,
-                      height: 40,
-                      child: RaisedButton(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0))),
-                        onPressed: () {},
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[Container(child: Text('Movie'))],
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                        width: 112,
+                        height: 40,
+                        child: RaisedButton(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0))),
+                          onPressed: () {},
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[Container(child: Text('Toeic'))],
+                          ),
                         ),
                       ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                        width: 112,
+                        height: 40,
+                        child: RaisedButton(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0))),
+                          onPressed: () {},
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[Container(child: Text('Movie'))],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                      top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                  width: 350,
+                  height: 60,
+                  child: RaisedButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    onPressed: () {},
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            '20 คำศัพท์ ในชีวิตประจำวัน',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                width: 350,
-                height: 60,
-                child: RaisedButton(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  onPressed: () {},
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          '20 คำศัพท์ ในชีวิตประจำวัน',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                width: 350,
-                height: 60,
-                child: RaisedButton(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  onPressed: () {},
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          'คำศัพท์เครื่องใช้ในครัว',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
+                Container(
+                  margin: EdgeInsets.only(
+                      top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                  width: 350,
+                  height: 60,
+                  child: RaisedButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    onPressed: () {},
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            'คำศัพท์เครื่องใช้ในครัว',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                width: 350,
-                height: 60,
-                child: RaisedButton(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  onPressed: () {},
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          'คำศัพท์แชทภาษาวัยรุ่น',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
+                Container(
+                  margin: EdgeInsets.only(
+                      top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                  width: 350,
+                  height: 60,
+                  child: RaisedButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    onPressed: () {},
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            'คำศัพท์แชทภาษาวัยรุ่น',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                width: 350,
-                height: 60,
-                child: RaisedButton(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  onPressed: () {},
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          '20 คำศัพท์ ไอที',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
+                Container(
+                  margin: EdgeInsets.only(
+                      top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                  width: 350,
+                  height: 60,
+                  child: RaisedButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    onPressed: () {},
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            '20 คำศัพท์ ไอที',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                width: 350,
-                height: 60,
-                child: RaisedButton(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  onPressed: () {},
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          'คำศัพท์พบบ่อยใน Toeic',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
+                Container(
+                  margin: EdgeInsets.only(
+                      top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                  width: 350,
+                  height: 60,
+                  child: RaisedButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    onPressed: () {},
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            'คำศัพท์พบบ่อยใน Toeic',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                width: 350,
-                height: 60,
-                child: RaisedButton(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  onPressed: () {},
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          'คำศัพท์จากหนัง Harry Potter',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
+                Container(
+                  margin: EdgeInsets.only(
+                      top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                  width: 350,
+                  height: 60,
+                  child: RaisedButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    onPressed: () {},
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            'คำศัพท์จากหนัง Harry Potter',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                width: 350,
-                height: 60,
-                child: RaisedButton(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  onPressed: () {},
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          'คำศัพท์จากวิดีโอเกม',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
+                Container(
+                  margin: EdgeInsets.only(
+                      top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                  width: 350,
+                  height: 60,
+                  child: RaisedButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    onPressed: () {},
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            'คำศัพท์จากวิดีโอเกม',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
-                width: 350,
-                height: 60,
-                child: RaisedButton(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  onPressed: () {},
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          '20 คำศัพท์ อาชีพนักแสดง',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
+                Container(
+                  margin: EdgeInsets.only(
+                      top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
+                  width: 350,
+                  height: 60,
+                  child: RaisedButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    onPressed: () {},
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            '20 คำศัพท์ อาชีพนักแสดง',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

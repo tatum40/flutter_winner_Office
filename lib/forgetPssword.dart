@@ -6,7 +6,9 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return 
+    SafeArea(child: 
+Scaffold(
       appBar: AppBar(
           backgroundColor: Color(0xfff4f4f4),
           iconTheme: IconThemeData(
@@ -79,6 +81,8 @@ class ForgetPassword extends StatelessWidget {
           ],
         ),
       ),
+    )
     );
+    
   }
 }

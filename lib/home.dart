@@ -19,13 +19,13 @@ class _HomeState extends State<Home> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       // Bottom Menu Bar
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentItem,
         type: BottomNavigationBarType.fixed,
         fixedColor: Colors.blue,
-
         onTap: (index) {
           setState(() {
             _currentItem = index;
@@ -47,10 +47,6 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: _tabSelection[_currentItem],
-    );
+    ));
   }
 }
-
-
-
-

@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/home.dart';
 import 'package:flutter/gestures.dart';
+import 'speaking.dart';
+import 'multipleChoice.dart';
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({Key? key}) : super(key: key);
@@ -130,7 +132,7 @@ class HomeMenu extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(top: 5.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -639,56 +641,57 @@ class HomeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 5.0),
-                margin: EdgeInsets.only(top: 25.0),
-                color: Color(0xffeeeeee),
-              ),
-              Container(
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    IconButton(
-                        onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Home(),
-                              ),
-                            ),
-                        icon: Icon(Icons.arrow_back)),
-                    Container(
-                      height: 200,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Text(
-                            'ระดับเริ่มต้น',
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                          Text(
-                            'Beginner',
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(top: 5.0),
+                  color: Color(0xffeeeeee),
                 ),
-              ),
-              // ---------------------
-              detailBox(context, 1),
-              detailBox(context, 2),
-              detailBox(context, 3),
-              detailBox(context, 4),
-              detailBox(context, 5),
-            ],
+                Container(
+                  padding: EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      IconButton(
+                          onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Home(),
+                                ),
+                              ),
+                          icon: Icon(Icons.arrow_back)),
+                      Container(
+                        height: 200,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'ระดับเริ่มต้น',
+                              style: TextStyle(fontSize: 20.0),
+                            ),
+                            Text(
+                              'Beginner',
+                              style: TextStyle(fontSize: 18.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // ---------------------
+                detailBox(context, 1),
+                detailBox(context, 2),
+                detailBox(context, 3),
+                detailBox(context, 4),
+                detailBox(context, 5),
+              ],
+            ),
           ),
         ),
       ),
@@ -881,10 +884,9 @@ class HomeLesson extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(child: Scaffold(
       body: Center(
         child: Container(
-          padding: EdgeInsets.only(top: 25.0),
           child: Column(
             children: <Widget>[
               Container(
@@ -926,12 +928,12 @@ class HomeLesson extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: <Widget>[
-                    lessonBox(1),
+                    lessonBox(context, 1),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        lessonBox(2),
-                        lessonBox(3),
+                        lessonBox(context, 2),
+                        lessonBox(context, 3),
                       ],
                     )
                   ],
@@ -941,10 +943,11 @@ class HomeLesson extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ),);
+    
   }
 
-  Widget lessonBox(num) {
+  Widget lessonBox(context, num) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -963,7 +966,15 @@ class HomeLesson extends StatelessWidget {
                 child: FlatButton(
                   shape: CircleBorder(),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    if (num == 2) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Speaking()));
+                    } else if (num == 3) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Multiple()));
+                    }
+                  },
                   child: num == 1
                       ? Image.asset('assets/images/expression.png')
                       : num == 2

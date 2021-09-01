@@ -58,6 +58,7 @@ flutter:
     - "assets/images/visa.png"
     - "assets/images/master.png"
     - "assets/images/jcb.png"
+    - "assets/images/card.png"
     - "assets/images/addCredit.png"
     - "assets/images/expression.png"
     - "assets/images/speaking.png"
@@ -67,6 +68,8 @@ flutter:
     - "assets/images/phonics.png"
     - "assets/images/game.png"
     - "assets/images/cameraOn.png"
+    - "assets/images/turtle-w.png"
+    - "assets/images/turtle-b.png"
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

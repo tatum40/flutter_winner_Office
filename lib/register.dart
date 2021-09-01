@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/pickDate_widget.dart';
 
 // ----------หน้าสมัคร
 class Register extends StatefulWidget {
@@ -22,10 +23,11 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+      child: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xfff4f4f4),
-          title: Text('Sign up',style: TextStyle(fontSize: 16)),
+          title: Text('Sign up', style: TextStyle(fontSize: 16)),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -123,20 +125,9 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 15.0),
-                      width: 320,
-                      child: TextField(
-                        onTap: () {},
-                        keyboardType: TextInputType.datetime,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0))),
-                          hintText: 'Date of birth (DD/MM/YYYY)',
-                        ),
-                      ),
+                    DatePickerWidget(
+                      labelText: 'Date of birth (DD/MM/YYYY)',
+                      pickerType: 'regis',
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 15.0),
@@ -197,7 +188,9 @@ class _RegisterState extends State<Register> {
               ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget passwordRules(String password) {
