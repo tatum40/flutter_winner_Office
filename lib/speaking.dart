@@ -1,7 +1,6 @@
-import 'dart:typed_data';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/message.dart';
 
 class Speaking extends StatefulWidget {
   const Speaking({Key? key}) : super(key: key);
@@ -11,12 +10,15 @@ class Speaking extends StatefulWidget {
 }
 
 class _SpeakingState extends State<Speaking> {
-   int _currentItem = 0;
+  bool isRecord = false;
+  bool isNextChoice = false;
+  int countRecord = 0;
+  int currentChoice = 1;
   @override
   Widget build(BuildContext context) {
-    return 
-    SafeArea(child: Scaffold(
-      appBar: AppBar(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
           backgroundColor: Color(0xfff4f4f4),
           leading: IconButton(
             padding: EdgeInsets.all(0.0),
@@ -40,7 +42,7 @@ class _SpeakingState extends State<Speaking> {
                 ),
                 Positioned(
                   child: Container(
-                    width: 100,
+                    width: currentChoice * 300 / 2,
                     height: 10,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(
@@ -52,48 +54,159 @@ class _SpeakingState extends State<Speaking> {
               ],
             ),
           ),
+        ),
+        body: Column(children: <Widget>[
+          Expanded(
+              child: Container(
+            child: ListView.builder(
+                itemCount: chats.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Text(chats[index].sentenceEng);
+                }),
+          ))
+        ]),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentItem,
-        type: BottomNavigationBarType.fixed,
-        fixedColor: Colors.blue,
-        onTap: (index) {
-          setState(() {
-            _currentItem = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+    );
+  }
+
+  Widget bottomBar() {
+    return Container(
+      color: Colors.white,
+      height: 100,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          MaterialButton(
+            onPressed: () {},
+            minWidth: 80,
+            height: 45,
+            color: Colors.white,
+            child: Row(
+              children: <Widget>[
+                Icon(
+                  Icons.play_arrow,
+                  color: Color(
+                      countRecord == 0 || countRecord % 2 != 0 || isNextChoice
+                          ? 0xffbdbdbd
+                          : 0xff01579b),
+                  size: 30,
+                ),
+                Text(
+                  'ฟัง',
+                  style: TextStyle(
+                      color: Color(countRecord == 0 ||
+                              countRecord % 2 != 0 ||
+                              isNextChoice
+                          ? 0xffbdbdbd
+                          : 0xff01579b),
+                      fontSize: 16),
+                )
+              ],
+            ),
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+                borderSide: BorderSide(
+                    color: Color(
+                        countRecord == 0 || countRecord % 2 != 0 || isNextChoice
+                            ? 0xffbdbdbd
+                            : 0xff01579b),
+                    width: 2)),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.widgets),
-            label: 'Category',
+          MaterialButton(
+            onPressed: () => {
+              setState(() {
+                isRecord = !isRecord;
+                countRecord++;
+                isNextChoice = false;
+                print(countRecord);
+              })
+            },
+            minWidth: 80,
+            height: 80,
+            color: Color(0xffffab40),
+            child: (isRecord)
+                ? Container(
+                    child: Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.lens,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                        Container(
+                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                            child: Icon(
+                              Icons.lens,
+                              color: Colors.white,
+                              size: 10,
+                            )),
+                        Icon(
+                          Icons.lens,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                      ],
+                    ),
+                  )
+                : Icon(
+                    Icons.mic,
+                    size: 50,
+                    color: Colors.white,
+                  ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(50.0),
+              ),
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+          MaterialButton(
+            onPressed: () {
+              setState(() {
+                if (currentChoice != 4) {
+                  currentChoice++;
+                  isNextChoice = true;
+                }
+              });
+            },
+            minWidth: 80,
+            height: 45,
+            color: Colors.white,
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'ถัดไป',
+                  style: TextStyle(
+                      color: Color(countRecord == 0 ||
+                              countRecord % 2 != 0 ||
+                              isNextChoice
+                          ? 0xffbdbdbd
+                          : 0xff01579b),
+                      fontSize: 16),
+                )
+              ],
+            ),
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+                borderSide: BorderSide(
+                    color: Color(
+                        countRecord == 0 || countRecord % 2 != 0 || isNextChoice
+                            ? 0xffbdbdbd
+                            : 0xff01579b),
+                    width: 2)),
           ),
         ],
       ),
-      body: Center(
-        child: Container(
-          child: ListView(
-            children: <Widget>[
-              blueBox(),
-              whitebox()
-            ],
-          ),
-        ),
-      ),
-    ),);
-    
+    );
   }
 
   Widget blueBox() {
     return Container(
       margin: EdgeInsets.only(top: 15.0, left: 10.0),
+      padding: EdgeInsets.only(bottom: 10.0),
       child: Column(
         children: <Widget>[
           Row(
@@ -181,14 +294,16 @@ class _SpeakingState extends State<Speaking> {
       ),
     );
   }
+
   Widget whitebox() {
     return Container(
       margin: EdgeInsets.only(top: 15.0, right: 15.0),
+      padding: EdgeInsets.only(bottom: 10.0),
       child: Column(
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[              
+            children: <Widget>[
               Container(
                 padding: EdgeInsets.all(10.0),
                 width: 270,
@@ -221,7 +336,7 @@ class _SpeakingState extends State<Speaking> {
             ],
           ),
           Container(
-            margin: EdgeInsets.only(top: 5.0 , right: 10.0),
+            margin: EdgeInsets.only(top: 5.0, right: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
