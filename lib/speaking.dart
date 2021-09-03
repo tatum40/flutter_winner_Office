@@ -14,62 +14,96 @@ class _SpeakingState extends State<Speaking> {
   bool isNextChoice = false;
   int countRecord = 0;
   int currentChoice = 1;
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xfff4f4f4),
-          leading: IconButton(
-            padding: EdgeInsets.all(0.0),
-            icon: Icon(Icons.close),
-            onPressed: () => Navigator.pop(context),
+
+  _buildMsnBox(Message msn, bool isServer, int step) {
+    final msnBox = Column(
+      children: <Widget>[
+        Container(
+          width: 300,
+          decoration: BoxDecoration(
+            borderRadius: isServer
+                ? BorderRadius.only(
+                    topLeft: Radius.circular(5.0),
+                    topRight: Radius.circular(20.0),
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0))
+                : BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(5.0),
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0)),
+            color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
           ),
-          iconTheme: IconThemeData(
-            color: Color(0xff01579b), //change your color here
-          ),
-          title: Container(
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  width: 300,
-                  height: 10,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                      color: Color(0xffE0E0E0)),
-                ),
-                Positioned(
-                  child: Container(
-                    width: currentChoice * 300 / 2,
-                    height: 10,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        color: Color(0xff90a4ae)),
-                  ),
-                )
-              ],
-            ),
+          margin: isServer
+              ? EdgeInsets.only(top: 10.0, left: 5.0)
+              : EdgeInsets.only(top: 10.0, right: 10.0, left: 60.0),
+          padding: EdgeInsets.all(10.0),
+          child: Text(
+            msn.sentence,
+            style: TextStyle(
+                fontSize: 16, color: isServer ? Colors.white : Colors.black),
           ),
         ),
-        body: Column(children: <Widget>[
-          Expanded(
-              child: Container(
-            child: ListView.builder(
-                itemCount: chats.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Text(chats[index].sentenceEng);
-                }),
-          ))
-        ]),
-      ),
+        Container(
+          margin: !isServer ? EdgeInsets.only(left: 40.0) : null,
+          width: 300,
+          child: Row(
+            mainAxisAlignment:
+                isServer ? MainAxisAlignment.start : MainAxisAlignment.end,
+            children: <Widget>[
+              MaterialButton(
+                onPressed: () {},
+                child: Icon(
+                  Icons.volume_up,
+                  color: Color(isServer ? 0xffffffff : 0xff01579b),
+                ),
+                shape: CircleBorder(),
+                minWidth: 20,
+                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: Image.asset(isServer
+                    ? 'assets/images/turtle-w.png'
+                    : 'assets/images/turtle-b.png'),
+                shape: CircleBorder(),
+                minWidth: 20,
+                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
+              ),
+            ],
+          ),
+        )
+      ],
     );
+
+    if (!isServer) {
+      if (step == 1) {
+        return msnBox;
+      } else {
+        return Container();
+      }
+    } else {
+      if (step ==1) {
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+                margin: EdgeInsets.only(top: 10.0, left: 5.0),
+                child: Icon(
+                  Icons.account_circle_outlined,
+                  size: 35.0,
+                  color: Color(0xffaaaaaa),
+                )),
+            msnBox
+          ],
+        );
+      } else {
+        return Container();
+      }
+    }
   }
 
-  Widget bottomBar() {
+  _buildBottomBar() {
     return Container(
       color: Colors.white,
       height: 100,
@@ -203,174 +237,66 @@ class _SpeakingState extends State<Speaking> {
     );
   }
 
-  Widget blueBox() {
-    return Container(
-      margin: EdgeInsets.only(top: 15.0, left: 10.0),
-      padding: EdgeInsets.only(bottom: 10.0),
-      child: Column(
-        children: <Widget>[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // RaisedButton(onPressed: () {}),
-              Container(
-                width: 30,
-                margin: EdgeInsets.only(right: 10.0),
-                child: Icon(
-                  Icons.account_circle_outlined,
-                  color: Color(0xffaaaaaa),
-                  size: 35,
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xfff4f4f4),
+          leading: IconButton(
+            padding: EdgeInsets.all(0.0),
+            icon: Icon(Icons.close),
+            onPressed: () => Navigator.pop(context),
+          ),
+          iconTheme: IconThemeData(
+            color: Color(0xff01579b), //change your color here
+          ),
+          title: Container(
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  width: 300,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                      color: Color(0xffE0E0E0)),
+                ),
+                Positioned(
+                  child: Container(
+                    width: currentChoice * 300 / 2,
+                    height: 10,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                        color: Color(0xff90a4ae)),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                child: ListView.builder(
+                  itemCount: chats.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final Message msn = chats[index];
+                    final bool isServer = chats[index].isServer;
+                    final int step = chats[index].step;
+
+                    return _buildMsnBox(msn, isServer, step);
+                  },
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(10.0),
-                width: 270,
-                height: 74,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(5.0),
-                        topRight: Radius.circular(20.0),
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0)),
-                    color: Color(0xff01579b)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      child: Text(
-                        'What time do you normally get up?',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      ),
-                    ),
-                    Container(
-                      child: Text(
-                        'ปกติคุณตื่นนอนกี่โมง',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 5.0),
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 50,
-                ),
-                Container(
-                  width: 35,
-                  height: 35,
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Icon(
-                      Icons.volume_up,
-                      color: Colors.white,
-                    ),
-                    shape: CircleBorder(),
-                    color: Color(0xff01579b),
-                    padding: EdgeInsets.all(5.0),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 10.0),
-                  width: 35,
-                  height: 35,
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Image.asset('assets/images/turtle-w.png',
-                        fit: BoxFit.contain),
-                    shape: CircleBorder(),
-                    color: Color(0xff01579b),
-                    padding: EdgeInsets.all(5.0),
-                  ),
-                ),
-              ],
             ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget whitebox() {
-    return Container(
-      margin: EdgeInsets.only(top: 15.0, right: 15.0),
-      padding: EdgeInsets.only(bottom: 10.0),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.all(10.0),
-                width: 270,
-                height: 74,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(5.0),
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0)),
-                    color: Color(0xffe0e0e0)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      child: Text(
-                        'What time do you normally get up?',
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                      ),
-                    ),
-                    Container(
-                      child: Text(
-                        'ปกติคุณตื่นนอนกี่โมง',
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 5.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  width: 35,
-                  height: 35,
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Icon(
-                      Icons.volume_up,
-                      color: Color(0xff01579b),
-                    ),
-                    shape: CircleBorder(),
-                    color: Color(0xffe0e0e0),
-                    padding: EdgeInsets.all(5.0),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 10.0),
-                  width: 35,
-                  height: 35,
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Image.asset('assets/images/turtle-b.png',
-                        fit: BoxFit.contain),
-                    shape: CircleBorder(),
-                    color: Color(0xffe0e0e0),
-                    padding: EdgeInsets.all(5.0),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
+            _buildBottomBar()
+          ],
+        ),
       ),
     );
   }

@@ -1,29 +1,37 @@
 class Message {
-  final String sentenceEng;
-  final String sentenceTh;
+  final String sentence;
+  final bool isServer;
+  final int step;
   Message({
-    required this.sentenceEng,
-    required this.sentenceTh,
+    required this.sentence,
+    required this.isServer,
+    required this.step,
   });
 }
 
 List<Message> chats = [
   Message(
-    sentenceEng: 'What time do you normally get up?',
-    sentenceTh: 'ปกติคุณตื่นนอนกี่โมง',
+    sentence: 'What time do you normally get up? \nปกติคุณตื่นนอนกี่โมง',
+    isServer  : true,
+    step : 1
+
   ),
   Message(
-    sentenceEng:
-        'I usually get up at six on weekdays and around 9 at weekends.',
-    sentenceTh:
-        'ปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดาและประมาณ 9 โมงเช้าในวันหยุด',
+    sentence:
+        'I usually get up at six on weekdays and around 9 at weekends.\nปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดาและประมาณ 9 โมงเช้าในวันหยุด',
+    isServer  : false,
+    step : 1
+
+   
   ),
   Message(
-    sentenceEng: 'What do you usually have for breakfast?',
-    sentenceTh: 'ปกติคุณกินอะไรเป็นอาหารเช้า',
+    sentence: 'What do you usually have for breakfast? \nปกติคุณกินอะไรเป็นอาหารเช้า',
+    isServer  : true,
+    step : 2
   ),
   Message(
-    sentenceEng: 'I eat fried rice for breakfast.',
-    sentenceTh: 'ฉันกินข้าวผัดเป็นอาหารเช้า',
+    sentence: 'I eat fried rice for breakfast. \nฉันกินข้าวผัดเป็นอาหารเช้า',
+    isServer  : false,
+    step : 2
   ),
 ];
