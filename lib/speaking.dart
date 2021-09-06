@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/message.dart';
+import 'package:record/record.dart';
 
 class Speaking extends StatefulWidget {
   const Speaking({Key? key}) : super(key: key);
@@ -10,12 +11,98 @@ class Speaking extends StatefulWidget {
 }
 
 class _SpeakingState extends State<Speaking> {
-  bool isRecord = false;
   bool isNextChoice = false;
   int countRecord = 0;
   int currentChoice = 1;
+  bool isRecord = false;
+  
 
+  // -----------------------------------
+  Record myRecord = Record();
+  Future startRecord() async {
+// Start recording
+    await myRecord.start(
+      path: 'assets/audios/myFile.m4a', // required
+      encoder: AudioEncoder.AAC, // by default
+      bitRate: 128000, // by default
+      samplingRate: 44100, // by default
+    );
+
+    await myRecord.stop();
+  }
+
+  Future stopRecord() async {
+    await myRecord.stop();
+
+    bool isRecording = await myRecord.isRecording();
+
+    print(isRecording);
+  }
+
+  // -----------------------------------
   _buildMsnBox(Message msn, bool isServer, int step) {
+    final _playButton = !isServer && countRecord % 2 == 0 && countRecord != 0
+        ? Row(
+            mainAxisAlignment:
+                isServer ? MainAxisAlignment.start : MainAxisAlignment.end,
+            children: <Widget>[
+              MaterialButton(
+                onPressed: () {},
+                child: Icon(
+                  Icons.volume_up,
+                  color: Color(isServer ? 0xffffffff : 0xff01579b),
+                ),
+                shape: CircleBorder(),
+                minWidth: 20,
+                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: Icon(
+                  Icons.volume_up,
+                  color: Color(isServer ? 0xffffffff : 0xff01579b),
+                ),
+                shape: CircleBorder(),
+                minWidth: 20,
+                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: Image.asset(isServer
+                    ? 'assets/images/turtle-w.png'
+                    : 'assets/images/turtle-b.png'),
+                shape: CircleBorder(),
+                minWidth: 20,
+                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
+              ),
+            ],
+          )
+        : Row(
+            mainAxisAlignment:
+                isServer ? MainAxisAlignment.start : MainAxisAlignment.end,
+            children: <Widget>[
+              MaterialButton(
+                onPressed: () {},
+                child: Icon(
+                  Icons.volume_up,
+                  color: Color(isServer ? 0xffffffff : 0xff01579b),
+                ),
+                shape: CircleBorder(),
+                minWidth: 20,
+                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: Image.asset(isServer
+                    ? 'assets/images/turtle-w.png'
+                    : 'assets/images/turtle-b.png'),
+                shape: CircleBorder(),
+                minWidth: 20,
+                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
+              ),
+            ],
+          );
+
     final msnBox = Column(
       children: <Widget>[
         Container(
@@ -45,45 +132,42 @@ class _SpeakingState extends State<Speaking> {
           ),
         ),
         Container(
-          margin: !isServer ? EdgeInsets.only(left: 40.0) : null,
-          width: 300,
-          child: Row(
-            mainAxisAlignment:
-                isServer ? MainAxisAlignment.start : MainAxisAlignment.end,
-            children: <Widget>[
-              MaterialButton(
-                onPressed: () {},
-                child: Icon(
-                  Icons.volume_up,
-                  color: Color(isServer ? 0xffffffff : 0xff01579b),
-                ),
-                shape: CircleBorder(),
-                minWidth: 20,
-                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
-              ),
-              MaterialButton(
-                onPressed: () {},
-                child: Image.asset(isServer
-                    ? 'assets/images/turtle-w.png'
-                    : 'assets/images/turtle-b.png'),
-                shape: CircleBorder(),
-                minWidth: 20,
-                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
-              ),
-            ],
-          ),
-        )
+            margin: !isServer ? EdgeInsets.only(left: 40.0) : null,
+            width: 300,
+            child: _playButton)
       ],
     );
 
-    if (!isServer) {
+    if (currentChoice == 1) {
+      //ถ้าเป็นข้อแรก
       if (step == 1) {
-        return msnBox;
+        //ถ้าเป็นข้อความชุดที่1
+        if (!isServer) {
+          //ถ้าไม่ใช่ข้อความเริ่มต้น
+          return msnBox;
+        } else {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                  margin: EdgeInsets.only(top: 10.0, left: 5.0),
+                  child: Icon(
+                    Icons.account_circle_outlined,
+                    size: 35.0,
+                    color: Color(0xffaaaaaa),
+                  )),
+              msnBox
+            ],
+          );
+        }
       } else {
+        //ถ้าไม่เป็นข้อความชุดที่1
         return Container();
       }
     } else {
-      if (step ==1) {
+      if (!isServer) {
+        return msnBox;
+      } else {
         return Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -97,21 +181,21 @@ class _SpeakingState extends State<Speaking> {
             msnBox
           ],
         );
-      } else {
-        return Container();
       }
     }
   }
 
-  _buildBottomBar() {
+  Widget _buildBottomBar() {
     return Container(
       color: Colors.white,
       height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
+          // ฟังเสียง
           MaterialButton(
-            onPressed: () {},
+            onPressed:
+                countRecord != 0 && countRecord % 2 == 0 ? () => {} : null,
             minWidth: 80,
             height: 45,
             color: Colors.white,
@@ -148,14 +232,13 @@ class _SpeakingState extends State<Speaking> {
                             : 0xff01579b),
                     width: 2)),
           ),
+          // อัดเสียง
           MaterialButton(
             onPressed: () => {
               setState(() {
                 isRecord = !isRecord;
-                countRecord++;
-                isNextChoice = false;
-                print(countRecord);
-              })
+              }),
+              if (isRecord) {startRecord()} else {stopRecord()}
             },
             minWidth: 80,
             height: 80,
@@ -195,15 +278,19 @@ class _SpeakingState extends State<Speaking> {
               ),
             ),
           ),
+
+          // ถัดไป
           MaterialButton(
-            onPressed: () {
-              setState(() {
-                if (currentChoice != 4) {
-                  currentChoice++;
-                  isNextChoice = true;
-                }
-              });
-            },
+            onPressed: countRecord != 0 && countRecord % 2 == 0
+                ? () => {
+                      setState(() {
+                        if (currentChoice != 4) {
+                          currentChoice++;
+                          isNextChoice = true;
+                        }
+                      })
+                    }
+                : null,
             minWidth: 80,
             height: 45,
             color: Colors.white,
