@@ -165,7 +165,7 @@ class ContactUs extends StatelessWidget {
                   margin: EdgeInsets.only(left: 15.0, top: 15.0),
                   width: 280,
                   height: 35,
-                  child: RaisedButton(
+                  child: MaterialButton(
                     onPressed: () => {Navigator.pop(context)},
                     child: Text(
                       'Send',

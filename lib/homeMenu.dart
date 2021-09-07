@@ -100,7 +100,7 @@ class HomeMenu extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          child: RaisedButton(
+                          child: MaterialButton(
                             color: Color(0xffffab40),
                             onPressed: () => Navigator.push(
                               context,
@@ -199,7 +199,7 @@ class HomeMenu extends StatelessWidget {
                           ),
                         ),
                         Container(
-                            child: RaisedButton(
+                            child: MaterialButton(
                           color: Color(0xffffab40),
                           onPressed: () {},
                           child: Row(
@@ -292,7 +292,7 @@ class HomeMenu extends StatelessWidget {
                           ),
                         ),
                         Container(
-                            child: RaisedButton(
+                            child: MaterialButton(
                           color: Color(0xffffab40),
                           onPressed: () {},
                           child: Row(
@@ -396,7 +396,7 @@ class HomeDetail extends StatelessWidget {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(right: 10.0),
-                child: RaisedButton(
+                child: MaterialButton(
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
                       side: BorderSide(
@@ -413,7 +413,7 @@ class HomeDetail extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.only(left: 10.0),
-                child: RaisedButton(
+                child: MaterialButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(30.0),
@@ -565,7 +565,7 @@ class HomeDetail extends StatelessWidget {
                 margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 width: 320,
                 height: 45,
-                child: RaisedButton(
+                child: MaterialButton(
                   onPressed: () =>
                       {Navigator.pop(context), dialogConfirm(context)},
                   child: Text(
@@ -609,7 +609,7 @@ class HomeDetail extends StatelessWidget {
           Center(
               child: Container(
             margin: EdgeInsets.only(left: 10.0),
-            child: RaisedButton(
+            child: MaterialButton(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(30.0),
@@ -963,7 +963,7 @@ class HomeLesson extends StatelessWidget {
                         color:
                             num != 3 ? Color(0xff7dd958) : Color(0xffd8d8d8)),
                     color: Colors.white),
-                child: FlatButton(
+                child: MaterialButton(
                   shape: CircleBorder(),
                   color: Colors.white,
                   onPressed: () {

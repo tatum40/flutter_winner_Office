@@ -26,7 +26,7 @@ class SignupWith extends StatelessWidget {
                 margin: EdgeInsets.only(top: 50.0, bottom: 35.0),
                 width: 320,
                 height: 45,
-                child: RaisedButton(
+                child: MaterialButton(
                   onPressed: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Register())),
                   child: Text('Sign up with email'),
@@ -78,7 +78,7 @@ class SignupWith extends StatelessWidget {
                         margin: EdgeInsets.only(left: 15.0),
                         width: 60,
                         height: 60,
-                        child: RaisedButton(
+                        child: MaterialButton(
                           padding: EdgeInsets.all(0.0),
                           onPressed: () => Navigator.push(
                               context,
@@ -93,7 +93,7 @@ class SignupWith extends StatelessWidget {
                     Container(
                         width: 60,
                         height: 60,
-                        child: RaisedButton(
+                        child: MaterialButton(
                           padding: EdgeInsets.all(0.0),
                           onPressed: () => showDialog<String>(
                             context: context,
@@ -350,7 +350,7 @@ class Signupfacebook extends StatelessWidget {
                     margin: EdgeInsets.only(top: 20.0),
                     width: 320,
                     height: 45,
-                    child: RaisedButton(
+                    child: MaterialButton(
                       onPressed: () => () {},
                       child: Text(
                         'เข้าสู่ระบบ',

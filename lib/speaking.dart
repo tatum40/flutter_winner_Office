@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/message.dart';
-import 'package:record/record.dart';
 
 class Speaking extends StatefulWidget {
   const Speaking({Key? key}) : super(key: key);
@@ -14,93 +13,57 @@ class _SpeakingState extends State<Speaking> {
   bool isNextChoice = false;
   int countRecord = 0;
   int currentChoice = 1;
+  int dataful = 2;
   bool isRecord = false;
-  
+  bool finishTest = false;
 
-  // -----------------------------------
-  Record myRecord = Record();
-  Future startRecord() async {
-// Start recording
-    await myRecord.start(
-      path: 'assets/audios/myFile.m4a', // required
-      encoder: AudioEncoder.AAC, // by default
-      bitRate: 128000, // by default
-      samplingRate: 44100, // by default
+  // กล่องข้อความแชท
+  _buildMsnBox(Message msn, bool isServer, int step) {
+    // ฟังเสียงปกติ
+    final listenButton = MaterialButton(
+      onPressed: () {},
+      child: Icon(
+        Icons.volume_up,
+        color: Color(isServer ? 0xffffffff : 0xff01579b),
+      ),
+      shape: CircleBorder(),
+      minWidth: 20,
+      color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
     );
 
-    await myRecord.stop();
-  }
+    // ฟังเสียงแบบช้า
+    final slowButton = MaterialButton(
+      onPressed: () {},
+      child: Image.asset(isServer
+          ? 'assets/images/turtle-w.png'
+          : 'assets/images/turtle-b.png'),
+      shape: CircleBorder(),
+      minWidth: 20,
+      color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
+    );
 
-  Future stopRecord() async {
-    await myRecord.stop();
+    // เล่นเสียงที่อัดเข้าไป
+    final playButton = MaterialButton(
+      onPressed: () {},
+      child: Icon(
+        Icons.play_arrow,
+        color: Color(isServer ? 0xffffffff : 0xff01579b),
+      ),
+      shape: CircleBorder(),
+      minWidth: 20,
+      color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
+    );
 
-    bool isRecording = await myRecord.isRecording();
-
-    print(isRecording);
-  }
-
-  // -----------------------------------
-  _buildMsnBox(Message msn, bool isServer, int step) {
     final _playButton = !isServer && countRecord % 2 == 0 && countRecord != 0
         ? Row(
             mainAxisAlignment:
                 isServer ? MainAxisAlignment.start : MainAxisAlignment.end,
-            children: <Widget>[
-              MaterialButton(
-                onPressed: () {},
-                child: Icon(
-                  Icons.volume_up,
-                  color: Color(isServer ? 0xffffffff : 0xff01579b),
-                ),
-                shape: CircleBorder(),
-                minWidth: 20,
-                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
-              ),
-              MaterialButton(
-                onPressed: () {},
-                child: Icon(
-                  Icons.volume_up,
-                  color: Color(isServer ? 0xffffffff : 0xff01579b),
-                ),
-                shape: CircleBorder(),
-                minWidth: 20,
-                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
-              ),
-              MaterialButton(
-                onPressed: () {},
-                child: Image.asset(isServer
-                    ? 'assets/images/turtle-w.png'
-                    : 'assets/images/turtle-b.png'),
-                shape: CircleBorder(),
-                minWidth: 20,
-                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
-              ),
-            ],
+            children: <Widget>[playButton, listenButton, slowButton],
           )
         : Row(
             mainAxisAlignment:
                 isServer ? MainAxisAlignment.start : MainAxisAlignment.end,
-            children: <Widget>[
-              MaterialButton(
-                onPressed: () {},
-                child: Icon(
-                  Icons.volume_up,
-                  color: Color(isServer ? 0xffffffff : 0xff01579b),
-                ),
-                shape: CircleBorder(),
-                minWidth: 20,
-                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
-              ),
-              MaterialButton(
-                onPressed: () {},
-                child: Image.asset(isServer
-                    ? 'assets/images/turtle-w.png'
-                    : 'assets/images/turtle-b.png'),
-                shape: CircleBorder(),
-                minWidth: 20,
-                color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
-              ),
-            ],
+            children: <Widget>[listenButton, slowButton],
           );
 
     final msnBox = Column(
@@ -168,7 +131,8 @@ class _SpeakingState extends State<Speaking> {
       if (!isServer) {
         return msnBox;
       } else {
-        return Row(
+        return 
+        Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
@@ -185,145 +149,254 @@ class _SpeakingState extends State<Speaking> {
     }
   }
 
+  // เมนูด้านล่าง
   Widget _buildBottomBar() {
-    return Container(
+    // ฟังเสียง
+    final listenButton = MaterialButton(
+      onPressed: countRecord != 0 && countRecord % 2 == 0 ? () => {} : null,
+      minWidth: 80,
+      height: 45,
       color: Colors.white,
+      child: Row(
+        children: <Widget>[
+          Icon(
+            Icons.play_arrow,
+            color: Color(
+                countRecord == 0 || countRecord % 2 != 0 || isNextChoice
+                    ? 0xffbdbdbd
+                    : 0xff01579b),
+            size: 30,
+          ),
+          Text(
+            'ฟัง',
+            style: TextStyle(
+                color: Color(
+                    countRecord == 0 || countRecord % 2 != 0 || isNextChoice
+                        ? 0xffbdbdbd
+                        : 0xff01579b),
+                fontSize: 16),
+          )
+        ],
+      ),
+      shape: OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.0),
+          ),
+          borderSide: BorderSide(
+              color: Color(
+                  countRecord == 0 || countRecord % 2 != 0 || isNextChoice
+                      ? 0xffbdbdbd
+                      : 0xff01579b),
+              width: 2)),
+    );
+
+    // อัดเสียง
+    final recordSoundButton = MaterialButton(
+      onPressed: () => {
+        setState(() {
+          isRecord = !isRecord;
+          countRecord++;
+          if (countRecord == 4) {
+            finishTest = true;
+          }
+        }),
+      },
+      minWidth: 80,
+      height: 80,
+      color: Color(0xffffab40),
+      child: (isRecord)
+          ? Container(
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.lens,
+                    color: Colors.white,
+                    size: 15,
+                  ),
+                  Container(
+                      margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                      child: Icon(
+                        Icons.lens,
+                        color: Colors.white,
+                        size: 10,
+                      )),
+                  Icon(
+                    Icons.lens,
+                    color: Colors.white,
+                    size: 15,
+                  ),
+                ],
+              ),
+            )
+          : Icon(
+              Icons.mic,
+              size: 50,
+              color: Colors.white,
+            ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(50.0),
+        ),
+      ),
+    );
+
+    // ข้อถัดไป
+    final nextChoiceButton = MaterialButton(
+      onPressed: countRecord != 0 && countRecord % 2 == 0
+          ? () => {
+                setState(() {
+                  if (currentChoice != 4) {
+                    currentChoice++;
+                    isNextChoice = true;
+                  }
+                })
+              }
+          : null,
+      minWidth: 80,
+      height: 45,
+      color: Colors.white,
+      child: Row(
+        children: <Widget>[
+          Text(
+            'ถัดไป',
+            style: TextStyle(
+                color: Color(
+                    countRecord == 0 || countRecord % 2 != 0 || isNextChoice
+                        ? 0xffbdbdbd
+                        : 0xff01579b),
+                fontSize: 16),
+          )
+        ],
+      ),
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.0),
+        ),
+        borderSide: BorderSide(
+            color: Color(
+                countRecord == 0 || countRecord % 2 != 0 || isNextChoice
+                    ? 0xffbdbdbd
+                    : 0xff01579b),
+            width: 2),
+      ),
+    );
+
+    //เล่นเสียงของฉันซ้ำ
+    final playMySoundAgainButton = MaterialButton(
+      onPressed: () {},
+      minWidth: 300,
+      height: 45,
+      color: Color(0xffffab40),
+      child: Text(
+        'เล่นซ้ำการออกเสียงของฉัน',
+        style: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.0),
+        ),
+      ),
+    );
+
+    //เปลี่ยนบทบาท
+    final changeCharacterButton = MaterialButton(
+      onPressed: () {},
+      minWidth: 300,
+      height: 45,
+      color: Colors.white,
+      child: Text(
+        'เปลี่ยนบทบาท',
+        style: TextStyle(color: Color(0xff01579b), fontSize: 16),
+      ),
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.0),
+        ),
+        borderSide: BorderSide(color: Color(0xff01579b), width: 1),
+      ),
+    );
+
+    // ลองอีกครั้ง
+    final tryAgainButton = MaterialButton(
+      onPressed: () {
+        setState(() {
+          currentChoice = 1;
+          countRecord = 0;
+          finishTest = false;
+          isRecord = false;
+          isNextChoice = false;
+        });
+      },
+      minWidth: 140,
+      height: 45,
+      color: Colors.white,
+      child: Text(
+        'ลองอีกครั้ง',
+        style: TextStyle(color: Color(0xff01579b), fontSize: 16),
+      ),
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.0),
+        ),
+        borderSide: BorderSide(color: Color(0xff01579b), width: 1),
+      ),
+    );
+
+    // จบแบบฝึกหัด
+    final endButton = MaterialButton(
+      onPressed: () => Navigator.pop(context),
+      minWidth: 140,
+      height: 45,
+      color: Colors.white,
+      child: Text(
+        'จบ',
+        style: TextStyle(color: Color(0xff01579b), fontSize: 16),
+      ),
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.0),
+        ),
+        borderSide: BorderSide(color: Color(0xff01579b), width: 1),
+      ),
+    );
+
+    // bar function อัดเสียง
+    final recordBar = Container(
       height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          // ฟังเสียง
-          MaterialButton(
-            onPressed:
-                countRecord != 0 && countRecord % 2 == 0 ? () => {} : null,
-            minWidth: 80,
-            height: 45,
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Icon(
-                  Icons.play_arrow,
-                  color: Color(
-                      countRecord == 0 || countRecord % 2 != 0 || isNextChoice
-                          ? 0xffbdbdbd
-                          : 0xff01579b),
-                  size: 30,
-                ),
-                Text(
-                  'ฟัง',
-                  style: TextStyle(
-                      color: Color(countRecord == 0 ||
-                              countRecord % 2 != 0 ||
-                              isNextChoice
-                          ? 0xffbdbdbd
-                          : 0xff01579b),
-                      fontSize: 16),
-                )
-              ],
-            ),
-            shape: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20.0),
-                ),
-                borderSide: BorderSide(
-                    color: Color(
-                        countRecord == 0 || countRecord % 2 != 0 || isNextChoice
-                            ? 0xffbdbdbd
-                            : 0xff01579b),
-                    width: 2)),
-          ),
-          // อัดเสียง
-          MaterialButton(
-            onPressed: () => {
-              setState(() {
-                isRecord = !isRecord;
-              }),
-              if (isRecord) {startRecord()} else {stopRecord()}
-            },
-            minWidth: 80,
-            height: 80,
-            color: Color(0xffffab40),
-            child: (isRecord)
-                ? Container(
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.lens,
-                          color: Colors.white,
-                          size: 15,
-                        ),
-                        Container(
-                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                            child: Icon(
-                              Icons.lens,
-                              color: Colors.white,
-                              size: 10,
-                            )),
-                        Icon(
-                          Icons.lens,
-                          color: Colors.white,
-                          size: 15,
-                        ),
-                      ],
-                    ),
-                  )
-                : Icon(
-                    Icons.mic,
-                    size: 50,
-                    color: Colors.white,
-                  ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(50.0),
-              ),
-            ),
-          ),
+        children: <Widget>[listenButton, recordSoundButton, nextChoiceButton],
+      ),
+    );
 
-          // ถัดไป
-          MaterialButton(
-            onPressed: countRecord != 0 && countRecord % 2 == 0
-                ? () => {
-                      setState(() {
-                        if (currentChoice != 4) {
-                          currentChoice++;
-                          isNextChoice = true;
-                        }
-                      })
-                    }
-                : null,
-            minWidth: 80,
-            height: 45,
-            color: Colors.white,
+    // bar เมื่อทำเสร็จถึงข้อสุดท้าย
+    final finalBar = Container(
+      height: 180,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          playMySoundAgainButton,
+          changeCharacterButton,
+          Container(
+            width: 300,
             child: Row(
-              children: <Widget>[
-                Text(
-                  'ถัดไป',
-                  style: TextStyle(
-                      color: Color(countRecord == 0 ||
-                              countRecord % 2 != 0 ||
-                              isNextChoice
-                          ? 0xffbdbdbd
-                          : 0xff01579b),
-                      fontSize: 16),
-                )
-              ],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[tryAgainButton, endButton],
             ),
-            shape: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20.0),
-                ),
-                borderSide: BorderSide(
-                    color: Color(
-                        countRecord == 0 || countRecord % 2 != 0 || isNextChoice
-                            ? 0xffbdbdbd
-                            : 0xff01579b),
-                    width: 2)),
           ),
         ],
       ),
     );
+
+    // แสดงผล Bottom Bar
+    if (finishTest) {
+      return finalBar;
+    } else {
+      return recordBar;
+    }
   }
 
+  // Body
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -370,6 +443,7 @@ class _SpeakingState extends State<Speaking> {
             Expanded(
               child: Container(
                 child: ListView.builder(
+                  padding: EdgeInsets.only(bottom: 10.0),
                   itemCount: chats.length,
                   itemBuilder: (BuildContext context, int index) {
                     final Message msn = chats[index];

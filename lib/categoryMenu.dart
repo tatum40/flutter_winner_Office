@@ -15,7 +15,7 @@ class CategoryMenu extends StatelessWidget {
           mainAxisSpacing: 15,
           crossAxisCount: 2,
           children: <Widget>[
-            RaisedButton(
+            MaterialButton(
               color: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -35,7 +35,7 @@ class CategoryMenu extends StatelessWidget {
                 ),
               ),
             ),
-            RaisedButton(
+            MaterialButton(
               color: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -54,7 +54,7 @@ class CategoryMenu extends StatelessWidget {
                 ),
               ),
             ),
-            RaisedButton(
+            MaterialButton(
               color: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -73,7 +73,7 @@ class CategoryMenu extends StatelessWidget {
                 ),
               ),
             ),
-            RaisedButton(
+            MaterialButton(
               color: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -91,7 +91,7 @@ class CategoryMenu extends StatelessWidget {
                 ),
               ),
             ),
-            RaisedButton(
+            MaterialButton(
               color: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -177,7 +177,7 @@ class CategoryVocab extends StatelessWidget {
                             top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                         width: 112,
                         height: 40,
-                        child: RaisedButton(
+                        child: MaterialButton(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius:
@@ -196,7 +196,7 @@ class CategoryVocab extends StatelessWidget {
                             top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                         width: 112,
                         height: 40,
-                        child: RaisedButton(
+                        child: MaterialButton(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius:
@@ -215,7 +215,7 @@ class CategoryVocab extends StatelessWidget {
                             top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                         width: 112,
                         height: 40,
-                        child: RaisedButton(
+                        child: MaterialButton(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius:
@@ -232,7 +232,7 @@ class CategoryVocab extends StatelessWidget {
                             top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                         width: 112,
                         height: 40,
-                        child: RaisedButton(
+                        child: MaterialButton(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius:
@@ -252,7 +252,7 @@ class CategoryVocab extends StatelessWidget {
                       top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                   width: 350,
                   height: 60,
-                  child: RaisedButton(
+                  child: MaterialButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -276,7 +276,7 @@ class CategoryVocab extends StatelessWidget {
                       top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                   width: 350,
                   height: 60,
-                  child: RaisedButton(
+                  child: MaterialButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -300,7 +300,7 @@ class CategoryVocab extends StatelessWidget {
                       top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                   width: 350,
                   height: 60,
-                  child: RaisedButton(
+                  child: MaterialButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -324,7 +324,7 @@ class CategoryVocab extends StatelessWidget {
                       top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                   width: 350,
                   height: 60,
-                  child: RaisedButton(
+                  child: MaterialButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -348,7 +348,7 @@ class CategoryVocab extends StatelessWidget {
                       top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                   width: 350,
                   height: 60,
-                  child: RaisedButton(
+                  child: MaterialButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -372,7 +372,7 @@ class CategoryVocab extends StatelessWidget {
                       top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                   width: 350,
                   height: 60,
-                  child: RaisedButton(
+                  child: MaterialButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -396,7 +396,7 @@ class CategoryVocab extends StatelessWidget {
                       top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                   width: 350,
                   height: 60,
-                  child: RaisedButton(
+                  child: MaterialButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -420,7 +420,7 @@ class CategoryVocab extends StatelessWidget {
                       top: 10.0, bottom: 10.0, left: 5.0, right: 5.0),
                   width: 350,
                   height: 60,
-                  child: RaisedButton(
+                  child: MaterialButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),

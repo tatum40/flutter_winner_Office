@@ -181,7 +181,7 @@ class _InformationState extends State<Information> {
                     Container(
                       margin: EdgeInsets.only(top: 20.0),
                       width: 320,
-                      child: RaisedButton(
+                      child: MaterialButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {}
                         },

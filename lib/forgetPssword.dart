@@ -49,7 +49,7 @@ Scaffold(
               margin: EdgeInsets.only(bottom: 35.0),
               width: 320,
               height: 45,
-              child: RaisedButton(
+              child: MaterialButton(
                 onPressed: () => showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
@@ -57,7 +57,7 @@ Scaffold(
                         'A new password has been sent to your email.'),
                     actions: <Widget>[
                       Center(
-                        child: FlatButton(
+                        child: MaterialButton(
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30.0))),

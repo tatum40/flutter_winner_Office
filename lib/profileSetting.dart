@@ -39,7 +39,7 @@ class SettingPage extends StatelessWidget {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Color(0xffffab40)),
                         child: Center(
-                          child: FlatButton(
+                          child: MaterialButton(
                             padding: EdgeInsets.all(0.0),
                             onPressed: () => Navigator.push(
                                 context,

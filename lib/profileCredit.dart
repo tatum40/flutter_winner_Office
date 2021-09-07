@@ -155,7 +155,7 @@ class Setcredit extends StatelessWidget {
               child: Form(
                 child: Column(
                   children: <Widget>[
-                    // RaisedButton(onPressed: () {}),
+                    // MaterialButton(onPressed: () {}),
                     Container(
                       margin: EdgeInsets.only(top: 20.0),
                       width: 320,
@@ -260,7 +260,7 @@ class Setcredit extends StatelessWidget {
                                     child:
                                         Image.asset('assets/images/card.png'),
                                   ),
-                                  FlatButton(
+                                  MaterialButton(
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(30.0))),
@@ -286,7 +286,7 @@ class Setcredit extends StatelessWidget {
                       margin: EdgeInsets.only(top: 25.0),
                       width: 320,
                       height: 35,
-                      child: RaisedButton(
+                      child: MaterialButton(
                         onPressed: () => Navigator.pop(context),
                         child: Text(
                           'Save',

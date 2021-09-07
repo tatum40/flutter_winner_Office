@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     margin: EdgeInsets.only(bottom: 35.0),
                     width: 320,
                     height: 45,
-                    child: RaisedButton(
+                    child: MaterialButton(
                       onPressed: () => Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Home())),
                       child: Text('Log in'),
@@ -136,30 +136,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Container(
-                      margin: EdgeInsets.only(left: 15.0),
-                      width: 60,
-                      height: 60,
-                      child: RaisedButton(
-                        padding: EdgeInsets.all(0.0),
-                        onPressed: () {},
-                        child: Image.asset('assets/images/facebook.png',
-                            fit: BoxFit.fitHeight),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0))),
-                      )),
+                    margin: EdgeInsets.only(left: 15.0),
+                    width: 60,
+                    height: 60,
+                    child: MaterialButton(
+                      padding: EdgeInsets.all(0.0),
+                      onPressed: () {},
+                      child: Image.asset('assets/images/facebook.png',
+                          fit: BoxFit.fitHeight),
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(30.0))),
+                    ),
+                  ),
                   Container(
-                      width: 60,
-                      height: 60,
-                      child: RaisedButton(
-                        padding: EdgeInsets.all(0.0),
-                        onPressed: () {},
-                        child: Image.asset('assets/images/google.png',
-                            fit: BoxFit.fitHeight),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0))),
-                      )),
+                    width: 60,
+                    height: 60,
+                    child: MaterialButton(
+                      padding: EdgeInsets.all(0.0),
+                      onPressed: () {},
+                      child: Image.asset('assets/images/google.png',
+                          fit: BoxFit.fitHeight),
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(30.0))),
+                    ),
+                  ),
                 ],
               ),
             )
@@ -169,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Container(
         width: 80,
         height: 35,
-        child: RaisedButton(
+        child: MaterialButton(
           color: Colors.white,
           onPressed: () {},
           child: Text('Skip', style: TextStyle(color: Color(0xffffab40))),

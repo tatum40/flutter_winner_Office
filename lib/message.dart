@@ -1,3 +1,4 @@
+
 class Message {
   final String sentence;
   final bool isServer;
@@ -9,29 +10,61 @@ class Message {
   });
 }
 
+class MultiChoice {
+  final String sentence;
+  final bool isServer;
+  final List answer;
+  MultiChoice({
+    required this.isServer,
+    required this.sentence,
+    required this.answer,
+  });
+}
+
 List<Message> chats = [
   Message(
-    sentence: 'What time do you normally get up? \nปกติคุณตื่นนอนกี่โมง',
-    isServer  : true,
-    step : 1
-
-  ),
+      sentence: 'What time do you normally get up? \nปกติคุณตื่นนอนกี่โมง',
+      isServer: true,
+      step: 1),
   Message(
+      sentence:
+          'I usually get up at six on weekdays and around 9 at weekends.\nปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดาและประมาณ 9 โมงเช้าในวันหยุด',
+      isServer: false,
+      step: 1),
+  Message(
+      sentence:
+          'What do you usually have for breakfast? \nปกติคุณกินอะไรเป็นอาหารเช้า',
+      isServer: true,
+      step: 2),
+  Message(
+      sentence: 'I eat fried rice for breakfast. \nฉันกินข้าวผัดเป็นอาหารเช้า',
+      isServer: false,
+      step: 2),
+];
+
+List<MultiChoice> multiChoice = [
+  MultiChoice(
     sentence:
-        'I usually get up at six on weekdays and around 9 at weekends.\nปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดาและประมาณ 9 โมงเช้าในวันหยุด',
-    isServer  : false,
-    step : 1
+        'What time does Andrea normally get up on Saturday \ปกติในวันเสาร์แอนเดียร์จตื่นเวลาเท่าไหร่',
+    isServer: true,
+    answer : [
+      '6am',
+      '9pm',
+      '4am',
+      '7pm'
+    ],
 
-   
   ),
-  Message(
-    sentence: 'What do you usually have for breakfast? \nปกติคุณกินอะไรเป็นอาหารเช้า',
-    isServer  : true,
-    step : 2
-  ),
-  Message(
-    sentence: 'I eat fried rice for breakfast. \nฉันกินข้าวผัดเป็นอาหารเช้า',
-    isServer  : false,
-    step : 2
+  MultiChoice(
+    sentence:
+        'What time do you normally get up?\nปกติฉันตื่นนอนตอน 6 ปกติคุณตื่นนอนกี่โมง',
+    isServer: true,
+    answer : [
+      '6am',
+      '9pm',
+      '4am',
+      '7pm'
+    ],
+
   ),
 ];

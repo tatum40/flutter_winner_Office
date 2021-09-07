@@ -31,8 +31,10 @@ dependencies:
   flutter_sound_lite: ^8.3.10
   permission_handler: ^8.1.4+1
   record: ^3.0.0
+  assets_audio_player: ^3.0.3+6
 
-
+  
+  
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +78,7 @@ flutter:
     - "assets/images/cameraOn.png"
     - "assets/images/turtle-w.png"
     - "assets/images/turtle-b.png"
+    - "assets/audios/sound1.wav"
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
