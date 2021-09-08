@@ -12,6 +12,7 @@ class _MultipleState extends State<Multiple> {
   int currentChoice = 1;
   int dataful = 2;
   int selectAnswer = 0;
+  bool isSendAnswer = false;
 
   _myAppBar() {
     return AppBar(
@@ -55,7 +56,7 @@ class _MultipleState extends State<Multiple> {
     );
   }
 
-  Widget _msnBox() {
+  Widget _questionsBox() {
     // ฟังเสียงปกติ
     final listenButton = MaterialButton(
       onPressed: () {},
@@ -67,15 +68,28 @@ class _MultipleState extends State<Multiple> {
       minWidth: 20,
       color: Color(0xff01579b),
     );
+    // ฟังเสียงคำตอบ
+    final listenAnswerButton = isSendAnswer
+        ? MaterialButton(
+            onPressed: () {},
+            child: Icon(
+              Icons.volume_up,
+              color: Color(0xff01579b),
+            ),
+            shape: CircleBorder(),
+            minWidth: 20,
+            color: Color(0xffe0e0e0),
+          )
+        : Container();
 
     // ฟังเสียงแบบช้า
-    final slowButton = MaterialButton(
-      onPressed: () {},
-      child: Image.asset('assets/images/turtle-w.png'),
-      shape: CircleBorder(),
-      minWidth: 20,
-      color: Color(0xff01579b),
-    );
+    // final slowButton = MaterialButton(
+    //   onPressed: () {},
+    //   child: Image.asset('assets/images/turtle-w.png'),
+    //   shape: CircleBorder(),
+    //   minWidth: 20,
+    //   color: Color(0xff01579b),
+    // );
 
     // กล่องข้อความ
     final msnBox = Container(
@@ -101,9 +115,10 @@ class _MultipleState extends State<Multiple> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         Container(
+          padding: EdgeInsets.all(10.0),
           margin: EdgeInsets.only(top: 10.0, right: 15.0),
-          width: 100,
-          height: 45,
+          width: isSendAnswer ? null : 100,
+          height: isSendAnswer ? null : 45,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20.0),
@@ -112,29 +127,38 @@ class _MultipleState extends State<Multiple> {
                 bottomRight: Radius.circular(20.0)),
             color: Color(0xffe0e0e0),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Icon(
-                Icons.lens,
-                size: 12.0,
-                color: Color(0xff616161),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                child: Icon(
-                  Icons.lens,
-                  size: 12.0,
-                  color: Color(0xff616161),
+          child: isSendAnswer
+              ? Container(
+                  child: Text(
+                    multiChoice[currentChoice - 1].answer,
+                    style: TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                )
+              : Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.lens,
+                        size: 12.0,
+                        color: Color(0xff616161),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                        child: Icon(
+                          Icons.lens,
+                          size: 12.0,
+                          color: Color(0xff616161),
+                        ),
+                      ),
+                      Icon(
+                        Icons.lens,
+                        size: 12.0,
+                        color: Color(0xff616161),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Icon(
-                Icons.lens,
-                size: 12.0,
-                color: Color(0xff616161),
-              ),
-            ],
-          ),
         ),
       ],
     );
@@ -158,24 +182,31 @@ class _MultipleState extends State<Multiple> {
         Container(
           margin: EdgeInsets.only(left: 50.0),
           child: Row(
-            children: <Widget>[listenButton, slowButton],
+            children: <Widget>[listenButton],
           ),
         ),
-        answerBox
+        answerBox,
+        Container(
+          margin: EdgeInsets.only(right: 15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[listenAnswerButton],
+          ),
+        ),
       ],
     );
   }
 
-  Widget _answerBox() {
+  Widget _choiceAnswerBox() {
     return Expanded(
       child: Container(
         margin: EdgeInsets.only(top: 20.0),
         width: 300,
         child: ListView.builder(
           padding: EdgeInsets.only(bottom: 10.0),
-          itemCount: multiChoice[currentChoice - 1].answer.length,
+          itemCount: multiChoice[currentChoice - 1].choice.length,
           itemBuilder: (BuildContext context, int index) {
-            final List answer = multiChoice[currentChoice - 1].answer;
+            final List answer = multiChoice[currentChoice - 1].choice;
 
             final soundButton = Container(
               width: 30,
@@ -210,51 +241,124 @@ class _MultipleState extends State<Multiple> {
               ),
             );
 
-            return Container(
-              margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
-              child: MaterialButton(
-                height: 45,
-                onPressed: () {
-                  setState(() {
-                    selectAnswer = index + 1;
-                    print(selectAnswer);
-                  });
-                },
-                color: selectAnswer == index + 1
-                    ? Color(0xffffab40)
-                    : Colors.white,
-                shape: selectAnswer != index + 1
-                    ? OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(25.0),
-                        ),
-                        borderSide:
-                            BorderSide(color: Color(0xff01579b), width: 1.5),
-                      )
-                    : RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(25.0),
-                        ),
+            final selectButton = MaterialButton(
+              height: 45,
+              onPressed: () {
+                setState(() {
+                  selectAnswer = index + 1;
+                });
+              },
+              color:
+                  selectAnswer == index + 1 ? Color(0xffffab40) : Colors.white,
+              shape: selectAnswer != index + 1
+                  ? OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25.0),
                       ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      answer[index],
-                      style: TextStyle(
-                          color: selectAnswer == index + 1
-                              ? Colors.white
-                              : Colors.black),
+                      borderSide:
+                          BorderSide(color: Color(0xff01579b), width: 1.5),
+                    )
+                  : RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25.0),
+                      ),
                     ),
-                    soundButton
-                  ],
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    answer[index],
+                    style: TextStyle(
+                        color: selectAnswer == index + 1
+                            ? Colors.white
+                            : Colors.black),
+                  ),
+                  soundButton
+                ],
               ),
             );
+
+            final showCorrectAnswer = Container(
+              height: 45,
+              padding: EdgeInsets.only(left: 15.0, right: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    answer[index],
+                    style: TextStyle(
+                        color: index + 1 ==
+                                multiChoice[currentChoice - 1].correctAnswer
+                            ? Color(0xffffffff)
+                            : Color(0xff000000)),
+                  ),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    child: Icon(
+                      Icons.volume_up,
+                      size: 20,
+                      color: Color(index + 1 ==
+                              multiChoice[currentChoice - 1].correctAnswer
+                          ? 0xffffffff
+                          : 0xff01579b),
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                      color: Color(index + 1 ==
+                              multiChoice[currentChoice - 1].correctAnswer
+                          ? 0xff4ab71e
+                          : 0xffffffff),
+                      border: Border.all(
+                        color: Color(index + 1 ==
+                                multiChoice[currentChoice - 1].correctAnswer
+                            ? 0xffffffff
+                            : 0xff01579b),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  color:
+                      index + 1 == multiChoice[currentChoice - 1].correctAnswer
+                          ? Color(0xff4ab71e)
+                          : Color(0xffffffff),
+                  border:
+                      index + 1 == multiChoice[currentChoice - 1].correctAnswer
+                          ? null
+                          : Border.all(color: Color(0xff01579b))),
+            );
+
+            return Container(
+                margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                child: isSendAnswer ? showCorrectAnswer : selectButton);
           },
         ),
       ),
     );
+  }
+
+  void sendAnswer() {
+    setState(() {
+      if (isSendAnswer == false) {
+        isSendAnswer = true;
+        print(selectAnswer);
+        print(multiChoice[currentChoice - 1].correctAnswer);
+      } else {
+        isSendAnswer = false;
+        currentChoice++;
+        selectAnswer = 0;
+      }
+    });
+  }
+
+  void nextChoice() {
+    setState(() {
+      currentChoice++;
+      selectAnswer = 0;
+    });
   }
 
   Widget floatingNext() {
@@ -263,17 +367,7 @@ class _MultipleState extends State<Multiple> {
       height: 45,
       child: MaterialButton(
         color: Colors.white,
-        onPressed: selectAnswer != 0
-            ? () {
-                setState(
-                  () {
-                    currentChoice++;
-                    selectAnswer = 0;
-                    print(currentChoice);
-                  },
-                );
-              }
-            : null,
+        onPressed: selectAnswer == 0 && !isSendAnswer ? null : sendAnswer,
         child: Text(
           'ถัดไป',
           style: TextStyle(
@@ -297,7 +391,7 @@ class _MultipleState extends State<Multiple> {
       child: Scaffold(
           appBar: _myAppBar(),
           body: Column(
-            children: <Widget>[_msnBox(), _answerBox()],
+            children: <Widget>[_questionsBox(), _choiceAnswerBox()],
           ),
           floatingActionButton: floatingNext()),
     );
