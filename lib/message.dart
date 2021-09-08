@@ -14,10 +14,12 @@ class MultiChoice {
   final String sentence;
   final bool isServer;
   final List answer;
+  final int correctAnswer;
   MultiChoice({
     required this.isServer,
     required this.sentence,
     required this.answer,
+    required this.correctAnswer,
   });
 }
 
@@ -45,26 +47,26 @@ List<Message> chats = [
 List<MultiChoice> multiChoice = [
   MultiChoice(
     sentence:
-        'What time does Andrea normally get up on Saturday \ปกติในวันเสาร์แอนเดียร์จตื่นเวลาเท่าไหร่',
+        'What time does Andrea normally get up on Saturday \nปกติในวันเสาร์แอนเดียร์จตื่นเวลาเท่าไหร่',
     isServer: true,
     answer : [
-      '6am',
-      '9pm',
-      '4am',
-      '7pm'
+      '1am',
+      '2pm',
+      '3am',
+      '4pm'
     ],
-
+    correctAnswer : 1
   ),
   MultiChoice(
     sentence:
         'What time do you normally get up?\nปกติฉันตื่นนอนตอน 6 ปกติคุณตื่นนอนกี่โมง',
     isServer: true,
     answer : [
-      '6am',
-      '9pm',
-      '4am',
-      '7pm'
+      '9am',
+      '8pm',
+      '7am',
+      '6pm'
     ],
-
+    correctAnswer : 2
   ),
 ];
