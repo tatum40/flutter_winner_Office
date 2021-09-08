@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_office/message.dart';
+import 'package:flutter_winner_office/message_content/message.dart';
 
 class Speaking extends StatefulWidget {
   const Speaking({Key? key}) : super(key: key);

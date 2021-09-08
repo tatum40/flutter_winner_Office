@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_office/login.dart';
-import 'package:flutter_winner_office/profileCamera.dart';
-import 'package:flutter_winner_office/profileContact.dart';
-import 'package:flutter_winner_office/profileCredit.dart';
-import 'package:flutter_winner_office/profileInformation.dart';
-import 'package:flutter_winner_office/profilePassword.dart';
+import 'package:flutter_winner_office/content/login.dart';
+import 'package:flutter_winner_office/content/profileCamera.dart';
+import 'package:flutter_winner_office/content/profileContact.dart';
+import 'package:flutter_winner_office/content/profileCredit.dart';
+import 'package:flutter_winner_office/content/profileInformation.dart';
+import 'package:flutter_winner_office/content/profilePassword.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);
