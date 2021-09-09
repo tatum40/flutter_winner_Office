@@ -33,8 +33,7 @@ dependencies:
   record: ^3.0.0
   assets_audio_player: ^3.0.3+6
   font_awesome_flutter: ^9.1.0
-
-  
+  flutter_tts: ^3.2.2
   
 
 dev_dependencies:

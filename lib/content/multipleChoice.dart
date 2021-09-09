@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_office/message_content/message.dart';
 
 class Multiple extends StatefulWidget {
   const Multiple({Key? key}) : super(key: key);
@@ -13,6 +12,35 @@ class _MultipleState extends State<Multiple> {
   int dataful = 2;
   int selectAnswer = 0;
   bool isSendAnswer = false;
+
+  List<dynamic> message = [
+    {
+      "sentence":
+          'What time does Andrea normally get up on Saturday \nปกติในวันเสาร์แอนเดียร์จตื่นเวลาเท่าไหร่',
+      "isServer": true,
+      "choice": [
+        {'answer': '1 am', 'pathSound': 'assets/audios/sound1.wav'},
+        {'answer': '9 pm', 'pathSound': 'assets/audios/sound1.wav'},
+        {'answer': '3 am', 'pathSound': 'assets/audios/sound1.wav'},
+        {'answer': '4 pm', 'pathSound': 'assets/audios/sound1.wav'},
+      ],
+      "answer": '9 am \n9 โมงเช้า',
+      "correctAnswer": 2,
+    },
+    {
+      "sentence": 'What time do you normally get up?\nปกติคุณตื่นนอนกี่โมง',
+      "isServer": true,
+      "choice": [
+        {'answer': '1 am', 'pathSound': 'assets/audios/sound1.wav'},
+        {'answer': '9 pm', 'pathSound': 'assets/audios/sound1.wav'},
+        {'answer': '3 am', 'pathSound': 'assets/audios/sound1.wav'},
+        {'answer': '4 pm', 'pathSound': 'assets/audios/sound1.wav'},
+      ],
+      "answer":
+          'I usually get up at six on weekdays\nปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดา',
+       "correctAnswer": 4,
+    }
+  ];
 
   _myAppBar() {
     return AppBar(
@@ -105,7 +133,7 @@ class _MultipleState extends State<Multiple> {
       margin: EdgeInsets.only(top: 10.0, left: 5.0),
       padding: EdgeInsets.all(10.0),
       child: Text(
-        multiChoice[currentChoice - 1].sentence,
+        message[currentChoice - 1]['sentence'],
         style: TextStyle(fontSize: 16, color: Colors.white),
       ),
     );
@@ -130,7 +158,7 @@ class _MultipleState extends State<Multiple> {
           child: isSendAnswer
               ? Container(
                   child: Text(
-                    multiChoice[currentChoice - 1].answer,
+                    message[currentChoice - 1]['answer'],
                     style: TextStyle(fontSize: 16, color: Colors.black),
                   ),
                 )
@@ -204,9 +232,13 @@ class _MultipleState extends State<Multiple> {
         width: 300,
         child: ListView.builder(
           padding: EdgeInsets.only(bottom: 10.0),
-          itemCount: multiChoice[currentChoice - 1].choice.length,
+          itemCount: message[currentChoice - 1]['choice'].length,
           itemBuilder: (BuildContext context, int index) {
-            final List answer = multiChoice[currentChoice - 1].choice;
+            final List answer = message[currentChoice - 1]['choice'];
+            final int correctAnswer =
+                message[currentChoice - 1]['correctAnswer'];
+
+            
 
             final soundButton = Container(
               width: 30,
@@ -267,7 +299,7 @@ class _MultipleState extends State<Multiple> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    answer[index],
+                    answer[index]['answer'],
                     style: TextStyle(
                         color: selectAnswer == index + 1
                             ? Colors.white
@@ -285,10 +317,9 @@ class _MultipleState extends State<Multiple> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    answer[index],
+                    answer[index]['answer'],
                     style: TextStyle(
-                        color: index + 1 ==
-                                multiChoice[currentChoice - 1].correctAnswer
+                        color: index + 1 == correctAnswer
                             ? Color(0xffffffff)
                             : Color(0xff000000)),
                   ),
@@ -298,20 +329,15 @@ class _MultipleState extends State<Multiple> {
                     child: Icon(
                       Icons.volume_up,
                       size: 20,
-                      color: Color(index + 1 ==
-                              multiChoice[currentChoice - 1].correctAnswer
-                          ? 0xffffffff
-                          : 0xff01579b),
+                      color: Color(
+                          index + 1 == correctAnswer ? 0xffffffff : 0xff01579b),
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                      color: Color(index + 1 ==
-                              multiChoice[currentChoice - 1].correctAnswer
-                          ? 0xff4ab71e
-                          : 0xffffffff),
+                      color: Color(
+                          index + 1 == correctAnswer ? 0xff4ab71e : 0xffffffff),
                       border: Border.all(
-                        color: Color(index + 1 ==
-                                multiChoice[currentChoice - 1].correctAnswer
+                        color: Color(index + 1 == correctAnswer
                             ? 0xffffffff
                             : 0xff01579b),
                       ),
@@ -321,14 +347,12 @@ class _MultipleState extends State<Multiple> {
               ),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                  color:
-                      index + 1 == multiChoice[currentChoice - 1].correctAnswer
-                          ? Color(0xff4ab71e)
-                          : Color(0xffffffff),
-                  border:
-                      index + 1 == multiChoice[currentChoice - 1].correctAnswer
-                          ? null
-                          : Border.all(color: Color(0xff01579b))),
+                  color: index + 1 == correctAnswer
+                      ? Color(0xff4ab71e)
+                      : Color(0xffffffff),
+                  border: index + 1 == correctAnswer
+                      ? null
+                      : Border.all(color: Color(0xff01579b))),
             );
 
             return Container(
@@ -345,7 +369,6 @@ class _MultipleState extends State<Multiple> {
       if (isSendAnswer == false) {
         isSendAnswer = true;
         print(selectAnswer);
-        print(multiChoice[currentChoice - 1].correctAnswer);
       } else {
         isSendAnswer = false;
         currentChoice++;

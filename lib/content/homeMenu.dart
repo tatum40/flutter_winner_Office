@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/content/home.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_winner_office/content/test.dart';
 import 'speaking.dart';
 import 'multipleChoice.dart';
 
@@ -884,67 +885,68 @@ class HomeLesson extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
-      body: Center(
-        child: Container(
-          child: Column(
-            children: <Widget>[
-              Container(
-                color: Colors.white,
-                height: 170,
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        IconButton(
-                            onPressed: () => Navigator.pop(context),
-                            icon: Icon(Icons.arrow_back)),
-                      ],
-                    ),
-                    Container(
-                      height: 120,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  color: Colors.white,
+                  height: 170,
+                  child: Column(
+                    children: <Widget>[
+                      Row(
                         children: <Widget>[
-                          Text(
-                            num == 1 ? titleEng1 : titleEng2,
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(top: 10.0),
-                            child: Text(
-                              num == 1 ? titleTh1 : titleTh2,
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          )
+                          IconButton(
+                              onPressed: () => Navigator.pop(context),
+                              icon: Icon(Icons.arrow_back)),
                         ],
                       ),
-                    )
-                  ],
+                      Container(
+                        height: 120,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              num == 1 ? titleEng1 : titleEng2,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 10.0),
+                              child: Text(
+                                num == 1 ? titleTh1 : titleTh2,
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.all(10.0),
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: <Widget>[
-                    lessonBox(context, 1),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        lessonBox(context, 2),
-                        lessonBox(context, 3),
-                      ],
-                    )
-                  ],
-                ),
-              )
-            ],
+                Container(
+                  padding: EdgeInsets.all(10.0),
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    children: <Widget>[
+                      lessonBox(context, 1),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          lessonBox(context, 2),
+                          lessonBox(context, 3),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
-    ),);
-    
+    );
   }
 
   Widget lessonBox(context, num) {
@@ -973,6 +975,9 @@ class HomeLesson extends StatelessWidget {
                     } else if (num == 3) {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Multiple()));
+                    } else {
+                         Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => TestPage()));
                     }
                   },
                   child: num == 1

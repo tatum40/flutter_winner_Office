@@ -1,6 +1,7 @@
 import 'dart:ui';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_office/message_content/message.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class Speaking extends StatefulWidget {
   const Speaking({Key? key}) : super(key: key);
@@ -10,143 +11,155 @@ class Speaking extends StatefulWidget {
 }
 
 class _SpeakingState extends State<Speaking> {
-  bool isNextChoice = false;
   int countRecord = 0;
   int currentChoice = 1;
   int dataful = 2;
   bool isRecord = false;
   bool finishTest = false;
+  List<dynamic> chats = [
+    {
+      "sentence": "What time do you normally get up? \nปกติคุณตื่นนอนกี่โมง",
+      "user": "sender",
+      "step": 1,
+      "urlSound": "assets/audios/sound1.wav"
+    },
+    {
+      "sentence":
+          "I usually get up at six on weekdays and around 9 at weekends.\nปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดาและประมาณ 9 โมงเช้าในวันหยุด",
+      "user": "receiver",
+      "step": 1,
+      "urlSound": "assets/audios/sound2.wav"
+    },
+    {
+      "sentence":
+          "What do you usually have for breakfast? \nปกติคุณกินอะไรเป็นอาหารเช้า",
+      "user": "sender",
+      "step": 2,
+    },
+    {
+      "sentence":
+          "I eat fried rice for breakfast. \nฉันกินข้าวผัดเป็นอาหารเช้า",
+      "user": "receiver",
+      "step": 2,
+    },
+  ];
+  final playAudios = AssetsAudioPlayer();
+  bool isSpeaking = false;
+  final _flutterTts = FlutterTts();
 
-  // กล่องข้อความแชท
-  _buildMsnBox(Message msn, bool isServer, int step) {
-    // ฟังเสียงปกติ
-    final listenButton = MaterialButton(
-      onPressed: () {},
-      child: Icon(
-        Icons.volume_up,
-        color: Color(isServer ? 0xffffffff : 0xff01579b),
-      ),
-      shape: CircleBorder(),
-      minWidth: 20,
-      color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
-    );
+  void initializeTts() {
+    _flutterTts.setStartHandler(() {
+      setState(() {
+        isSpeaking = true;
+      });
+    });
+    _flutterTts.setCompletionHandler(() {
+      setState(() {
+        isSpeaking = false;
+      });
+    });
+    _flutterTts.setErrorHandler((message) {
+      setState(() {
+        isSpeaking = false;
+      });
+    });
+  }
 
-    // ฟังเสียงแบบช้า
-    final slowButton = MaterialButton(
-      onPressed: () {},
-      child: Image.asset(isServer
-          ? 'assets/images/turtle-w.png'
-          : 'assets/images/turtle-b.png'),
-      shape: CircleBorder(),
-      minWidth: 20,
-      color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
-    );
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initializeTts();
+  }
 
-    // เล่นเสียงที่อัดเข้าไป
-    final playButton = MaterialButton(
-      onPressed: () {},
-      child: Icon(
-        Icons.play_arrow,
-        color: Color(isServer ? 0xffffffff : 0xff01579b),
-      ),
-      shape: CircleBorder(),
-      minWidth: 20,
-      color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
-    );
+  void speak(msn) async {
+    _flutterTts.setSpeechRate(0.68);
+    await _flutterTts.speak(msn);
+  }
 
-    final _playButton = !isServer && countRecord % 2 == 0 && countRecord != 0
-        ? Row(
-            mainAxisAlignment:
-                isServer ? MainAxisAlignment.start : MainAxisAlignment.end,
-            children: <Widget>[playButton, listenButton, slowButton],
-          )
-        : Row(
-            mainAxisAlignment:
-                isServer ? MainAxisAlignment.start : MainAxisAlignment.end,
-            children: <Widget>[listenButton, slowButton],
-          );
+  void speakSlow(msn) async {
+    _flutterTts.setSpeechRate(0.3);
+    await _flutterTts.speak(msn);
+  }
 
-    final msnBox = Column(
-      children: <Widget>[
-        Container(
-          width: 300,
-          decoration: BoxDecoration(
-            borderRadius: isServer
-                ? BorderRadius.only(
-                    topLeft: Radius.circular(5.0),
-                    topRight: Radius.circular(20.0),
-                    bottomLeft: Radius.circular(20.0),
-                    bottomRight: Radius.circular(20.0))
-                : BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(5.0),
-                    bottomLeft: Radius.circular(20.0),
-                    bottomRight: Radius.circular(20.0)),
-            color: Color(isServer ? 0xff01579b : 0xffe0e0e0),
+  void stop() async {
+    await _flutterTts.stop();
+    setState(() {
+      isSpeaking = false;
+    });
+  }
+
+  @override
+  void dispose() {
+    _flutterTts.stop();
+    super.dispose();
+  }
+
+  // Body
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xfff4f4f4),
+          leading: IconButton(
+            padding: EdgeInsets.all(0.0),
+            icon: Icon(Icons.close),
+            onPressed: () => Navigator.pop(context),
           ),
-          margin: isServer
-              ? EdgeInsets.only(top: 10.0, left: 5.0)
-              : EdgeInsets.only(top: 10.0, right: 10.0, left: 60.0),
-          padding: EdgeInsets.all(10.0),
-          child: Text(
-            msn.sentence,
-            style: TextStyle(
-                fontSize: 16, color: isServer ? Colors.white : Colors.black),
+          iconTheme: IconThemeData(
+            color: Color(0xff01579b), //change your color here
+          ),
+          title: Container(
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  width: 300,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                      color: Color(0xffE0E0E0)),
+                ),
+                Positioned(
+                  child: Container(
+                    width: currentChoice * 300 / 2,
+                    height: 10,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                        color: Color(0xff90a4ae)),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
-        Container(
-            margin: !isServer ? EdgeInsets.only(left: 40.0) : null,
-            width: 300,
-            child: _playButton)
-      ],
-    );
-
-    if (currentChoice == 1) {
-      //ถ้าเป็นข้อแรก
-      if (step == 1) {
-        //ถ้าเป็นข้อความชุดที่1
-        if (!isServer) {
-          //ถ้าไม่ใช่ข้อความเริ่มต้น
-          return msnBox;
-        } else {
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                  margin: EdgeInsets.only(top: 10.0, left: 5.0),
-                  child: Icon(
-                    Icons.account_circle_outlined,
-                    size: 35.0,
-                    color: Color(0xffaaaaaa),
-                  )),
-              msnBox
-            ],
-          );
-        }
-      } else {
-        //ถ้าไม่เป็นข้อความชุดที่1
-        return Container();
-      }
-    } else {
-      if (!isServer) {
-        return msnBox;
-      } else {
-        return 
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: Column(
           children: <Widget>[
-            Container(
-                margin: EdgeInsets.only(top: 10.0, left: 5.0),
-                child: Icon(
-                  Icons.account_circle_outlined,
-                  size: 35.0,
-                  color: Color(0xffaaaaaa),
-                )),
-            msnBox
+            Expanded(
+              child: Container(
+                child: ListView.builder(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  itemCount: chats.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final String msn = chats[index]['sentence'].toString();
+                    final String user = chats[index]['user'].toString();
+                    final int step = chats[index]['step'];
+                    final url = chats[index]['urlSound'];
+
+                    return _buildMsnBox(msn, user, step, url);
+                  },
+                ),
+              ),
+            ),
+            _buildBottomBar()
           ],
-        );
-      }
-    }
+        ),
+      ),
+    );
   }
 
   // เมนูด้านล่าง
@@ -161,19 +174,17 @@ class _SpeakingState extends State<Speaking> {
         children: <Widget>[
           Icon(
             Icons.play_arrow,
-            color: Color(
-                countRecord == 0 || countRecord % 2 != 0 || isNextChoice
-                    ? 0xffbdbdbd
-                    : 0xff01579b),
+            color: Color(countRecord == 0 || countRecord % 2 != 0
+                ? 0xffbdbdbd
+                : 0xff01579b),
             size: 30,
           ),
           Text(
             'ฟัง',
             style: TextStyle(
-                color: Color(
-                    countRecord == 0 || countRecord % 2 != 0 || isNextChoice
-                        ? 0xffbdbdbd
-                        : 0xff01579b),
+                color: Color(countRecord == 0 || countRecord % 2 != 0
+                    ? 0xffbdbdbd
+                    : 0xff01579b),
                 fontSize: 16),
           )
         ],
@@ -183,10 +194,9 @@ class _SpeakingState extends State<Speaking> {
             Radius.circular(20.0),
           ),
           borderSide: BorderSide(
-              color: Color(
-                  countRecord == 0 || countRecord % 2 != 0 || isNextChoice
-                      ? 0xffbdbdbd
-                      : 0xff01579b),
+              color: Color(countRecord == 0 || countRecord % 2 != 0
+                  ? 0xffbdbdbd
+                  : 0xff01579b),
               width: 2)),
     );
 
@@ -242,12 +252,11 @@ class _SpeakingState extends State<Speaking> {
 
     // ข้อถัดไป
     final nextChoiceButton = MaterialButton(
-      onPressed: countRecord != 0 && countRecord % 2 == 0
+      onPressed: countRecord != 0 && !isRecord
           ? () => {
                 setState(() {
                   if (currentChoice != 4) {
                     currentChoice++;
-                    isNextChoice = true;
                   }
                 })
               }
@@ -260,10 +269,9 @@ class _SpeakingState extends State<Speaking> {
           Text(
             'ถัดไป',
             style: TextStyle(
-                color: Color(
-                    countRecord == 0 || countRecord % 2 != 0 || isNextChoice
-                        ? 0xffbdbdbd
-                        : 0xff01579b),
+                color: Color(countRecord == 0 || countRecord % 2 != 0
+                    ? 0xffbdbdbd
+                    : 0xff01579b),
                 fontSize: 16),
           )
         ],
@@ -273,10 +281,9 @@ class _SpeakingState extends State<Speaking> {
           Radius.circular(20.0),
         ),
         borderSide: BorderSide(
-            color: Color(
-                countRecord == 0 || countRecord % 2 != 0 || isNextChoice
-                    ? 0xffbdbdbd
-                    : 0xff01579b),
+            color: Color(countRecord == 0 || countRecord % 2 != 0
+                ? 0xffbdbdbd
+                : 0xff01579b),
             width: 2),
       ),
     );
@@ -324,7 +331,6 @@ class _SpeakingState extends State<Speaking> {
           countRecord = 0;
           finishTest = false;
           isRecord = false;
-          isNextChoice = false;
         });
       },
       minWidth: 140,
@@ -396,69 +402,142 @@ class _SpeakingState extends State<Speaking> {
     }
   }
 
-  // Body
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xfff4f4f4),
-          leading: IconButton(
-            padding: EdgeInsets.all(0.0),
-            icon: Icon(Icons.close),
-            onPressed: () => Navigator.pop(context),
-          ),
-          iconTheme: IconThemeData(
-            color: Color(0xff01579b), //change your color here
-          ),
-          title: Container(
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  width: 300,
-                  height: 10,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                      color: Color(0xffE0E0E0)),
-                ),
-                Positioned(
-                  child: Container(
-                    width: currentChoice * 300 / 2,
-                    height: 10,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        color: Color(0xff90a4ae)),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                child: ListView.builder(
-                  padding: EdgeInsets.only(bottom: 10.0),
-                  itemCount: chats.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final Message msn = chats[index];
-                    final bool isServer = chats[index].isServer;
-                    final int step = chats[index].step;
-
-                    return _buildMsnBox(msn, isServer, step);
-                  },
-                ),
-              ),
-            ),
-            _buildBottomBar()
-          ],
-        ),
+  // กล่องข้อความแชท
+  _buildMsnBox(String msn, String user, int step, url) {
+    // ฟังเสียงปกติ
+    final listenButton = MaterialButton(
+      onPressed: () => speak(msn),
+      child: Icon(
+        Icons.volume_up,
+        color: Color(user == 'sender' ? 0xffffffff : 0xff01579b),
       ),
+      shape: CircleBorder(),
+      minWidth: 20,
+      color: Color(user == 'sender' ? 0xff01579b : 0xffe0e0e0),
     );
+
+    // ฟังเสียงแบบช้า
+    final slowButton = MaterialButton(
+      onPressed: () {
+        speakSlow(msn);
+      },
+      child: Image.asset(user == 'sender'
+          ? 'assets/images/turtle-w.png'
+          : 'assets/images/turtle-b.png'),
+      shape: CircleBorder(),
+      minWidth: 20,
+      color: Color(user == 'sender' ? 0xff01579b : 0xffe0e0e0),
+    );
+
+    // เล่นเสียงที่อัดเข้าไป
+    final playButton = MaterialButton(
+      onPressed: () {},
+      child: Icon(
+        Icons.play_arrow,
+        color: Color(user == 'sender' ? 0xffffffff : 0xff01579b),
+      ),
+      shape: CircleBorder(),
+      minWidth: 20,
+      color: Color(user == 'sender' ? 0xff01579b : 0xffe0e0e0),
+    );
+
+    final _playButton =
+        user == 'receiver' && countRecord % 2 == 0 && countRecord != 0
+            ? Row(
+                mainAxisAlignment: user == 'sender'
+                    ? MainAxisAlignment.start
+                    : MainAxisAlignment.end,
+                children: <Widget>[playButton, listenButton, slowButton],
+              )
+            : Row(
+                mainAxisAlignment: user == 'sender'
+                    ? MainAxisAlignment.start
+                    : MainAxisAlignment.end,
+                children: <Widget>[listenButton, slowButton],
+              );
+
+    final msnBox = Column(
+      children: <Widget>[
+        Container(
+          width: 300,
+          decoration: BoxDecoration(
+            borderRadius: user == 'sender'
+                ? BorderRadius.only(
+                    topLeft: Radius.circular(5.0),
+                    topRight: Radius.circular(20.0),
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0))
+                : BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(5.0),
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0)),
+            color: Color(user == 'sender' ? 0xff01579b : 0xffe0e0e0),
+          ),
+          margin: user == 'sender'
+              ? EdgeInsets.only(top: 10.0)
+              : EdgeInsets.only(top: 10.0, right: 10.0, left: 60.0),
+          padding: EdgeInsets.all(10.0),
+          child: Text(
+            msn,
+            style: TextStyle(
+                fontSize: 16,
+                color: user == 'sender' ? Colors.white : Colors.black),
+          ),
+        ),
+        Container(
+            margin: user == 'sender'
+                ? EdgeInsets.only(left: 10.0)
+                : EdgeInsets.only(left: 40.0),
+            width: 300,
+            child: _playButton)
+      ],
+    );
+
+    if (currentChoice == 1) {
+      //ถ้าเป็นข้อแรก
+      if (step == 1) {
+        //ถ้าเป็นข้อความชุดที่1
+        if (user == 'receiver') {
+          //ถ้าไม่ใช่ข้อความเริ่มต้น
+          return msnBox;
+        } else {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                  margin: EdgeInsets.only(top: 10.0, left: 5.0),
+                  child: Icon(
+                    Icons.account_circle_outlined,
+                    size: 35.0,
+                    color: Color(0xffaaaaaa),
+                  )),
+              msnBox
+            ],
+          );
+        }
+      } else {
+        //ถ้าไม่เป็นข้อความชุดที่1
+        return Container();
+      }
+    } else {
+      if (user == 'receiver') {
+        return msnBox;
+      } else {
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+                margin: EdgeInsets.only(top: 10.0),
+                child: Icon(
+                  Icons.account_circle_outlined,
+                  size: 35.0,
+                  color: Color(0xffaaaaaa),
+                )),
+            msnBox
+          ],
+        );
+      }
+    }
   }
 }
