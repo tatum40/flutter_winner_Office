@@ -44,6 +44,7 @@ class _SpeakingState extends State<Speaking> {
     },
   ];
   final playAudios = AssetsAudioPlayer();
+
   bool isSpeaking = false;
   final _flutterTts = FlutterTts();
 
@@ -67,13 +68,12 @@ class _SpeakingState extends State<Speaking> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     initializeTts();
   }
 
   void speak(msn) async {
-    _flutterTts.setSpeechRate(0.68);
+    _flutterTts.setSpeechRate(0.5);
     await _flutterTts.speak(msn);
   }
 
