@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_winner_office/test.dart';
 import 'forgetPssword.dart';
 import 'signupWith.dart';
 import 'home.dart';
@@ -173,7 +174,9 @@ class _MyHomePageState extends State<MyHomePage> {
         height: 35,
         child: MaterialButton(
           color: Colors.white,
-          onPressed: () {},
+          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: 
+          (context) => NotifyTest()
+          )),
           child: Text('Skip', style: TextStyle(color: Color(0xffffab40))),
           shape: RoundedRectangleBorder(
               side: BorderSide(

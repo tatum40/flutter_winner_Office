@@ -164,19 +164,17 @@ class _MultipleState extends State<Multiple> {
       child: Scaffold(
           appBar: _myAppBar(),
           body: Center(
-            child: 
-            Container(
+            child: Container(
               margin: EdgeInsets.only(bottom: 70.0),
               child: Column(
-              children: <Widget>[
-                _questionsBox(),
-                chats[currentChoice - 1]['multipleType'] != 'multiSelect'
-                    ? _choiceAnswerBox()
-                    : _multiSelection()
-              ],
+                children: <Widget>[
+                  _questionsBox(),
+                  chats[currentChoice - 1]['multipleType'] != 'multiSelect'
+                      ? _choiceAnswerBox()
+                      : _multiSelection()
+                ],
+              ),
             ),
-            ),
-            
           ),
           floatingActionButton: floatingNext()),
     );
@@ -527,7 +525,6 @@ class _MultipleState extends State<Multiple> {
   }
 
   Widget _multiSelection() {
-
     final _gridAnswerBox = Container(
       margin: EdgeInsets.only(top: 10.0),
       width: 340,
@@ -535,21 +532,22 @@ class _MultipleState extends State<Multiple> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           color: Color(0xffe0e0e0)),
-      child: Draggable(
-        child: 
-        Container(
-          child: Text('Red'),
-          color: Colors.red[200],
-        ),
-        feedback: Container(
-          child: Text('Green'),
-          color: Colors.green[200],
-        ),
-      ),
+      // child: Draggable(
+      //   child:
+      //   Container(
+      //     child: Text('Red'),
+      //     color: Colors.red[200],
+      //   ),
+      //   feedback: Container(
+      //     child: Text('Green'),
+      //     color: Colors.green[200],
+      //   ),
+      // ),
     );
 
     final _gridSelectChoice = GridView.builder(
-      padding: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0 ,bottom: 30.0),
+      padding:
+          EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0, bottom: 30.0),
       itemCount: chats[currentChoice - 1]['choice'].length,
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 125.0,
@@ -585,7 +583,7 @@ class _MultipleState extends State<Multiple> {
           ),
         );
 
-        return Container(
+        final _finalBox = Container(
           child: Stack(
             children: <Widget>[
               Align(
@@ -597,9 +595,12 @@ class _MultipleState extends State<Multiple> {
                       print(answerChoice[index]);
                     },
                     color: Color(0xff90a4ae),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(25.0))),
                     child: Text(answerChoice[index]),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25.0),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -610,6 +611,7 @@ class _MultipleState extends State<Multiple> {
             ],
           ),
         );
+        return Draggable(child: _finalBox, feedback: _finalBox);
       },
     );
 
@@ -619,11 +621,8 @@ class _MultipleState extends State<Multiple> {
           children: <Widget>[
             _gridAnswerBox,
             Expanded(
-                child: Stack(
-              children: <Widget>[
-                _gridSelectChoice,
-              ],
-            ))
+              child: _gridSelectChoice,
+            ),
           ],
         ),
       ),
