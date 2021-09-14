@@ -1,6 +1,9 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:flutter_winner_office/content/home.dart';
+import 'package:flutter_winner_office/content/homeMenu.dart';
 
 class Multiple extends StatefulWidget {
   const Multiple({Key? key}) : super(key: key);
@@ -74,16 +77,184 @@ class _MultipleState extends State<Multiple> {
   ];
 
   void sendAnswer() {
-    setState(() {
-      if (isSendAnswer == false) {
-        isSendAnswer = true;
-        print(selectAnswer);
-      } else {
-        isSendAnswer = false;
-        currentChoice++;
-        selectAnswer = 0;
-      }
-    });
+    setState(
+      () {
+        if (isSendAnswer == false) {
+          isSendAnswer = true;
+          print(selectAnswer);
+        } else {
+          isSendAnswer = false;
+          selectAnswer = 0;
+          if (currentChoice != chats.length) {
+            currentChoice++;
+          } else {
+            Widget circleWithStar() {
+              return Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          width: 165,
+                          height: 190,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: Color(0xffd0d0d0)),
+                        ),
+                        Positioned(
+                            left: 15,
+                            top: 150,
+                            child: Row(
+                              children: <Widget>[
+                                for (int i = 0; i < 3; i++)
+                                  Icon(
+                                    Icons.star,
+                                    color: Color(0xff616161),
+                                    size: 45,
+                                  ),
+                              ],
+                            )),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            Widget headbutton(iconname, colorButton) {
+              return Container(
+                height: 45,
+                width: 50,
+                child: Image.asset("assets/images/$iconname.png"),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25.0),
+                      bottomLeft: Radius.circular(25.0)),
+                  color: Color(colorButton),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black45.withOpacity(0.2),
+                      blurRadius: 1.0,
+                      offset: Offset(2, 0), // Shadow position
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            Widget containButton(colorButton, messageButton) {
+              return Container(
+                width: 270,
+                height: 45,
+                child: MaterialButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(25.0),
+                    ),
+                  ),
+                  color: Color(colorButton),
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                          margin: EdgeInsets.only(left: 40.0),
+                          child: Text(
+                            messageButton,
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          ))
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            Widget _fbButton() {
+              return Container(
+                margin: EdgeInsets.only(top: 30.0, bottom: 15.0),
+                child: Stack(
+                  children: <Widget>[
+                    containButton(0xff5578b2, 'Share on Facebook'),
+                    Positioned(child: headbutton('fbIcon', 0xff5578b2))
+                  ],
+                ),
+              );
+            }
+
+            Widget _twitButton() {
+              return Container(
+                child: Stack(
+                  children: <Widget>[
+                    containButton(0xff51CBF2, 'Share on Twitter'),
+                    Positioned(child: headbutton('twitchIcon', 0xff51CBF2))
+                  ],
+                ),
+              );
+            }
+
+            Widget _mainmenuButton(iconName, num) {
+              return Container(
+                margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                width: 70,
+                height: 70,
+                child: MaterialButton(
+                  shape: CircleBorder(),
+                  onPressed: () => {
+                    num == 1
+                        ? Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Home()))
+                        : num == 2
+                            ? setState(() {
+                                currentChoice = 1;
+                                Navigator.pop(context);
+                              })
+                            : null
+                  },
+                  child: iconName,
+                  color: Color(0xffffab40),
+                ),
+              );
+            }
+
+            List iconName = [
+              Icon(Icons.home, size: 37, color: Colors.white),
+              Icon(Icons.refresh, size: 37, color: Colors.white),
+              Icon(Icons.arrow_forward, size: 37, color: Colors.white)
+            ];
+
+            showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                content: Container(
+                  height: 330,
+                  child: Column(
+                    children: <Widget>[
+                      circleWithStar(),
+                      _fbButton(),
+                      _twitButton()
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 25.0),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          for (int i = 0; i < iconName.length; i++)
+                            _mainmenuButton(iconName[i], i + 1)
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            );
+          }
+        }
+      },
+    );
   }
 
   void nextChoice() {
@@ -593,6 +764,9 @@ class _MultipleState extends State<Multiple> {
                   child: MaterialButton(
                     onPressed: () {
                       print(answerChoice[index]);
+                      setState(() {
+                        selectAnswer = index + 1;
+                      });
                     },
                     color: Color(0xff90a4ae),
                     child: Text(answerChoice[index]),
@@ -637,7 +811,7 @@ class _MultipleState extends State<Multiple> {
         color: Colors.white,
         onPressed: selectAnswer == 0 && !isSendAnswer ? null : sendAnswer,
         child: Text(
-          'ถัดไป',
+          currentChoice == chats.length && isSendAnswer ? 'จบ' : 'ถัดไป',
           style: TextStyle(
             color: Color(selectAnswer != 0 ? 0xff01579b : 0xffbdbdbd),
           ),
