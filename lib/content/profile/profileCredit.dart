@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../pickDate_widget.dart';
+import '../../pickDate_widget.dart';
 
 class Credit extends StatefulWidget {
   const Credit({Key? key}) : super(key: key);
@@ -249,6 +249,7 @@ class Setcredit extends StatelessWidget {
                       width: 320,
                       child: TextFormField(
                         onTap: () => showDialog<String>(
+                          barrierDismissible: false,
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
                             actions: <Widget>[

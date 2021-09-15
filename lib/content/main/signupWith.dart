@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'login.dart';
+import '../login.dart';
 import 'register.dart';
 
 // --------หน้าตัวเลือกการสมัคร
@@ -96,6 +96,7 @@ class SignupWith extends StatelessWidget {
                         child: MaterialButton(
                           padding: EdgeInsets.all(0.0),
                           onPressed: () => showDialog<String>(
+                            barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
                               actions: <Widget>[

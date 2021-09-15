@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_winner_office/test.dart';
-import 'forgetPssword.dart';
-import 'signupWith.dart';
-import 'home.dart';
+import 'main/forgetPssword.dart';
+import 'main/signupWith.dart';
+import 'main/home.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -30,7 +30,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: Center(
+      body: 
+      Center(
+        child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -169,6 +171,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      ),
+      
       floatingActionButton: Container(
         width: 80,
         height: 35,

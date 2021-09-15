@@ -35,9 +35,9 @@ class NotifyTest extends StatelessWidget {
     );
 
    await flutterLocalNotificationsPlugin.show(
-     0, 
-     'test', 
-     'show 001 notify', 
+     0,
+     'test',
+     'show 001 notify',
      platformChannelDetails
    );
   }
@@ -58,3 +58,4 @@ class NotifyTest extends StatelessWidget {
     );
   }
 }
+

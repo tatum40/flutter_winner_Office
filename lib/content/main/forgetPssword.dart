@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import '../login.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({Key? key}) : super(key: key);
@@ -51,6 +51,7 @@ Scaffold(
               height: 45,
               child: MaterialButton(
                 onPressed: () => showDialog<String>(
+                  barrierDismissible: false,
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     content: const Text(

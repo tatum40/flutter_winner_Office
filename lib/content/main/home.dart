@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'homeMenu.dart';
-import 'categoryMenu.dart';
-import 'profileMenu.dart';
+import '../home/homeMenu.dart';
+import '../category/categoryMenu.dart';
+import '../profile/profileMenu.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

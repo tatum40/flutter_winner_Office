@@ -2,8 +2,7 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:flutter_winner_office/content/home.dart';
-import 'package:flutter_winner_office/content/homeMenu.dart';
+import 'package:flutter_winner_office/content/main/home.dart';
 
 class Multiple extends StatefulWidget {
   const Multiple({Key? key}) : super(key: key);
@@ -223,6 +222,7 @@ class _MultipleState extends State<Multiple> {
             ];
 
             showDialog<String>(
+              barrierDismissible: false,
               context: context,
               builder: (BuildContext context) => AlertDialog(
                 content: Container(
