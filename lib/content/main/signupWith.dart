@@ -305,101 +305,115 @@ class Signupfacebook extends StatelessWidget {
         body: Center(
           child: Column(
             children: <Widget>[
-              Container(
-                width: double.infinity,
-                height: 50,
-                color: Color(0xff3b5998),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'facebook.',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 60.0, bottom: 10.0),
-                width: 80,
-                height: 80,
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.grey),
-              ),
-              Text(
-                'เข้าสู่ระบบบัญชี Facebook ของคุณ',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Color(0xff757575),
-                ),
-              ),
-              Text(
-                'เพื่อเชื่อมต่อกับ WinnerOffice',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Color(0xff757575),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 20.0),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(top: 50.0),
-                      width: 320,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          isDense: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(5.0),
-                              topRight: Radius.circular(5.0),
-                            ),
-                          ),
-                          hintText: 'หมายเลขโทรศัพท์มือถือหรืออีเมล',
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 320,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          isDense: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(5.0),
-                              bottomRight: Radius.circular(5.0),
-                            ),
-                          ),
-                          hintText: 'รหัสผ่าน Facebook',
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 20.0),
-                      width: 320,
-                      height: 45,
-                      child: MaterialButton(
-                        onPressed: () => () {},
-                        child: Text(
-                          'เข้าสู่ระบบ',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        color: Color(0xff2e65d8),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(5.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              facebookLogoBar(),
+              pictureAndMessage(),
+              loginForm(),
+              loginBtn(),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget facebookLogoBar() {
+    return Container(
+      width: double.infinity,
+      height: 50,
+      color: Color(0xff3b5998),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            'facebook.',
+            style: TextStyle(
+                color: Colors.white, fontSize: 25, fontWeight: FontWeight.w500),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget pictureAndMessage() {
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 60.0, bottom: 10.0),
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey),
+        ),
+        Text(
+          'เข้าสู่ระบบบัญชี Facebook ของคุณ',
+          style: TextStyle(
+            fontSize: 14,
+            color: Color(0xff757575),
+          ),
+        ),
+        Text(
+          'เพื่อเชื่อมต่อกับ WinnerOffice',
+          style: TextStyle(
+            fontSize: 14,
+            color: Color(0xff757575),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget loginForm() {
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 70.0),
+          width: 320,
+          child: TextField(
+            decoration: InputDecoration(
+              isDense: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(5.0),
+                  topRight: Radius.circular(5.0),
+                ),
+              ),
+              hintText: 'หมายเลขโทรศัพท์มือถือหรืออีเมล',
+            ),
+          ),
+        ),
+        Container(
+          width: 320,
+          child: TextField(
+            decoration: InputDecoration(
+              isDense: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(5.0),
+                  bottomRight: Radius.circular(5.0),
+                ),
+              ),
+              hintText: 'รหัสผ่าน Facebook',
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget loginBtn() {
+    return Container(
+      margin: EdgeInsets.only(top: 20.0),
+      width: 320,
+      height: 45,
+      child: MaterialButton(
+        onPressed: () => () {},
+        child: Text(
+          'เข้าสู่ระบบ',
+          style: TextStyle(color: Colors.white),
+        ),
+        color: Color(0xff2e65d8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(5.0),
           ),
         ),
       ),
