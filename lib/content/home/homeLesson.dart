@@ -4,16 +4,14 @@ import '../lesson/multipleChoice.dart';
 import '../test.dart';
 
 class HomeLesson extends StatelessWidget {
-  const HomeLesson(
-      {Key? key,
-      required this.titleEng,
-      required this.titleTh,
-      })
-      : super(key: key);
+  const HomeLesson({
+    Key? key,
+    required this.titleEng,
+    required this.titleTh,
+  }) : super(key: key);
 
-  final  titleEng;
-  final  titleTh;
-  
+  final titleEng;
+  final titleTh;
 
   @override
   Widget build(BuildContext context) {
@@ -23,40 +21,7 @@ class HomeLesson extends StatelessWidget {
           child: Container(
             child: Column(
               children: <Widget>[
-                Container(
-                  color: Colors.white,
-                  height: 170,
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          IconButton(
-                              onPressed: () => Navigator.pop(context),
-                              icon: Icon(Icons.arrow_back)),
-                        ],
-                      ),
-                      Container(
-                        height: 120,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                             titleEng,
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(top: 10.0),
-                              child: Text(
-                                titleTh,
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                headerBox(context),
                 Container(
                   padding: EdgeInsets.all(10.0),
                   width: MediaQuery.of(context).size.width,
@@ -77,6 +42,43 @@ class HomeLesson extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget headerBox(context) {
+    return Container(
+      color: Colors.white,
+      height: 170,
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(Icons.arrow_back)),
+            ],
+          ),
+          Container(
+            height: 120,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  titleEng,
+                  style: TextStyle(fontSize: 20),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    titleTh,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -108,7 +110,7 @@ class HomeLesson extends StatelessWidget {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Multiple()));
                     } else {
-                         Navigator.push(context,
+                      Navigator.push(context,
                           MaterialPageRoute(builder: (context) => TestPage()));
                     }
                   },

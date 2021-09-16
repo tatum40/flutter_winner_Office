@@ -97,6 +97,133 @@ class HomeDetail extends StatelessWidget {
   }
 
   void dialogBuy(context) {
+    Widget _underLine() {
+      return Container(
+        padding: EdgeInsets.only(top: 2.0),
+        color: Color(0xffc4c4c4),
+      );
+    }
+
+    Widget _buyCourseBtn() {
+      return Container(
+        margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+        width: 320,
+        height: 45,
+        child: MaterialButton(
+          onPressed: () => {Navigator.pop(context), dialogConfirm(context)},
+          child: Text(
+            '1 - tap buy',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          color: Color(0xffffab40),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(30.0),
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget _requirementText() {
+      return Container(
+        margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
+        child: RichText(
+          textAlign: TextAlign.start,
+          text: TextSpan(
+            style:
+                TextStyle(fontSize: 12, height: 1.5, color: Color(0xff7a7a7a)),
+            children: <TextSpan>[
+              TextSpan(
+                text:
+                    'By tapping ‘1-tap buy’, you accept the following Google Payments Terms of Service: ',
+              ),
+              TextSpan(
+                  text: 'Privacy Notice',
+                  recognizer: TapGestureRecognizer()..onTap = () => () {},
+                  style: TextStyle(decoration: TextDecoration.underline)),
+              TextSpan(text: ' , '),
+              TextSpan(
+                  text: 'ข้อกำหนดในการบริการ - Android (ประเทศไทย).',
+                  recognizer: TapGestureRecognizer()..onTap = () => () {},
+                  style: TextStyle(decoration: TextDecoration.underline)),
+              TextSpan(text: ' More '),
+            ],
+          ),
+        ),
+      );
+    }
+
+    Widget _lessonAndPrice() {
+      return Container(
+        margin: EdgeInsets.all(20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration:
+                      BoxDecoration(shape: BoxShape.circle, color: Colors.grey),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 5.0),
+                  margin: EdgeInsets.only(left: 15.0),
+                  child: Text('Unlock Lesson'),
+                ),
+              ],
+            ),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text('THB 29.00', style: TextStyle(fontSize: 18)),
+                  Text('notax', style: TextStyle(fontSize: 12))
+                ],
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
+    Widget _creditCard() {
+      return Container(
+        padding: EdgeInsets.all(20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(right: 20.0),
+                  width: 50,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xffc4c4c4), width: 2),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5.0),
+                    ),
+                  ),
+                  child: Image.asset('assets/images/visa.png'),
+                ),
+                Text(
+                  'Visa - 0000',
+                  style: TextStyle(fontSize: 16),
+                )
+              ],
+            ),
+            Container(
+              child: Icon(Icons.arrow_forward_ios),
+            )
+          ],
+        ),
+      );
+    }
+
     showModalBottomSheet(
         context: context,
         builder: (context) {
@@ -115,133 +242,19 @@ class HomeDetail extends StatelessWidget {
                   ),
                 ],
               ),
-              Container(
-                padding: EdgeInsets.only(top: 2.0),
-                margin: EdgeInsets.only(top: 5.0),
-                color: Color(0xffc4c4c4),
-              ),
-              Container(
-                margin: EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.grey),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 5.0),
-                          margin: EdgeInsets.only(left: 15.0),
-                          child: Text('Unlock Lesson'),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Text('THB 29.00', style: TextStyle(fontSize: 18)),
-                          Text('notax', style: TextStyle(fontSize: 12))
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 2.0),
-                color: Color(0xffc4c4c4),
-              ),
-              Container(
-                padding: EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(right: 20.0),
-                          width: 50,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Color(0xffc4c4c4), width: 2),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(5.0),
-                            ),
-                          ),
-                          child: Image.asset('assets/images/visa.png'),
-                        ),
-                        Text(
-                          'Visa - 0000',
-                          style: TextStyle(fontSize: 16),
-                        )
-                      ],
-                    ),
-                    Container(
-                      child: Icon(Icons.arrow_forward_ios),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 2.0),
-                color: Color(0xffc4c4c4),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
-                child: RichText(
-                  textAlign: TextAlign.start,
-                  text: TextSpan(
-                    style: TextStyle(
-                        fontSize: 12, height: 1.5, color: Color(0xff7a7a7a)),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text:
-                            'By tapping ‘1-tap buy’, you accept the following Google Payments Terms of Service: ',
-                      ),
-                      TextSpan(
-                          text: 'Privacy Notice',
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () => () {},
-                          style:
-                              TextStyle(decoration: TextDecoration.underline)),
-                      TextSpan(text: ' , '),
-                      TextSpan(
-                          text: 'ข้อกำหนดในการบริการ - Android (ประเทศไทย).',
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () => () {},
-                          style:
-                              TextStyle(decoration: TextDecoration.underline)),
-                      TextSpan(text: ' More '),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                width: 320,
-                height: 45,
-                child: MaterialButton(
-                  onPressed: () =>
-                      {Navigator.pop(context), dialogConfirm(context)},
-                  child: Text(
-                    '1 - tap buy',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  color: Color(0xffffab40),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(30.0),
-                    ),
-                  ),
-                ),
-              ),
+              _underLine(),
+
+              _lessonAndPrice(), //แบบฝึกหัดที่เลือกและราคา
+
+              _underLine(),
+
+              _creditCard(), //บัตรเครดิต
+
+              _underLine(),
+
+              _requirementText(), //ข้อกำหนดและบริการ
+
+              _buyCourseBtn(), // ปุ่มยืนยันการซื้อ
 
               // ListTile(
               //   leading: new Icon(Icons.share),
@@ -303,40 +316,9 @@ class HomeDetail extends StatelessWidget {
                   padding: EdgeInsets.only(top: 5.0),
                   color: Color(0xffeeeeee),
                 ),
-                Container(
-                  padding: EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      IconButton(
-                          onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Home(),
-                                ),
-                              ),
-                          icon: Icon(Icons.arrow_back)),
-                      Container(
-                        height: 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <Widget>[
-                            Text(
-                              'ระดับเริ่มต้น',
-                              style: TextStyle(fontSize: 20.0),
-                            ),
-                            Text(
-                              'Beginner',
-                              style: TextStyle(fontSize: 18.0),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // ---------------------
+                // header
+                headerBox(context),
+                // body
                 for (var i = 0; i < detailData.length; i++)
                   detailBox(context, detailData[i]),
               ],
@@ -347,7 +329,137 @@ class HomeDetail extends StatelessWidget {
     );
   }
 
+  Widget headerBox(context) {
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          IconButton(
+              onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Home(),
+                    ),
+                  ),
+              icon: Icon(Icons.arrow_back)),
+          Container(
+            height: 200,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Text(
+                  'ระดับเริ่มต้น',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+                Text(
+                  'Beginner',
+                  style: TextStyle(fontSize: 18.0),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget detailBox(context, detail) {
+
+    Widget _micAndGridBtn() {
+
+      Widget button(iconName, type) {
+        return Material(
+          type: MaterialType.transparency,
+          child: Ink(
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xff90a4ae), width: 2.0),
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(1000.0),
+              onTap: () {},
+              child: Padding(
+                padding: EdgeInsets.all(4.0),
+                child: Icon(
+                  iconName,
+                  size: 20.0,
+                  color: Color(0xff90a4ae),
+                ),
+              ),
+            ),
+          ),
+        );
+      }
+
+      return Container(
+        padding: EdgeInsets.only(top: 7.0),
+        child: Row(
+          children: <Widget>[
+            Container(
+              child: button(Icons.mic, 'mic'),
+            ),
+            Container(
+                padding: EdgeInsets.only(left: 10.0),
+                child: button(Icons.grid_view, 'grid')),
+          ],
+        ),
+      );
+    }
+
+    Widget _nextOrBuyBtn(detail, context) {
+
+      return Container(
+        padding: EdgeInsets.only(right: 10.0),
+        child: Material(
+          type: MaterialType.transparency,
+          child: Ink(
+            decoration: BoxDecoration(
+              border: detail['isLock'] == false
+                  ? Border.all(color: Color(0xff01579b), width: 2.0)
+                  : Border.all(color: Color(0xff90a4ae), width: 2.0),
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(1000.0),
+              onTap: () {
+                if (detail['isLock'] == true) {
+                  dialogUnlock(context);
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeLesson(
+                        titleEng: detail['titleEng'],
+                        titleTh: detail['titleTh'],
+                      ),
+                    ),
+                  );
+                }
+              },
+              child: Padding(
+                padding: EdgeInsets.all(6.0),
+                child: detail['isLock'] == false
+                    ? Icon(
+                        Icons.arrow_forward,
+                        size: 20.0,
+                        color: Color(0xff01579b),
+                      )
+                    : Icon(
+                        Icons.lock,
+                        size: 20.0,
+                        color: Color(0xff90a4ae),
+                      ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Column(
       children: <Widget>[
         Container(
@@ -380,125 +492,18 @@ class HomeDetail extends StatelessWidget {
                             style: TextStyle(fontSize: 16.0),
                             overflow: TextOverflow.ellipsis,
                           ),
-                          Row(
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.only(top: 7.0),
-                                child: Material(
-                                    type: MaterialType.transparency,
-                                    child: Ink(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Color(0xff90a4ae),
-                                            width: 2.0),
-                                        color: Colors.white,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: InkWell(
-                                        borderRadius:
-                                            BorderRadius.circular(1000.0),
-                                        onTap: () {},
-                                        child: Padding(
-                                          padding: EdgeInsets.all(4.0),
-                                          child: Icon(
-                                            Icons.mic,
-                                            size: 20.0,
-                                            color: Color(0xff90a4ae),
-                                          ),
-                                        ),
-                                      ),
-                                    )),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(top: 7.0, left: 10.0),
-                                child: Material(
-                                  type: MaterialType.transparency,
-                                  child: Ink(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Color(0xff90a4ae), width: 2.0),
-                                      color: Colors.white,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: InkWell(
-                                      borderRadius:
-                                          BorderRadius.circular(1000.0),
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(4.0),
-                                        child: Icon(
-                                          Icons.grid_view,
-                                          size: 20.0,
-                                          color: Color(0xff90a4ae),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
+                          _micAndGridBtn(),
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
-              nextOrBuyButton(detail , context)
+              _nextOrBuyBtn(detail, context)
             ],
           ),
         )
       ],
-    );
-  }
-
-  Widget nextOrBuyButton(detail , context) {
-    return Container(
-      padding: EdgeInsets.only(right: 10.0),
-      child: Material(
-        type: MaterialType.transparency,
-        child: Ink(
-          decoration: BoxDecoration(
-            border: detail['isLock'] == false
-                ? Border.all(color: Color(0xff01579b), width: 2.0)
-                : Border.all(color: Color(0xff90a4ae), width: 2.0),
-            color: Colors.white,
-            shape: BoxShape.circle,
-          ),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(1000.0),
-            onTap: () {
-              if (detail['isLock'] == true) {
-                dialogUnlock(context);
-              } else {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomeLesson(
-                      titleEng: detail['titleEng'],
-                      titleTh: detail['titleTh'],
-                    ),
-                  ),
-                );
-              }
-            },
-            child: Padding(
-              padding: EdgeInsets.all(6.0),
-              child: detail['isLock'] == false
-                  ? Icon(
-                      Icons.arrow_forward,
-                      size: 20.0,
-                      color: Color(0xff01579b),
-                    )
-                  : Icon(
-                      Icons.lock,
-                      size: 20.0,
-                      color: Color(0xff90a4ae),
-                    ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

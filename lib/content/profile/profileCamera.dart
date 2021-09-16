@@ -37,59 +37,8 @@ class _CameraState extends State<Camera> {
                   ),
                 ),
               ),
-              Container(
-                color: Color(0xffe8e8e8),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.image,
-                    color: Color(0xffc4c4c4),
-                  ),
-                ),
-              ),
-              Container(
-                color: Color(0xffe8e8e8),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.image,
-                    color: Color(0xffc4c4c4),
-                  ),
-                ),
-              ),
-              Container(
-                color: Color(0xffe8e8e8),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.image,
-                    color: Color(0xffc4c4c4),
-                  ),
-                ),
-              ),
-              Container(
-                color: Color(0xffe8e8e8),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.image,
-                    color: Color(0xffc4c4c4),
-                  ),
-                ),
-              ),
-              Container(
-                color: Color(0xffe8e8e8),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.image,
-                    color: Color(0xffc4c4c4),
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
+              for (var i = 0; i < 6; i++)
+                Container(
                   color: Color(0xffe8e8e8),
                   child: IconButton(
                     onPressed: () {},
@@ -99,7 +48,6 @@ class _CameraState extends State<Camera> {
                     ),
                   ),
                 ),
-              )
             ],
           ),
         )),

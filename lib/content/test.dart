@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TestPage extends StatefulWidget {
-  const TestPage({ Key? key }) : super(key: key);
+  const TestPage({Key? key}) : super(key: key);
 
   @override
   _TestPageState createState() => _TestPageState();
@@ -10,8 +10,15 @@ class TestPage extends StatefulWidget {
 class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
+    return SafeArea(child: Scaffold(
+      appBar: AppBar(
+        title: Text('page test'),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
+      body: Center(
+        child: Text('Test' , style: TextStyle(fontSize: 60 , fontWeight: FontWeight.bold),),
+      ),
+    ));
   }
 }
