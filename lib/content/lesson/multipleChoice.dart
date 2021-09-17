@@ -331,24 +331,26 @@ class _MultipleState extends State<Multiple> {
     super.dispose();
   }
 
+  //Body
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: _myAppBar(),
-          body: Center(
-            child: Container(
-              margin: EdgeInsets.only(bottom: 70.0),
-              child: Column(
-                children: <Widget>[
-                  _questionsBox(),
-                  chats[currentChoice - 1]['multipleType'] != 'multiSelect'
-                      ? _choiceAnswerBox()
-                      : _multiSelection()
-                ],
-              ),
+        appBar: _myAppBar(),
+        body: Center(
+          child: Container(
+            margin: EdgeInsets.only(bottom: 70.0),
+            child: Column(
+              children: <Widget>[
+                _questionsBox(),
+                chats[currentChoice - 1]['multipleType'] != 'multiSelect'
+                    ? _choiceAnswerBox()
+                    : _multiSelection()
+              ],
             ),
           ),
-          floatingActionButton: floatingNext()),
+        ),
+        floatingActionButton: floatingNext(),
+      ),
     );
   }
 
@@ -364,16 +366,13 @@ class _MultipleState extends State<Multiple> {
         color: Color(0xff01579b), //change your color here
       ),
       title: Container(
-        child: LinearPercentIndicator(
-          padding: EdgeInsets.all(0.0),
-          width: 280,
-          lineHeight: 10,
-          backgroundColor: Color(0xffe0e0e0),
-          progressColor: Color(0xff90a4ae),
-          percent: currentChoice/chats.length
-        )
-        
-      ),
+          child: LinearPercentIndicator(
+              padding: EdgeInsets.all(0.0),
+              width: 280,
+              lineHeight: 10,
+              backgroundColor: Color(0xffe0e0e0),
+              progressColor: Color(0xff90a4ae),
+              percent: currentChoice / chats.length)),
     );
   }
 
