@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class Speaking extends StatefulWidget {
   const Speaking({Key? key}) : super(key: key);
@@ -113,26 +114,16 @@ class _SpeakingState extends State<Speaking> {
           title: Container(
             child: Stack(
               children: <Widget>[
-                Container(
-                  width: 300,
-                  height: 10,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                      color: Color(0xffE0E0E0)),
+                LinearPercentIndicator(
+                  width: 280,
+                  padding: EdgeInsets.all(0.0),
+                  lineHeight: 10,
+                  backgroundColor: Color(0xffe0e0e0),
+                  progressColor: Color(0xff90a4ae),
+                  percent: currentChoice/dataful,
                 ),
-                Positioned(
-                  child: Container(
-                    width: currentChoice * 300 / 2,
-                    height: 10,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        color: Color(0xff90a4ae)),
-                  ),
-                )
+               
+                
               ],
             ),
           ),
@@ -255,7 +246,7 @@ class _SpeakingState extends State<Speaking> {
       onPressed: countRecord != 0 && !isRecord
           ? () => {
                 setState(() {
-                  if (currentChoice != 4) {
+                  if (currentChoice != dataful) {
                     currentChoice++;
                   }
                 })
