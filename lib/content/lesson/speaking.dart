@@ -391,7 +391,7 @@ class _SpeakingState extends State<Speaking> {
   _buildMsnBox(String msn, String user, int step, url) {
     // ฟังเสียงปกติ
     final listenButton = MaterialButton(
-      onPressed: () => speak(msn),
+      onPressed: () => !isSpeaking ?  speak(msn) : stop(),
       child: Icon(
         Icons.volume_up,
         color: Color(user == 'sender' ? 0xffffffff : 0xff01579b),
@@ -404,7 +404,7 @@ class _SpeakingState extends State<Speaking> {
     // ฟังเสียงแบบช้า
     final slowButton = MaterialButton(
       onPressed: () {
-        speakSlow(msn);
+        !isSpeaking ?  speakSlow(msn) : stop();
       },
       child: Image.asset(user == 'sender'
           ? 'assets/images/turtle-w.png'
