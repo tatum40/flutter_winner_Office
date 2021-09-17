@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_winner_office/content/main/home.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class Multiple extends StatefulWidget {
   const Multiple({Key? key}) : super(key: key);
@@ -363,32 +364,15 @@ class _MultipleState extends State<Multiple> {
         color: Color(0xff01579b), //change your color here
       ),
       title: Container(
-        child: Stack(
-          children: <Widget>[
-            Container(
-              width: 300,
-              height: 10,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10.0),
-                ),
-                color: Color(0xffE0E0E0),
-              ),
-            ),
-            Positioned(
-              child: Container(
-                width: currentChoice * 300 / chats.length,
-                height: 10,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.0),
-                  ),
-                  color: Color(0xff90a4ae),
-                ),
-              ),
-            )
-          ],
-        ),
+        child: LinearPercentIndicator(
+          padding: EdgeInsets.all(0.0),
+          width: 280,
+          lineHeight: 10,
+          backgroundColor: Color(0xffe0e0e0),
+          progressColor: Color(0xff90a4ae),
+          percent: currentChoice/chats.length
+        )
+        
       ),
     );
   }
