@@ -5,6 +5,69 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_winner_office/content/main/home.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+List<dynamic> chats = [
+  {
+    "sentence":
+        'What time does Andrea normally get up on Saturday \nปกติในวันเสาร์แอนเดียร์ตื่นเวลาเท่าไหร่',
+    "choice": [
+      '1 am',
+      '9 am',
+      '3 am',
+      '4 pm',
+    ],
+    "answer": '9 am \n9 โมงเช้า',
+    "correctAnswer": 2,
+    "multipleType": "questionSentence"
+  },
+  {
+    "sentence": 'What time do you normally get up?\nปกติคุณตื่นนอนกี่โมง',
+    "choice": [
+      '1 am',
+      '9 pm',
+      '6 am',
+      '10 pm',
+    ],
+    "answer":
+        'I usually get up at six on weekdays\nปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดา',
+    "correctAnswer": 3,
+    "multipleType": "questionSentence"
+  },
+  {
+    "questionSound": 'assets/audios/sound1.wav',
+    "choice": [
+      'Usually',
+      'Never',
+      'Sometime',
+      'Rarely',
+    ],
+    "correctAnswer": 1,
+    "multipleType": "questionSound"
+  },
+  {
+    "sentence": 'What time do you normally get up?\nปกติคุณตื่นนอนกี่โมง',
+    "choice": [
+      'I',
+      'usually',
+      'get up',
+      'at six',
+      'on',
+      'weekdays',
+      'and',
+      'around 9',
+      'at',
+      'weekends',
+    ],
+    "answer":
+        'ปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดา และประมาณ 9 โมงเช้าในวันหยุด',
+    "correctAnswer": 3,
+    "multipleType": "multiSelect"
+  },
+];
+
+int currentChoice = 1;
+int selectAnswer = 0;
+bool isSendAnswer = false;
+
 class Multiple extends StatefulWidget {
   const Multiple({Key? key}) : super(key: key);
 
@@ -13,69 +76,6 @@ class Multiple extends StatefulWidget {
 }
 
 class _MultipleState extends State<Multiple> {
-  int currentChoice = 1;
-  int selectAnswer = 0;
-  bool isSendAnswer = false;
-
-  List<dynamic> chats = [
-    {
-      "sentence":
-          'What time does Andrea normally get up on Saturday \nปกติในวันเสาร์แอนเดียร์ตื่นเวลาเท่าไหร่',
-      "choice": [
-        '1 am',
-        '9 am',
-        '3 am',
-        '4 pm',
-      ],
-      "answer": '9 am \n9 โมงเช้า',
-      "correctAnswer": 2,
-      "multipleType": "questionSentence"
-    },
-    {
-      "sentence": 'What time do you normally get up?\nปกติคุณตื่นนอนกี่โมง',
-      "choice": [
-        '1 am',
-        '9 pm',
-        '6 am',
-        '10 pm',
-      ],
-      "answer":
-          'I usually get up at six on weekdays\nปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดา',
-      "correctAnswer": 3,
-      "multipleType": "questionSentence"
-    },
-    {
-      "questionSound": 'assets/audios/sound1.wav',
-      "choice": [
-        'Usually',
-        'Never',
-        'Sometime',
-        'Rarely',
-      ],
-      "correctAnswer": 1,
-      "multipleType": "questionSound"
-    },
-    {
-      "sentence": 'What time do you normally get up?\nปกติคุณตื่นนอนกี่โมง',
-      "choice": [
-        'I',
-        'usually',
-        'get up',
-        'at six',
-        'on',
-        'weekdays',
-        'and',
-        'around 9',
-        'at',
-        'weekends',
-      ],
-      "answer":
-          'ปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดา และประมาณ 9 โมงเช้าในวันหยุด',
-      "correctAnswer": 3,
-      "multipleType": "multiSelect"
-    },
-  ];
-
   void sendAnswer() {
     setState(
       () {
@@ -679,6 +679,7 @@ class _MultipleState extends State<Multiple> {
   }
 
   Widget _multiSelection() {
+
     final _gridAnswerBox = Container(
       margin: EdgeInsets.only(top: 10.0),
       width: 340,
@@ -686,17 +687,6 @@ class _MultipleState extends State<Multiple> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           color: Color(0xffe0e0e0)),
-      // child: Draggable(
-      //   child:
-      //   Container(
-      //     child: Text('Red'),
-      //     color: Colors.red[200],
-      //   ),
-      //   feedback: Container(
-      //     child: Text('Green'),
-      //     color: Colors.green[200],
-      //   ),
-      // ),
     );
 
     final _gridSelectChoice = GridView.builder(
