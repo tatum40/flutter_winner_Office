@@ -112,19 +112,13 @@ class _SpeakingState extends State<Speaking> {
             color: Color(0xff01579b), //change your color here
           ),
           title: Container(
-            child: Stack(
-              children: <Widget>[
-                LinearPercentIndicator(
-                  width: 280,
-                  padding: EdgeInsets.all(0.0),
-                  lineHeight: 10,
-                  backgroundColor: Color(0xffe0e0e0),
-                  progressColor: Color(0xff90a4ae),
-                  percent: currentChoice/dataful,
-                ),
-               
-                
-              ],
+            child: LinearPercentIndicator(
+              width: 280,
+              padding: EdgeInsets.all(0.0),
+              lineHeight: 10,
+              backgroundColor: Color(0xffe0e0e0),
+              progressColor: Color(0xff90a4ae),
+              percent: currentChoice / dataful,
             ),
           ),
         ),
