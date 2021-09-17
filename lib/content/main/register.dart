@@ -49,11 +49,12 @@ class _RegisterState extends State<Register> {
                                 child: Row(
                                   children: <Widget>[
                                     Radio(
-                                        activeColor: Colors.blueAccent,
-                                        value: 'Male',
-                                        groupValue: gender,
-                                        onChanged: (value) =>
-                                            _setGender(value.toString())),
+                                      activeColor: Colors.blueAccent,
+                                      value: 'Male',
+                                      groupValue: gender,
+                                      onChanged: (value) =>
+                                          _setGender(value.toString()),
+                                    ),
                                     Text('Male'),
                                   ],
                                 ),
@@ -62,11 +63,12 @@ class _RegisterState extends State<Register> {
                                 child: Row(
                                   children: <Widget>[
                                     Radio(
-                                        activeColor: Colors.blueAccent,
-                                        value: 'Female',
-                                        groupValue: gender,
-                                        onChanged: (value) =>
-                                            _setGender(value.toString())),
+                                      activeColor: Colors.blueAccent,
+                                      value: 'Female',
+                                      groupValue: gender,
+                                      onChanged: (value) =>
+                                          _setGender(value.toString()),
+                                    ),
                                     Text('Female'),
                                   ],
                                 ),
@@ -75,11 +77,12 @@ class _RegisterState extends State<Register> {
                                 child: Row(
                                   children: <Widget>[
                                     Radio(
-                                        activeColor: Colors.blueAccent,
-                                        value: 'Not specified',
-                                        groupValue: gender,
-                                        onChanged: (value) =>
-                                            _setGender(value.toString())),
+                                      activeColor: Colors.blueAccent,
+                                      value: 'Not specified',
+                                      groupValue: gender,
+                                      onChanged: (value) =>
+                                          _setGender(value.toString()),
+                                    ),
                                     Text('Not specified'),
                                   ],
                                 ),
@@ -101,8 +104,9 @@ class _RegisterState extends State<Register> {
                         decoration: InputDecoration(
                             isDense: true,
                             border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5.0))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5.0)),
+                            ),
                             labelText: "Given name"),
                       ),
                     ),
@@ -119,8 +123,9 @@ class _RegisterState extends State<Register> {
                         decoration: InputDecoration(
                           isDense: true,
                           border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                          ),
                           labelText: 'Surname',
                         ),
                       ),
@@ -137,8 +142,9 @@ class _RegisterState extends State<Register> {
                           labelText: 'Password',
                           isDense: true,
                           border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                          ),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -163,8 +169,9 @@ class _RegisterState extends State<Register> {
                         decoration: InputDecoration(
                           isDense: true,
                           border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                          ),
                           labelText: 'Phone',
                         ),
                       ),
@@ -179,8 +186,8 @@ class _RegisterState extends State<Register> {
                         child: Text('Sign up'),
                         color: Color(0xffffab40),
                         shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0))),
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                        ),
                       ),
                     ),
                   ],

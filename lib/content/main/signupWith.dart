@@ -302,14 +302,16 @@ class Signupfacebook extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              facebookLogoBar(),
-              pictureAndMessage(),
-              loginForm(),
-              loginBtn(),
-            ],
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                facebookLogoBar(),
+                pictureAndMessage(),
+                loginForm(),
+                loginBtn(),
+              ],
+            ),
           ),
         ),
       ),
