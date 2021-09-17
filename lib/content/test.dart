@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/widgetTets.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({Key? key}) : super(key: key);
@@ -17,8 +18,9 @@ class _TestPageState extends State<TestPage> {
         backgroundColor: Colors.white,
       ),
       body: Center(
-        child: Text('Test' , style: TextStyle(fontSize: 60 , fontWeight: FontWeight.bold),),
-      ),
+        child: test3("EFEF"),
+      )
     ));
   }
 }
+

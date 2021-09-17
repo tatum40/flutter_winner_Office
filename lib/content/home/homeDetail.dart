@@ -139,14 +139,16 @@ class HomeDetail extends StatelessWidget {
                     'By tapping ‘1-tap buy’, you accept the following Google Payments Terms of Service: ',
               ),
               TextSpan(
-                  text: 'Privacy Notice',
-                  recognizer: TapGestureRecognizer()..onTap = () => () {},
-                  style: TextStyle(decoration: TextDecoration.underline)),
+                text: 'Privacy Notice',
+                recognizer: TapGestureRecognizer()..onTap = () => () {},
+                style: TextStyle(decoration: TextDecoration.underline),
+              ),
               TextSpan(text: ' , '),
               TextSpan(
-                  text: 'ข้อกำหนดในการบริการ - Android (ประเทศไทย).',
-                  recognizer: TapGestureRecognizer()..onTap = () => () {},
-                  style: TextStyle(decoration: TextDecoration.underline)),
+                text: 'ข้อกำหนดในการบริการ - Android (ประเทศไทย).',
+                recognizer: TapGestureRecognizer()..onTap = () => () {},
+                style: TextStyle(decoration: TextDecoration.underline),
+              ),
               TextSpan(text: ' More '),
             ],
           ),
@@ -366,9 +368,7 @@ class HomeDetail extends StatelessWidget {
   }
 
   Widget detailBox(context, detail) {
-
     Widget _micAndGridBtn() {
-
       Widget button(iconName, type) {
         return Material(
           type: MaterialType.transparency,
@@ -410,7 +410,6 @@ class HomeDetail extends StatelessWidget {
     }
 
     Widget _nextOrBuyBtn(detail, context) {
-
       return Container(
         padding: EdgeInsets.only(right: 10.0),
         child: Material(
