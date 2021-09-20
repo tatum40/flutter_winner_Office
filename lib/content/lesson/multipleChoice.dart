@@ -64,6 +64,8 @@ List<dynamic> chats = [
   },
 ];
 
+List<String> stackAnswer = [];
+
 int currentChoice = 1;
 int selectAnswer = 0;
 bool isSendAnswer = false;
@@ -337,16 +339,19 @@ class _MultipleState extends State<Multiple> {
       child: Scaffold(
         appBar: _myAppBar(),
         body: Center(
-          child: Container(
-            margin: EdgeInsets.only(bottom: 70.0),
-            child: Column(
-              children: <Widget>[
-                _questionsBox(),
-                chats[currentChoice - 1]['multipleType'] != 'multiSelect'
-                    ? _choiceAnswerBox()
-                    : _multiSelection()
-              ],
-            ),
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverToBoxAdapter(
+                child: Column(
+                  children: <Widget>[
+                    _questionsBox(),
+                    chats[currentChoice - 1]['multipleType'] != 'multiSelect'
+                        ? _choiceAnswerBox()
+                        : _multiSelection(),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
         floatingActionButton: floatingNext(),
@@ -543,236 +548,248 @@ class _MultipleState extends State<Multiple> {
   }
 
   Widget _choiceAnswerBox() {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.only(top: 20.0),
+    Widget soundButton(item, i) {
+      return Container(
+        width: 30,
+        height: 30,
+        child: Material(
+          type: MaterialType.transparency,
+          child: Ink(
+            decoration: BoxDecoration(
+              border: Border.all(
+                  color: Color(selectAnswer == i + 1 ? 0xffffffff : 0xff01579b),
+                  width: 1.5),
+              color: Color(selectAnswer == i + 1 ? 0xffffab40 : 0xffffffff),
+              shape: BoxShape.circle,
+            ),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(1000.0),
+              onTap: () => !isSpeaking ? speakChoiceAnswer(item) : stop(),
+              child: Padding(
+                  padding: EdgeInsets.all(0.0),
+                  child: Icon(
+                    Icons.volume_up,
+                    size: 20.0,
+                    color:
+                        Color(selectAnswer == i + 1 ? 0xffffffff : 0xff01579b),
+                  )),
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget selectButton(item, i) {
+      return Container(
         width: 300,
-        child: ListView.builder(
-          padding: EdgeInsets.only(bottom: 10.0),
-          itemCount: chats[currentChoice - 1]['choice'].length,
-          itemBuilder: (BuildContext context, int index) {
-            final List answer = chats[currentChoice - 1]['choice'];
-            final int correctAnswer = chats[currentChoice - 1]['correctAnswer'];
-            final soundButton = Container(
-              width: 30,
-              height: 30,
-              child: Material(
-                type: MaterialType.transparency,
-                child: Ink(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Color(selectAnswer == index + 1
-                            ? 0xffffffff
-                            : 0xff01579b),
-                        width: 1.5),
-                    color: Color(
-                        selectAnswer == index + 1 ? 0xffffab40 : 0xffffffff),
-                    shape: BoxShape.circle,
+        child: MaterialButton(
+          height: 45,
+          onPressed: () {
+            setState(
+              () {
+                selectAnswer = i + 1;
+              },
+            );
+          },
+          color: selectAnswer == i + 1 ? Color(0xffffab40) : Colors.white,
+          shape: selectAnswer != i + 1
+              ? OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25.0),
                   ),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(1000.0),
-                    onTap: () =>
-                        !isSpeaking ? speakChoiceAnswer(answer[index]) : stop(),
-                    child: Padding(
-                        padding: EdgeInsets.all(0.0),
-                        child: Icon(
-                          Icons.volume_up,
-                          size: 20.0,
-                          color: Color(selectAnswer == index + 1
-                              ? 0xffffffff
-                              : 0xff01579b),
-                        )),
+                  borderSide: BorderSide(color: Color(0xff01579b), width: 1.5),
+                )
+              : RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25.0),
                   ),
                 ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                item,
+                style: TextStyle(
+                    color: selectAnswer == i + 1 ? Colors.white : Colors.black),
               ),
-            );
+              soundButton(item, i)
+            ],
+          ),
+        ),
+      );
+    }
 
-            final selectButton = MaterialButton(
-              height: 45,
-              onPressed: () {
-                setState(() {
-                  selectAnswer = index + 1;
-                });
-              },
-              color:
-                  selectAnswer == index + 1 ? Color(0xffffab40) : Colors.white,
-              shape: selectAnswer != index + 1
-                  ? OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(25.0),
-                      ),
-                      borderSide:
-                          BorderSide(color: Color(0xff01579b), width: 1.5),
-                    )
-                  : RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(25.0),
-                      ),
-                    ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    answer[index],
-                    style: TextStyle(
-                        color: selectAnswer == index + 1
-                            ? Colors.white
-                            : Colors.black),
-                  ),
-                  soundButton
-                ],
-              ),
-            );
-
-            final showCorrectAnswer = Container(
-              height: 45,
-              padding: EdgeInsets.only(left: 15.0, right: 15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    answer[index],
-                    style: TextStyle(
-                        color: index + 1 == correctAnswer
-                            ? Color(0xffffffff)
-                            : Color(0xff000000)),
-                  ),
-                  Container(
-                    width: 30,
-                    height: 30,
-                    child: Icon(
-                      Icons.volume_up,
-                      size: 20,
-                      color: Color(
-                          index + 1 == correctAnswer ? 0xffffffff : 0xff01579b),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                      color: Color(
-                          index + 1 == correctAnswer ? 0xff4ab71e : 0xffffffff),
-                      border: Border.all(
-                        color: Color(index + 1 == correctAnswer
-                            ? 0xffffffff
-                            : 0xff01579b),
-                      ),
-                    ),
-                  )
-                ],
+    Widget showCorrectAnswer(item, i) {
+      return Container(
+        width: 300,
+        height: 45,
+        padding: EdgeInsets.only(left: 15.0, right: 15.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              item,
+              style: TextStyle(
+                  color: i + 1 == chats[currentChoice - 1]['correctAnswer']
+                      ? Color(0xffffffff)
+                      : Color(0xff000000)),
+            ),
+            Container(
+              width: 30,
+              height: 30,
+              child: Icon(
+                Icons.volume_up,
+                size: 20,
+                color: Color(i + 1 == chats[currentChoice - 1]['correctAnswer']
+                    ? 0xffffffff
+                    : 0xff01579b),
               ),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                  color: index + 1 == correctAnswer
-                      ? Color(0xff4ab71e)
-                      : Color(0xffffffff),
-                  border: index + 1 == correctAnswer
-                      ? null
-                      : Border.all(color: Color(0xff01579b))),
-            );
-
-            return Container(
-                margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                child: isSendAnswer ? showCorrectAnswer : selectButton);
-          },
+                borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                color: Color(i + 1 == chats[currentChoice - 1]['correctAnswer']
+                    ? 0xff4ab71e
+                    : 0xffffffff),
+                border: Border.all(
+                  color: Color(
+                      i + 1 == chats[currentChoice - 1]['correctAnswer']
+                          ? 0xffffffff
+                          : 0xff01579b),
+                ),
+              ),
+            )
+          ],
         ),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(25.0)),
+            color: i + 1 == chats[currentChoice - 1]['correctAnswer']
+                ? Color(0xff4ab71e)
+                : Color(0xffffffff),
+            border: i + 1 == chats[currentChoice - 1]['correctAnswer']
+                ? null
+                : Border.all(color: Color(0xff01579b))),
+      );
+    }
+
+    return Container(
+      margin: EdgeInsets.only(top: 10.0),
+      child: Column(
+        children: <Widget>[
+          for (var i = 0; i < chats[currentChoice - 1]['choice'].length; i++)
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 7.0),
+              child: !isSendAnswer
+                  ? selectButton(chats[currentChoice - 1]['choice'][i], i)
+                  : showCorrectAnswer(chats[currentChoice - 1]['choice'][i], i),
+            )
+        ],
       ),
     );
   }
 
   Widget _multiSelection() {
+    List<String> choice = chats[currentChoice - 1]['choice'];
 
-    final _gridAnswerBox = Container(
-      margin: EdgeInsets.only(top: 10.0),
-      width: 340,
-      height: 200,
-      decoration: BoxDecoration(
+    Widget finalSelectButton(item) {
+      Widget selectButton() {
+        return Container(
+          margin: EdgeInsets.all(5.0),
+          width: 100,
+          height: 40,
+          child: MaterialButton(
+            onPressed: () {
+              setState(() {
+                if (!stackAnswer.contains(item)) {
+                  stackAnswer.add(item);
+                }
+                choice.remove(item);
+              });
+            },
+            child: Text(item),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(25.0),
+              ),
+            ),
+            color: Color(0xff90a4ae),
+          ),
+        );
+      }
+
+      Widget unSelectButton() {
+        return Container(
+          width: 25,
+          height: 25,
+          child: MaterialButton(
+            onPressed: () {
+              setState(() {
+                stackAnswer.remove(item);
+                if (!choice.contains(item)) {
+                  choice.add(item);
+                }
+              },
+              );
+            },
+            color: Color(0xff757575),
+            child: Icon(
+              Icons.close,
+              size: 15,
+              color: Colors.white,
+            ),
+            padding: EdgeInsets.all(0.0),
+            shape: CircleBorder(),
+          ),
+        );
+      }
+
+      return Stack(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(top: 6.0),
+            child: selectButton(),
+          ),
+          Positioned(
+            child: unSelectButton(),
+            left: 80,
+          )
+        ],
+      );
+    }
+
+    Widget sentenceBox() {
+      return Container(
+        width: 340,
+        constraints: BoxConstraints(minHeight: 200, maxHeight: double.infinity),
+        padding: EdgeInsets.symmetric(vertical: 5.0),
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          color: Color(0xffe0e0e0)),
-    );
-
-    final _gridSelectChoice = GridView.builder(
-      padding:
-          EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0, bottom: 30.0),
-      itemCount: chats[currentChoice - 1]['choice'].length,
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 125.0,
-          crossAxisSpacing: 10.0,
-          childAspectRatio: 2.5,
-          mainAxisSpacing: 10.0),
-      itemBuilder: (BuildContext context, index) {
-        final answerChoice = chats[currentChoice - 1]['choice'];
-
-        final _unSelectButton = Container(
-          width: 20,
-          height: 20,
-          child: Material(
-            type: MaterialType.transparency,
-            child: Ink(
-              decoration: BoxDecoration(
-                color: Color(0xff757575),
-                shape: BoxShape.circle,
-              ),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(1000.0),
-                onTap: () {},
-                child: Padding(
-                  padding: EdgeInsets.all(0.0),
-                  child: Icon(
-                    Icons.close,
-                    size: 13.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-
-        final _finalBox = Container(
-          child: Stack(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                  margin: EdgeInsets.only(top: 5.0, right: 3.0),
-                  child: MaterialButton(
-                    onPressed: () {
-                      print(answerChoice[index]);
-                      setState(() {
-                        selectAnswer = index + 1;
-                      });
-                    },
-                    color: Color(0xff90a4ae),
-                    child: Text(answerChoice[index]),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(25.0),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: _unSelectButton,
-              )
-            ],
-          ),
-        );
-        return Draggable(child: _finalBox, feedback: _finalBox);
-      },
-    );
-
-    return Container(
-      child: Expanded(
-        child: Column(
+          color: Color(0xffe0e0e0),
+        ),
+        child: Wrap(
           children: <Widget>[
-            _gridAnswerBox,
-            Expanded(
-              child: _gridSelectChoice,
-            ),
+            for (var i = 0; i < stackAnswer.length; i++)
+              finalSelectButton(stackAnswer[i])
           ],
         ),
-      ),
+      );
+    }
+
+    Widget sentenceChoice() {
+      return Wrap(
+        children: <Widget>[
+          for (var i = 0; i < choice.length; i++) finalSelectButton(choice[i])
+        ],
+      );
+    }
+
+    return Column(
+      children: <Widget>[
+        Container(
+            margin: EdgeInsets.symmetric(vertical: 10.0), child: sentenceBox()),
+        Container(
+            padding: EdgeInsets.only(bottom: 50.0),
+            margin: EdgeInsets.symmetric(vertical: 10.0),
+            child: sentenceChoice()),
+      ],
     );
   }
 
