@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_winner_office/content/main/home.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 List<dynamic> chats = [
@@ -90,173 +91,178 @@ class _MultipleState extends State<Multiple> {
           if (currentChoice != chats.length) {
             currentChoice++;
           } else {
-            Widget circleWithStar() {
-              return Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Stack(
-                      children: <Widget>[
-                        Container(
-                          width: 165,
-                          height: 190,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Color(0xffd0d0d0)),
-                        ),
-                        Positioned(
-                            left: 15,
-                            top: 150,
-                            child: Row(
-                              children: <Widget>[
-                                for (int i = 0; i < 3; i++)
-                                  Icon(
-                                    Icons.star,
-                                    color: Color(0xff616161),
-                                    size: 45,
-                                  ),
-                              ],
-                            )),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            }
-
-            Widget headbutton(iconname, colorButton) {
-              return Container(
-                height: 45,
-                width: 50,
-                child: Image.asset("assets/images/$iconname.png"),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25.0),
-                      bottomLeft: Radius.circular(25.0)),
-                  color: Color(colorButton),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45.withOpacity(0.2),
-                      blurRadius: 1.0,
-                      offset: Offset(2, 0), // Shadow position
-                    ),
-                  ],
-                ),
-              );
-            }
-
-            Widget containButton(colorButton, messageButton) {
-              return Container(
-                width: 270,
-                height: 45,
-                child: MaterialButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(25.0),
-                    ),
-                  ),
-                  color: Color(colorButton),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                          margin: EdgeInsets.only(left: 40.0),
-                          child: Text(
-                            messageButton,
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ))
-                    ],
-                  ),
-                ),
-              );
-            }
-
-            Widget _fbButton() {
-              return Container(
-                margin: EdgeInsets.only(top: 30.0, bottom: 15.0),
-                child: Stack(
-                  children: <Widget>[
-                    containButton(0xff5578b2, 'Share on Facebook'),
-                    Positioned(child: headbutton('fbIcon', 0xff5578b2))
-                  ],
-                ),
-              );
-            }
-
-            Widget _twitButton() {
-              return Container(
-                child: Stack(
-                  children: <Widget>[
-                    containButton(0xff51CBF2, 'Share on Twitter'),
-                    Positioned(child: headbutton('twitchIcon', 0xff51CBF2))
-                  ],
-                ),
-              );
-            }
-
-            Widget _mainmenuButton(iconName, num) {
-              return Container(
-                margin: EdgeInsets.only(left: 10.0, right: 10.0),
-                width: 70,
-                height: 70,
-                child: MaterialButton(
-                  shape: CircleBorder(),
-                  onPressed: () => {
-                    num == 1
-                        ? Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Home()))
-                        : num == 2
-                            ? setState(() {
-                                currentChoice = 1;
-                                Navigator.pop(context);
-                              })
-                            : null
-                  },
-                  child: iconName,
-                  color: Color(0xffffab40),
-                ),
-              );
-            }
-
-            List iconName = [
-              Icon(Icons.home, size: 37, color: Colors.white),
-              Icon(Icons.refresh, size: 37, color: Colors.white),
-              Icon(Icons.arrow_forward, size: 37, color: Colors.white)
-            ];
-
-            showDialog<String>(
-              barrierDismissible: false,
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                content: Container(
-                  height: 330,
-                  child: Column(
-                    children: <Widget>[
-                      circleWithStar(),
-                      _fbButton(),
-                      _twitButton()
-                    ],
-                  ),
-                ),
-                actions: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 25.0),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          for (int i = 0; i < iconName.length; i++)
-                            _mainmenuButton(iconName[i], i + 1)
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            );
+            showDialogFinish();
           }
         }
       },
+    );
+  }
+
+  void showDialogFinish() {
+    Widget circleWithStar() {
+      return Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  width: 165,
+                  height: 190,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: mcl13,
+                  ),
+                ),
+                Positioned(
+                  left: 15,
+                  top: 150,
+                  child: Row(
+                    children: <Widget>[
+                      for (int i = 0; i < 3; i++)
+                        Icon(
+                          Icons.star,
+                          color: mcl7,
+                          size: 45,
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget headbutton(iconname) {
+      return Container(
+        height: 45,
+        width: 50,
+        child: Image.asset("assets/images/$iconname.png"),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25.0),
+              bottomLeft: Radius.circular(25.0)),
+          color: iconname == 'fbIcon' ? mcl9 : mcl8,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black45.withOpacity(0.2),
+              blurRadius: 1.0,
+              offset: Offset(2, 0), // Shadow position
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget containButton(messageButton) {
+      return Container(
+        width: 270,
+        height: 45,
+        child: MaterialButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(25.0),
+            ),
+          ),
+          color: messageButton == "Share on Facebook" ? mcl9 : mcl8,
+          onPressed: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                  margin: EdgeInsets.only(left: 40.0),
+                  child: Text(
+                    messageButton,
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ))
+            ],
+          ),
+        ),
+      );
+    }
+
+    Widget _fbButton() {
+      return Container(
+        margin: EdgeInsets.only(top: 30.0, bottom: 15.0),
+        child: Stack(
+          children: <Widget>[
+            containButton('Share on Facebook'),
+            Positioned(child: headbutton('fbIcon'))
+          ],
+        ),
+      );
+    }
+
+    Widget _twitButton() {
+      return Container(
+        child: Stack(
+          children: <Widget>[
+            containButton('Share on Twitter'),
+            Positioned(child: headbutton('twitchIcon'))
+          ],
+        ),
+      );
+    }
+
+    Widget _mainmenuButton(iconName, num) {
+      return Container(
+        margin: EdgeInsets.only(left: 10.0, right: 10.0),
+        width: 70,
+        height: 70,
+        child: MaterialButton(
+          shape: CircleBorder(),
+          onPressed: () => {
+            num == 1
+                ? Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Home()))
+                : num == 2
+                    ? setState(() {
+                        currentChoice = 1;
+                        chats[3]['choice'] = stackAnswer;
+                        stackAnswer = [];
+                        Navigator.pop(context);
+                      })
+                    : null
+          },
+          child: iconName,
+          color: mcl1,
+        ),
+      );
+    }
+
+    List iconName = [
+      Icon(Icons.home, size: 37, color: Colors.white),
+      Icon(Icons.refresh, size: 37, color: Colors.white),
+      Icon(Icons.arrow_forward, size: 37, color: Colors.white)
+    ];
+
+    showDialog<String>(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        content: Container(
+          height: 330,
+          child: Column(
+            children: <Widget>[circleWithStar(), _fbButton(), _twitButton()],
+          ),
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(bottom: 25.0),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  for (int i = 0; i < iconName.length; i++)
+                    _mainmenuButton(iconName[i], i + 1)
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -368,16 +374,17 @@ class _MultipleState extends State<Multiple> {
         onPressed: () => Navigator.pop(context),
       ),
       iconTheme: IconThemeData(
-        color: Color(0xff01579b), //change your color here
+        color: mcl2, //change your color here
       ),
       title: Container(
-          child: LinearPercentIndicator(
-              padding: EdgeInsets.all(0.0),
-              width: 280,
-              lineHeight: 10,
-              backgroundColor: Color(0xffe0e0e0),
-              progressColor: Color(0xff90a4ae),
-              percent: currentChoice / chats.length)),
+        child: LinearPercentIndicator(
+            padding: EdgeInsets.all(0.0),
+            width: 280,
+            lineHeight: 10,
+            backgroundColor: mcl4,
+            progressColor: mcl5,
+            percent: currentChoice / chats.length),
+      ),
     );
   }
 
@@ -396,7 +403,7 @@ class _MultipleState extends State<Multiple> {
         ),
         shape: CircleBorder(),
         minWidth: 20,
-        color: Color(0xff01579b),
+        color: mcl2,
       );
       // ฟังเสียงคำตอบ
       final listenAnswerButton = isSendAnswer || multiType == 'multiSelect'
@@ -405,11 +412,11 @@ class _MultipleState extends State<Multiple> {
                   !isSpeaking ? speakMessageAnswer(answer) : stop(),
               child: Icon(
                 Icons.volume_up,
-                color: Color(0xff01579b),
+                color: mcl2,
               ),
               shape: CircleBorder(),
               minWidth: 20,
-              color: Color(0xffe0e0e0),
+              color: mcl4,
             )
           : Container();
 
@@ -427,11 +434,12 @@ class _MultipleState extends State<Multiple> {
         width: 300,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(5.0),
-              topRight: Radius.circular(20.0),
-              bottomLeft: Radius.circular(20.0),
-              bottomRight: Radius.circular(20.0)),
-          color: Color(0xff01579b),
+            topLeft: Radius.circular(5.0),
+            topRight: Radius.circular(20.0),
+            bottomLeft: Radius.circular(20.0),
+            bottomRight: Radius.circular(20.0),
+          ),
+          color: mcl2,
         ),
         margin: EdgeInsets.only(top: 10.0, left: 5.0),
         padding: EdgeInsets.all(10.0),
@@ -452,11 +460,12 @@ class _MultipleState extends State<Multiple> {
             height: isSendAnswer || multiType == 'multiSelect' ? null : 45,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20.0),
-                  topRight: Radius.circular(5.0),
-                  bottomLeft: Radius.circular(20.0),
-                  bottomRight: Radius.circular(20.0)),
-              color: Color(0xffe0e0e0),
+                topLeft: Radius.circular(20.0),
+                topRight: Radius.circular(5.0),
+                bottomLeft: Radius.circular(20.0),
+                bottomRight: Radius.circular(20.0),
+              ),
+              color: mcl4,
             ),
             child: isSendAnswer || multiType == 'multiSelect'
                 ? Container(
@@ -472,20 +481,20 @@ class _MultipleState extends State<Multiple> {
                         Icon(
                           Icons.lens,
                           size: 12.0,
-                          color: Color(0xff616161),
+                          color: mcl7,
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 5.0, right: 5.0),
                           child: Icon(
                             Icons.lens,
                             size: 12.0,
-                            color: Color(0xff616161),
+                            color: mcl7,
                           ),
                         ),
                         Icon(
                           Icons.lens,
                           size: 12.0,
-                          color: Color(0xff616161),
+                          color: mcl7,
                         ),
                       ],
                     ),
@@ -534,7 +543,7 @@ class _MultipleState extends State<Multiple> {
         height: 100,
         decoration: BoxDecoration(shape: BoxShape.circle),
         child: MaterialButton(
-          color: Color(0xff01579b),
+          color: mcl2,
           shape: CircleBorder(),
           onPressed: () => speakQuestionSound(questionSound),
           child: Icon(
@@ -557,22 +566,22 @@ class _MultipleState extends State<Multiple> {
           child: Ink(
             decoration: BoxDecoration(
               border: Border.all(
-                  color: Color(selectAnswer == i + 1 ? 0xffffffff : 0xff01579b),
+                  color: selectAnswer == i + 1 ? Colors.white : mcl2,
                   width: 1.5),
-              color: Color(selectAnswer == i + 1 ? 0xffffab40 : 0xffffffff),
+              color: selectAnswer == i + 1 ? mcl1 : Colors.white,
               shape: BoxShape.circle,
             ),
             child: InkWell(
               borderRadius: BorderRadius.circular(1000.0),
               onTap: () => !isSpeaking ? speakChoiceAnswer(item) : stop(),
               child: Padding(
-                  padding: EdgeInsets.all(0.0),
-                  child: Icon(
-                    Icons.volume_up,
-                    size: 20.0,
-                    color:
-                        Color(selectAnswer == i + 1 ? 0xffffffff : 0xff01579b),
-                  )),
+                padding: EdgeInsets.all(0.0),
+                child: Icon(
+                  Icons.volume_up,
+                  size: 20.0,
+                  color: selectAnswer == i + 1 ? Colors.white : mcl2,
+                ),
+              ),
             ),
           ),
         ),
@@ -591,13 +600,13 @@ class _MultipleState extends State<Multiple> {
               },
             );
           },
-          color: selectAnswer == i + 1 ? Color(0xffffab40) : Colors.white,
+          color: selectAnswer == i + 1 ? mcl1 : Colors.white,
           shape: selectAnswer != i + 1
               ? OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(25.0),
                   ),
-                  borderSide: BorderSide(color: Color(0xff01579b), width: 1.5),
+                  borderSide: BorderSide(color: mcl2, width: 1.5),
                 )
               : RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
@@ -630,9 +639,10 @@ class _MultipleState extends State<Multiple> {
             Text(
               item,
               style: TextStyle(
-                  color: i + 1 == chats[currentChoice - 1]['correctAnswer']
-                      ? Color(0xffffffff)
-                      : Color(0xff000000)),
+                color: i + 1 == chats[currentChoice - 1]['correctAnswer']
+                    ? Colors.white
+                    : Colors.black,
+              ),
             ),
             Container(
               width: 30,
@@ -640,33 +650,33 @@ class _MultipleState extends State<Multiple> {
               child: Icon(
                 Icons.volume_up,
                 size: 20,
-                color: Color(i + 1 == chats[currentChoice - 1]['correctAnswer']
-                    ? 0xffffffff
-                    : 0xff01579b),
+                color: i + 1 == chats[currentChoice - 1]['correctAnswer']
+                    ? Colors.white
+                    : mcl2,
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                color: Color(i + 1 == chats[currentChoice - 1]['correctAnswer']
-                    ? 0xff4ab71e
-                    : 0xffffffff),
+                color: i + 1 == chats[currentChoice - 1]['correctAnswer']
+                    ? mcl3
+                    : Colors.white,
                 border: Border.all(
-                  color: Color(
-                      i + 1 == chats[currentChoice - 1]['correctAnswer']
-                          ? 0xffffffff
-                          : 0xff01579b),
+                  color: i + 1 == chats[currentChoice - 1]['correctAnswer']
+                      ? Colors.white
+                      : mcl2,
                 ),
               ),
             )
           ],
         ),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(25.0)),
-            color: i + 1 == chats[currentChoice - 1]['correctAnswer']
-                ? Color(0xff4ab71e)
-                : Color(0xffffffff),
-            border: i + 1 == chats[currentChoice - 1]['correctAnswer']
-                ? null
-                : Border.all(color: Color(0xff01579b))),
+          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+          color: i + 1 == chats[currentChoice - 1]['correctAnswer']
+              ? mcl3
+              : Colors.white,
+          border: i + 1 == chats[currentChoice - 1]['correctAnswer']
+              ? null
+              : Border.all(color: mcl2),
+        ),
       );
     }
 
@@ -687,8 +697,6 @@ class _MultipleState extends State<Multiple> {
   }
 
   Widget _multiSelection() {
-    List<String> choice = chats[currentChoice - 1]['choice'];
-
     Widget finalSelectButton(item) {
       Widget selectButton() {
         return Container(
@@ -697,12 +705,14 @@ class _MultipleState extends State<Multiple> {
           height: 40,
           child: MaterialButton(
             onPressed: () {
-              setState(() {
-                if (!stackAnswer.contains(item)) {
-                  stackAnswer.add(item);
-                }
-                choice.remove(item);
-              });
+              setState(
+                () {
+                  if (!stackAnswer.contains(item)) {
+                    stackAnswer.add(item);
+                  }
+                  chats[currentChoice - 1]["choice"].remove(item);
+                },
+              );
             },
             child: Text(item),
             shape: RoundedRectangleBorder(
@@ -710,9 +720,8 @@ class _MultipleState extends State<Multiple> {
                 Radius.circular(25.0),
               ),
             ),
-            color: Color(0xff90a4ae),
+            color: mcl5,
           ),
-          
         );
       }
 
@@ -722,15 +731,16 @@ class _MultipleState extends State<Multiple> {
           height: 25,
           child: MaterialButton(
             onPressed: () {
-              setState(() {
-                stackAnswer.remove(item);
-                if (!choice.contains(item)) {
-                  choice.add(item);
-                }
-              },
+              setState(
+                () {
+                  stackAnswer.remove(item);
+                  if (!chats[currentChoice - 1]["choice"].contains(item)) {
+                    chats[currentChoice - 1]["choice"].add(item);
+                  }
+                },
               );
             },
-            color: Color(0xff757575),
+            color: mcl11,
             child: Icon(
               Icons.close,
               size: 15,
@@ -763,7 +773,7 @@ class _MultipleState extends State<Multiple> {
         padding: EdgeInsets.symmetric(vertical: 5.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          color: Color(0xffe0e0e0),
+          color: mcl4,
         ),
         child: Wrap(
           children: <Widget>[
@@ -777,7 +787,8 @@ class _MultipleState extends State<Multiple> {
     Widget sentenceChoice() {
       return Wrap(
         children: <Widget>[
-          for (var i = 0; i < choice.length; i++) finalSelectButton(choice[i])
+          for (var i = 0; i < chats[currentChoice - 1]["choice"].length; i++)
+            finalSelectButton(chats[currentChoice - 1]["choice"][i])
         ],
       );
     }
@@ -785,11 +796,14 @@ class _MultipleState extends State<Multiple> {
     return Column(
       children: <Widget>[
         Container(
-            margin: EdgeInsets.symmetric(vertical: 10.0), child: sentenceBox()),
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          child: sentenceBox(),
+        ),
         Container(
-            padding: EdgeInsets.only(bottom: 50.0),
-            margin: EdgeInsets.symmetric(vertical: 10.0),
-            child: sentenceChoice()),
+          padding: EdgeInsets.only(bottom: 50.0),
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          child: sentenceChoice(),
+        ),
       ],
     );
   }
@@ -800,16 +814,26 @@ class _MultipleState extends State<Multiple> {
       height: 45,
       child: MaterialButton(
         color: Colors.white,
-        onPressed: selectAnswer == 0 && !isSendAnswer ? null : sendAnswer,
+        onPressed: selectAnswer == 0 &&
+                !isSendAnswer &&
+                chats[currentChoice - 1]["choice"].length != 0
+            ? null
+            : sendAnswer,
         child: Text(
           currentChoice == chats.length && isSendAnswer ? 'จบ' : 'ถัดไป',
           style: TextStyle(
-            color: Color(selectAnswer != 0 ? 0xff01579b : 0xffbdbdbd),
+            color: selectAnswer != 0 ||
+                    chats[currentChoice - 1]["choice"].length == 0
+                ? mcl2
+                : mcl12,
           ),
         ),
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: Color(selectAnswer != 0 ? 0xff01579b : 0xffbdbdbd),
+            color: selectAnswer != 0 ||
+                    chats[currentChoice - 1]["choice"].length == 0
+                ? mcl2
+                : mcl12,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(50),
