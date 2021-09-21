@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import '../login.dart';
 
 class ForgetPassword extends StatelessWidget {
@@ -38,7 +39,7 @@ class ForgetPassword extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-            backgroundColor: Color(0xfff4f4f4),
+            backgroundColor: mcl10,
             iconTheme: IconThemeData(
               color: Colors.black, //change your color here
             ),

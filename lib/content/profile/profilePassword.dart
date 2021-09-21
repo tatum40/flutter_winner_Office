@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xfff4f4f4),
+        backgroundColor: mcl10,
         title: Text('Change password', style: TextStyle(fontSize: 16)),
         centerTitle: true,
       ),

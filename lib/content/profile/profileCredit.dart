@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import '../../pickDate_widget.dart';
 
 class Credit extends StatefulWidget {
@@ -19,7 +20,7 @@ class _CreditState extends State<Credit> {
             style: TextStyle(fontSize: 16),
           ),
           centerTitle: true,
-          backgroundColor: Color(0xfff4f4f4),
+          backgroundColor: mcl10,
         ),
         body: Center(
           child: Container(
@@ -154,7 +155,7 @@ class Setcredit extends StatelessWidget {
             style: TextStyle(fontSize: 16),
           ),
           centerTitle: true,
-          backgroundColor: Color(0xfff4f4f4),
+          backgroundColor: mcl10,
         ),
         body: SingleChildScrollView(
           child: Center(

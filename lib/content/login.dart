@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_winner_office/Notifytest.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import 'main/forgetPssword.dart';
 import 'main/signupWith.dart';
 import 'main/home.dart';
@@ -133,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     }
                 },
-          style: TextStyle(color: Color(0xff01579b), fontSize: 16),
+          style: TextStyle(color: mcl2, fontSize: 16),
         ),
       );
     }

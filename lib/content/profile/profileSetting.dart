@@ -5,6 +5,7 @@ import 'package:flutter_winner_office/content/profile/profileContact.dart';
 import 'package:flutter_winner_office/content/profile/profileCredit.dart';
 import 'package:flutter_winner_office/content/profile/profileInformation.dart';
 import 'package:flutter_winner_office/content/profile/profilePassword.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 
 List menuList = [
   {"icon": Icons.face, "color": 0xffff8c8c, "message": "Personal Information"},
@@ -78,7 +79,7 @@ class SettingPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xfff4f4f4),
+          backgroundColor: mcl10,
           title: Text('Setting', style: TextStyle(fontSize: 16)),
           centerTitle: true,
         ),

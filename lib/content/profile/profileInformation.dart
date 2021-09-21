@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 
 // ----------หน้าสมัคร
 class Information extends StatefulWidget {
@@ -25,7 +26,7 @@ class _InformationState extends State<Information> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xfff4f4f4),
+          backgroundColor: mcl10,
           title: Text('Edit profile', style: TextStyle(fontSize: 16)),
           centerTitle: true,
         ),

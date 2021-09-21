@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/pickDate_widget.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 
 // ----------หน้าสมัคร
 class Register extends StatefulWidget {
@@ -26,7 +27,7 @@ class _RegisterState extends State<Register> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xfff4f4f4),
+          backgroundColor: mcl10,
           title: Text('Sign up', style: TextStyle(fontSize: 16)),
           centerTitle: true,
         ),

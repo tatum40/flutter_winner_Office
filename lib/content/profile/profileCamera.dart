@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 
 class Camera extends StatefulWidget {
   const Camera({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _CameraState extends State<Camera> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xfff4f4f4),
+          backgroundColor: mcl10,
           title: Text('Select profile photo', style: TextStyle(fontSize: 16)),
           centerTitle: true,
         ),

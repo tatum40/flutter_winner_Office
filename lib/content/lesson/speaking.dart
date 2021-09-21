@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class Speaking extends StatefulWidget {
@@ -102,14 +103,14 @@ class _SpeakingState extends State<Speaking> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xfff4f4f4),
+          backgroundColor: mcl10,
           leading: IconButton(
             padding: EdgeInsets.all(0.0),
             icon: Icon(Icons.close),
             onPressed: () => Navigator.pop(context),
           ),
           iconTheme: IconThemeData(
-            color: Color(0xff01579b), //change your color here
+            color: mcl2, //change your color here
           ),
           title: Container(
             child: LinearPercentIndicator(
@@ -298,13 +299,13 @@ class _SpeakingState extends State<Speaking> {
       color: Colors.white,
       child: Text(
         'เปลี่ยนบทบาท',
-        style: TextStyle(color: Color(0xff01579b), fontSize: 16),
+        style: TextStyle(color: mcl2, fontSize: 16),
       ),
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(20.0),
         ),
-        borderSide: BorderSide(color: Color(0xff01579b), width: 1),
+        borderSide: BorderSide(color: mcl2, width: 1),
       ),
     );
 
@@ -323,13 +324,13 @@ class _SpeakingState extends State<Speaking> {
       color: Colors.white,
       child: Text(
         'ลองอีกครั้ง',
-        style: TextStyle(color: Color(0xff01579b), fontSize: 16),
+        style: TextStyle(color: mcl2, fontSize: 16),
       ),
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(20.0),
         ),
-        borderSide: BorderSide(color: Color(0xff01579b), width: 1),
+        borderSide: BorderSide(color: mcl2, width: 1),
       ),
     );
 
@@ -341,13 +342,13 @@ class _SpeakingState extends State<Speaking> {
       color: Colors.white,
       child: Text(
         'จบ',
-        style: TextStyle(color: Color(0xff01579b), fontSize: 16),
+        style: TextStyle(color: mcl2, fontSize: 16),
       ),
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(20.0),
         ),
-        borderSide: BorderSide(color: Color(0xff01579b), width: 1),
+        borderSide: BorderSide(color: mcl2, width: 1),
       ),
     );
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 
 class ContactUs extends StatelessWidget {
   const ContactUs({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class ContactUs extends StatelessWidget {
             style: TextStyle(fontSize: 16),
           ),
           centerTitle: true,
-          backgroundColor: Color(0xfff4f4f4),
+          backgroundColor: mcl10,
         ),
         body: Center(
           child: Container(

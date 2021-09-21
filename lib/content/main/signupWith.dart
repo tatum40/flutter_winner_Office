@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import '../login.dart';
 import 'register.dart';
 
@@ -111,7 +112,7 @@ class SignupWith extends StatelessWidget {
                 text: 'privacy policy',
                 recognizer: TapGestureRecognizer()..onTap = () => () {},
                 style: TextStyle(
-                  color: Color(0xff01579b),
+                  color: mcl2,
                 ),
               ),
               TextSpan(
@@ -122,7 +123,7 @@ class SignupWith extends StatelessWidget {
                 text: 'terms of service',
                 recognizer: TapGestureRecognizer()..onTap = () => () {},
                 style: TextStyle(
-                  color: Color(0xff01579b),
+                  color: mcl2,
                 ),
               ),
             ],
@@ -233,7 +234,7 @@ class SignupWith extends StatelessWidget {
                         builder: (context) => MyHomePage(title: ''),
                       ),
                     ),
-              style: TextStyle(color: Color(0xff01579b), fontSize: 16),
+              style: TextStyle(color: mcl2, fontSize: 16),
             ),
           ),
         ],
@@ -295,7 +296,7 @@ class Signupfacebook extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xfff4f4f4),
+          backgroundColor: mcl10,
           title: Text(
             'Sign up',
             style: TextStyle(fontSize: 16),
