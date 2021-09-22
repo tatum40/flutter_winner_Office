@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 
 List horizontailScroll = [
   'ชีวิตประจำวัน',
@@ -25,7 +26,7 @@ class CategoryVocab extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffeeeeee),
+        backgroundColor: mcl17,
         body: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -91,7 +92,8 @@ class CategoryVocab extends StatelessWidget {
                 child: MaterialButton(
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                  ),
                   onPressed: () {},
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -118,7 +120,8 @@ class CategoryVocab extends StatelessWidget {
         child: MaterialButton(
           color: Colors.white,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          ),
           onPressed: () {},
           child: Row(
             children: <Widget>[

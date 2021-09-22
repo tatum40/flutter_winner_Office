@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import 'categVocab.dart';
 
 List categoryDataBtn = [
@@ -14,7 +15,7 @@ class CategoryMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffeeeeee),
+      backgroundColor: mcl17,
       body: Container(
         margin: EdgeInsets.only(top: 20.0),
         child: GridView.count(
@@ -27,14 +28,16 @@ class CategoryMenu extends StatelessWidget {
               MaterialButton(
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
                 onPressed: () => {
                   if (i == 0)
                     {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CategoryVocab())),
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CategoryVocab()),
+                      ),
                     }
                 },
                 child: Container(
@@ -45,8 +48,9 @@ class CategoryMenu extends StatelessWidget {
                     children: <Widget>[
                       Image.asset(categoryDataBtn[i]['url']),
                       Container(
-                          margin: EdgeInsets.only(top: 10.0),
-                          child: Text(categoryDataBtn[i]['message']))
+                        margin: EdgeInsets.only(top: 10.0),
+                        child: Text(categoryDataBtn[i]['message']),
+                      )
                     ],
                   ),
                 ),
@@ -54,7 +58,8 @@ class CategoryMenu extends StatelessWidget {
             MaterialButton(
               color: Colors.white,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
               onPressed: () {},
               child: Container(
                 width: 158,
@@ -65,12 +70,13 @@ class CategoryMenu extends StatelessWidget {
                     Container(
                       width: 50,
                       height: 50,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Color(0xffc4c4c4)),
+                      decoration:
+                          BoxDecoration(shape: BoxShape.circle, color: mcl6),
                     ),
                     Container(
-                        margin: EdgeInsets.only(top: 10.0),
-                        child: Text('หัวข้อ'))
+                      margin: EdgeInsets.only(top: 10.0),
+                      child: Text('หัวข้อ'),
+                    )
                   ],
                 ),
               ),

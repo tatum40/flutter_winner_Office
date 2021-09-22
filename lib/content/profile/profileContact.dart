@@ -39,7 +39,7 @@ class ContactUs extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 15.0),
       padding: EdgeInsets.only(top: 1.0),
-      color: Color(0xffe4e4e4),
+      color: mcl25,
     );
   }
 
@@ -54,7 +54,7 @@ class ContactUs extends StatelessWidget {
           'Send',
           style: TextStyle(fontSize: 16),
         ),
-        color: Color(0xffffab40),
+        color: mcl1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(30.0),
@@ -76,7 +76,7 @@ class ContactUs extends StatelessWidget {
               Container(
                 child: Icon(
                   Icons.mail,
-                  color: Color(0xffff8c8c),
+                  color: mcl28,
                   size: 22,
                 ),
               ),
@@ -119,7 +119,7 @@ class ContactUs extends StatelessWidget {
               Container(
                 child: Icon(
                   Icons.phone,
-                  color: Color(0xff78d1cc),
+                  color: mcl29,
                   size: 22,
                 ),
               ),
@@ -164,7 +164,7 @@ class ContactUs extends StatelessWidget {
                   Container(
                     child: Icon(
                       Icons.message,
-                      color: Color(0xff87d981),
+                      color: mcl30,
                       size: 22,
                     ),
                   ),
@@ -190,7 +190,7 @@ class ContactUs extends StatelessWidget {
             keyboardType: TextInputType.multiline,
             decoration: InputDecoration(
               hintText: "Type here...",
-              hintStyle: TextStyle(color: Color(0xffc5c5c5), fontSize: 16),
+              hintStyle: TextStyle(color: mcl31, fontSize: 16),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   new Radius.circular(5.0),

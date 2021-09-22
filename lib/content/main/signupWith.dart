@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_winner_office/theme/color.dart';
-import '../login.dart';
+import 'login.dart';
 import 'register.dart';
 
 // --------หน้าตัวเลือกการสมัคร
@@ -208,7 +208,7 @@ class SignupWith extends StatelessWidget {
           ),
         ),
         child: Text('Sign up with email'),
-        color: Color(0xffffab40),
+        color: mcl1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(30.0),
@@ -323,7 +323,7 @@ class Signupfacebook extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 50,
-      color: Color(0xff3b5998),
+      color: mcl15,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -350,14 +350,14 @@ class Signupfacebook extends StatelessWidget {
           'เข้าสู่ระบบบัญชี Facebook ของคุณ',
           style: TextStyle(
             fontSize: 14,
-            color: Color(0xff757575),
+            color: mcl11,
           ),
         ),
         Text(
           'เพื่อเชื่อมต่อกับ WinnerOffice',
           style: TextStyle(
             fontSize: 14,
-            color: Color(0xff757575),
+            color: mcl11,
           ),
         ),
       ],
@@ -413,7 +413,7 @@ class Signupfacebook extends StatelessWidget {
           'เข้าสู่ระบบ',
           style: TextStyle(color: Colors.white),
         ),
-        color: Color(0xff2e65d8),
+        color: mcl16,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(5.0),

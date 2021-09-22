@@ -55,7 +55,7 @@ class _CreditState extends State<Credit> {
     return Container(
       margin: EdgeInsets.only(top: 5.0),
       padding: EdgeInsets.only(top: 1.0),
-      color: Color(0xffe4e4e4),
+      color: mcl25,
     );
   }
 
@@ -123,7 +123,7 @@ class _CreditState extends State<Credit> {
                   margin: EdgeInsets.only(left: 20.0),
                   child: Text(
                     'เพิ่มบัตรเครดิต/บัตรเดบิต',
-                    style: TextStyle(fontSize: 16, color: Color(0xff8d8d8d)),
+                    style: TextStyle(fontSize: 16, color: mcl27),
                   ),
                 ),
               ],
@@ -252,8 +252,8 @@ class Setcredit extends StatelessWidget {
                                         ),
                                       ),
                                       onPressed: () => Navigator.pop(context),
-                                      child: const Text('OK'),
-                                      color: Color(0xffffab40),
+                                      child: Text('OK'),
+                                      color: mcl1,
                                     ),
                                   ],
                                 ),
@@ -290,7 +290,7 @@ class Setcredit extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: imgName == "master" ? 5.0 : 0.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
-        border: Border.all(color: Color(0xffcccccc), width: 2),
+        border: Border.all(color: mcl26, width: 2),
       ),
       child: Image.asset('assets/images/$imgName.png'),
     );
@@ -307,7 +307,7 @@ class Setcredit extends StatelessWidget {
           'Save',
           style: TextStyle(fontSize: 16),
         ),
-        color: Color(0xffffab40),
+        color: mcl1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(30.0),

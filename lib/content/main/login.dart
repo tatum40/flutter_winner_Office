@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_winner_office/Notifytest.dart';
 import 'package:flutter_winner_office/theme/color.dart';
-import 'main/forgetPssword.dart';
-import 'main/signupWith.dart';
-import 'main/home.dart';
+import 'forgetPssword.dart';
+import 'signupWith.dart';
+import 'home.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -166,12 +166,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Text(
           'Skip',
           style: TextStyle(
-            color: Color(0xffffab40),
+            color: mcl1,
           ),
         ),
         shape: RoundedRectangleBorder(
           side: BorderSide(
-              color: Color(0xffffab40), width: 1, style: BorderStyle.solid),
+              color: mcl1, width: 1, style: BorderStyle.solid),
           borderRadius: BorderRadius.circular(50),
         ),
       ),
@@ -191,7 +191,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         child: Text('Log in'),
-        color: Color(0xffffab40),
+        color: mcl1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(30.0),

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
 
@@ -21,37 +19,40 @@ class _CameraState extends State<Camera> {
           centerTitle: true,
         ),
         body: Center(
-            child: Container(
-          child: GridView.count(
-            crossAxisCount: 3,
-            mainAxisSpacing: 2,
-            crossAxisSpacing: 2,
-            children: <Widget>[
-              Container(
-                color: Color(0xffc4c4c4),
-                child: IconButton(
-                  onPressed: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CameraOn())),
-                  icon: Icon(
-                    Icons.photo_camera,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              for (var i = 0; i < 6; i++)
+          child: Container(
+            child: GridView.count(
+              crossAxisCount: 3,
+              mainAxisSpacing: 2,
+              crossAxisSpacing: 2,
+              children: <Widget>[
                 Container(
-                  color: Color(0xffe8e8e8),
+                  color: mcl6,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CameraOn()),
+                    ),
                     icon: Icon(
-                      Icons.image,
-                      color: Color(0xffc4c4c4),
+                      Icons.photo_camera,
+                      color: Colors.white,
                     ),
                   ),
                 ),
-            ],
+                for (var i = 0; i < 6; i++)
+                  Container(
+                    color: mcl37,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.image,
+                        color: mcl6,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
-        )),
+        ),
       ),
     );
   }
@@ -69,7 +70,7 @@ class CameraOn extends StatelessWidget {
           child: Container(
             height: double.infinity,
             margin: EdgeInsets.only(left: 25.0, right: 25.0),
-            color: Color(0xff8f8f8f),
+            color: mcl24,
             child: Image.asset(
               'assets/images/cameraOn.png',
               fit: BoxFit.contain,
@@ -77,13 +78,15 @@ class CameraOn extends StatelessWidget {
           ),
         ),
         floatingActionButton: Container(
-            margin: EdgeInsets.only(right: 20.0),
-            width: 80,
-            height: 35,
-            child: FloatingActionButton.extended(
-                backgroundColor: Color(0xffffab40),
-                onPressed: () => Navigator.pop(context),
-                label: Text('ถัดไป'))),
+          margin: EdgeInsets.only(right: 20.0),
+          width: 80,
+          height: 35,
+          child: FloatingActionButton.extended(
+            backgroundColor: mcl1,
+            onPressed: () => Navigator.pop(context),
+            label: Text('ถัดไป'),
+          ),
+        ),
       ),
     );
   }

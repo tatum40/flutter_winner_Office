@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import 'profileSetting.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -35,7 +36,7 @@ class ProfileMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffebebeb),
+      backgroundColor: mcl22,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(10.0),
@@ -68,7 +69,7 @@ class ProfileMenu extends StatelessWidget {
               decoration:
                   BoxDecoration(shape: BoxShape.circle, color: Colors.white),
               child: IconButton(
-                color: Color(0xffffab40),
+                color: mcl1,
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -87,8 +88,7 @@ class ProfileMenu extends StatelessWidget {
       return Container(
         width: 70,
         height: 70,
-        decoration:
-            BoxDecoration(shape: BoxShape.circle, color: Color(0xffe5e5e5)),
+        decoration: BoxDecoration(shape: BoxShape.circle, color: mcl23),
       );
     }
 
@@ -117,16 +117,20 @@ class ProfileMenu extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           'Today',
-                          style: TextStyle(color: Color(0xff8f8f8f)),
+                          style: TextStyle(color: mcl24),
                         ),
                         RichText(
                           text: TextSpan(
                             style: TextStyle(color: Colors.black),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '40', style: TextStyle(fontSize: 24)),
+                                text: '40',
+                                style: TextStyle(fontSize: 24),
+                              ),
                               TextSpan(
-                                  text: 'min', style: TextStyle(fontSize: 12)),
+                                text: 'min',
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                         )
@@ -139,16 +143,20 @@ class ProfileMenu extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           'Studied for',
-                          style: TextStyle(color: Color(0xff8f8f8f)),
+                          style: TextStyle(color: mcl24),
                         ),
                         RichText(
                           text: TextSpan(
                             style: TextStyle(color: Colors.black),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '3', style: TextStyle(fontSize: 24)),
+                                text: '3',
+                                style: TextStyle(fontSize: 24),
+                              ),
                               TextSpan(
-                                  text: 'day', style: TextStyle(fontSize: 12)),
+                                text: 'day',
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                         )
@@ -161,20 +169,28 @@ class ProfileMenu extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           'Total time',
-                          style: TextStyle(color: Color(0xff8f8f8f)),
+                          style: TextStyle(color: mcl24),
                         ),
                         RichText(
                           text: TextSpan(
                             style: TextStyle(color: Colors.black),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '2', style: TextStyle(fontSize: 24)),
+                                text: '2',
+                                style: TextStyle(fontSize: 24),
+                              ),
                               TextSpan(
-                                  text: 'h', style: TextStyle(fontSize: 12)),
+                                text: 'h',
+                                style: TextStyle(fontSize: 12),
+                              ),
                               TextSpan(
-                                  text: '30', style: TextStyle(fontSize: 24)),
+                                text: '30',
+                                style: TextStyle(fontSize: 24),
+                              ),
                               TextSpan(
-                                  text: 'min', style: TextStyle(fontSize: 12)),
+                                text: 'min',
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                         ),
@@ -248,7 +264,7 @@ class ProfileMenu extends StatelessWidget {
             children: <Widget>[
               Icon(
                 Icons.star,
-                color: Color(0xffffab40),
+                color: mcl1,
               ),
               Text(
                 '1,223',
@@ -304,8 +320,9 @@ class ProfileMenu extends StatelessWidget {
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                        color: Color(0xffc4c4c4),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                      color: mcl6,
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 10.0),
@@ -322,8 +339,8 @@ class ProfileMenu extends StatelessWidget {
                             width: 235,
                             lineHeight: 10.0,
                             percent: successDataBox[i]['total'] / 10,
-                            backgroundColor: Color(0xffE5E5E5),
-                            progressColor: Color(0xff8F8F8F),
+                            backgroundColor: mcl23,
+                            progressColor: mcl24,
                           ),
                         ),
                       ],
@@ -399,7 +416,7 @@ class ProfileMenu extends StatelessWidget {
                             child: leagueDataBox[i]['rang'] < 4
                                 ? Icon(
                                     Icons.emoji_events,
-                                    color: Color(0xffc4c4c4),
+                                    color: mcl6,
                                   )
                                 : leagueDataBox[i]['rang'] == 4
                                     ? Text(
@@ -417,7 +434,7 @@ class ProfileMenu extends StatelessWidget {
                             height: 30,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Color(0xffe5e5e5),
+                              color: mcl23,
                             ),
                           ),
                           Container(
@@ -435,7 +452,7 @@ class ProfileMenu extends StatelessWidget {
                             margin: EdgeInsets.only(right: 5.0),
                             child: Icon(
                               Icons.star,
-                              color: Color(0xffffab40),
+                              color: mcl1,
                               size: 16,
                             ),
                           ),
@@ -452,7 +469,7 @@ class ProfileMenu extends StatelessWidget {
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 1.0),
-                  color: Color(0xffe4e4e4),
+                  color: mcl25,
                 )
               ],
             ),

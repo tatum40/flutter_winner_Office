@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
-import '../login.dart';
+import 'login.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class ForgetPassword extends StatelessWidget {
                 ),
               ),
               child: const Text('OK'),
-              color: Color(0xffffab40),
+              color: mcl1,
             ),
           )
         ],
@@ -81,7 +81,7 @@ class ForgetPassword extends StatelessWidget {
                 child: MaterialButton(
                   onPressed: () => _dialogCompleted(context),
                   child: Text('Reset password'),
-                  color: Color(0xffffab40),
+                  color: mcl1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(30.0)),
                   ),

@@ -117,8 +117,8 @@ class _SpeakingState extends State<Speaking> {
               width: 280,
               padding: EdgeInsets.all(0.0),
               lineHeight: 10,
-              backgroundColor: Color(0xffe0e0e0),
-              progressColor: Color(0xff90a4ae),
+              backgroundColor: mcl4,
+              progressColor: mcl5,
               percent: currentChoice / dataful,
             ),
           ),
@@ -160,46 +160,44 @@ class _SpeakingState extends State<Speaking> {
         children: <Widget>[
           Icon(
             Icons.play_arrow,
-            color: Color(countRecord == 0 || countRecord % 2 != 0
-                ? 0xffbdbdbd
-                : 0xff01579b),
+            color: countRecord == 0 || countRecord % 2 != 0 ? mcl12 : mcl2,
             size: 30,
           ),
           Text(
             'ฟัง',
             style: TextStyle(
-                color: Color(countRecord == 0 || countRecord % 2 != 0
-                    ? 0xffbdbdbd
-                    : 0xff01579b),
+                color: countRecord == 0 || countRecord % 2 != 0 ? mcl12 : mcl2,
                 fontSize: 16),
           )
         ],
       ),
       shape: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20.0),
-          ),
-          borderSide: BorderSide(
-              color: Color(countRecord == 0 || countRecord % 2 != 0
-                  ? 0xffbdbdbd
-                  : 0xff01579b),
-              width: 2)),
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.0),
+        ),
+        borderSide: BorderSide(
+          color: countRecord == 0 || countRecord % 2 != 0 ? mcl12 : mcl2,
+          width: 2,
+        ),
+      ),
     );
 
     // อัดเสียง
     final recordSoundButton = MaterialButton(
       onPressed: () => {
-        setState(() {
-          isRecord = !isRecord;
-          countRecord++;
-          if (countRecord == 4) {
-            finishTest = true;
-          }
-        }),
+        setState(
+          () {
+            isRecord = !isRecord;
+            countRecord++;
+            if (countRecord == 4) {
+              finishTest = true;
+            }
+          },
+        ),
       },
       minWidth: 80,
       height: 80,
-      color: Color(0xffffab40),
+      color: mcl1,
       child: (isRecord)
           ? Container(
               child: Row(
@@ -255,9 +253,7 @@ class _SpeakingState extends State<Speaking> {
           Text(
             'ถัดไป',
             style: TextStyle(
-                color: Color(countRecord == 0 || countRecord % 2 != 0
-                    ? 0xffbdbdbd
-                    : 0xff01579b),
+                color: countRecord == 0 || countRecord % 2 != 0 ? mcl12 : mcl2,
                 fontSize: 16),
           )
         ],
@@ -267,9 +263,7 @@ class _SpeakingState extends State<Speaking> {
           Radius.circular(20.0),
         ),
         borderSide: BorderSide(
-            color: Color(countRecord == 0 || countRecord % 2 != 0
-                ? 0xffbdbdbd
-                : 0xff01579b),
+            color: countRecord == 0 || countRecord % 2 != 0 ? mcl12 : mcl2,
             width: 2),
       ),
     );
@@ -279,7 +273,7 @@ class _SpeakingState extends State<Speaking> {
       onPressed: () {},
       minWidth: 300,
       height: 45,
-      color: Color(0xffffab40),
+      color: mcl1,
       child: Text(
         'เล่นซ้ำการออกเสียงของฉัน',
         style: TextStyle(color: Colors.white, fontSize: 16),
@@ -392,27 +386,27 @@ class _SpeakingState extends State<Speaking> {
   _buildMsnBox(String msn, String user, int step, url) {
     // ฟังเสียงปกติ
     final listenButton = MaterialButton(
-      onPressed: () => !isSpeaking ?  speak(msn) : stop(),
+      onPressed: () => !isSpeaking ? speak(msn) : stop(),
       child: Icon(
         Icons.volume_up,
-        color: Color(user == 'sender' ? 0xffffffff : 0xff01579b),
+        color: user == 'sender' ? mcl39 : mcl2,
       ),
       shape: CircleBorder(),
       minWidth: 20,
-      color: Color(user == 'sender' ? 0xff01579b : 0xffe0e0e0),
+      color: user == 'sender' ? mcl2 : mcl4,
     );
 
     // ฟังเสียงแบบช้า
     final slowButton = MaterialButton(
       onPressed: () {
-        !isSpeaking ?  speakSlow(msn) : stop();
+        !isSpeaking ? speakSlow(msn) : stop();
       },
       child: Image.asset(user == 'sender'
           ? 'assets/images/turtle-w.png'
           : 'assets/images/turtle-b.png'),
       shape: CircleBorder(),
       minWidth: 20,
-      color: Color(user == 'sender' ? 0xff01579b : 0xffe0e0e0),
+      color: user == 'sender' ? mcl2 : mcl4,
     );
 
     // เล่นเสียงที่อัดเข้าไป
@@ -420,11 +414,11 @@ class _SpeakingState extends State<Speaking> {
       onPressed: () {},
       child: Icon(
         Icons.play_arrow,
-        color: Color(user == 'sender' ? 0xffffffff : 0xff01579b),
+        color: user == 'sender' ? mcl39 : mcl2,
       ),
       shape: CircleBorder(),
       minWidth: 20,
-      color: Color(user == 'sender' ? 0xff01579b : 0xffe0e0e0),
+      color: user == 'sender' ? mcl2 : mcl4,
     );
 
     final _playButton =
@@ -452,13 +446,15 @@ class _SpeakingState extends State<Speaking> {
                     topLeft: Radius.circular(5.0),
                     topRight: Radius.circular(20.0),
                     bottomLeft: Radius.circular(20.0),
-                    bottomRight: Radius.circular(20.0))
+                    bottomRight: Radius.circular(20.0),
+                  )
                 : BorderRadius.only(
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(5.0),
                     bottomLeft: Radius.circular(20.0),
-                    bottomRight: Radius.circular(20.0)),
-            color: Color(user == 'sender' ? 0xff01579b : 0xffe0e0e0),
+                    bottomRight: Radius.circular(20.0),
+                  ),
+            color: user == 'sender' ? mcl2 : mcl4,
           ),
           margin: user == 'sender'
               ? EdgeInsets.only(top: 10.0)
@@ -472,11 +468,12 @@ class _SpeakingState extends State<Speaking> {
           ),
         ),
         Container(
-            margin: user == 'sender'
-                ? EdgeInsets.only(left: 10.0)
-                : EdgeInsets.only(left: 40.0),
-            width: 300,
-            child: _playButton)
+          margin: user == 'sender'
+              ? EdgeInsets.only(left: 10.0)
+              : EdgeInsets.only(left: 40.0),
+          width: 300,
+          child: _playButton,
+        )
       ],
     );
 
@@ -492,12 +489,13 @@ class _SpeakingState extends State<Speaking> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                  margin: EdgeInsets.only(top: 10.0, left: 5.0),
-                  child: Icon(
-                    Icons.account_circle_outlined,
-                    size: 35.0,
-                    color: Color(0xffaaaaaa),
-                  )),
+                margin: EdgeInsets.only(top: 10.0, left: 5.0),
+                child: Icon(
+                  Icons.account_circle_outlined,
+                  size: 35.0,
+                  color: mcl38,
+                ),
+              ),
               msnBox
             ],
           );
@@ -514,12 +512,13 @@ class _SpeakingState extends State<Speaking> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-                margin: EdgeInsets.only(top: 10.0),
-                child: Icon(
-                  Icons.account_circle_outlined,
-                  size: 35.0,
-                  color: Color(0xffaaaaaa),
-                )),
+              margin: EdgeInsets.only(top: 10.0),
+              child: Icon(
+                Icons.account_circle_outlined,
+                size: 35.0,
+                color: mcl38,
+              ),
+            ),
             msnBox
           ],
         );

@@ -17,121 +17,125 @@ class _ChangePasswordState extends State<ChangePassword> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
-      appBar: AppBar(
-        backgroundColor: mcl10,
-        title: Text('Change password', style: TextStyle(fontSize: 16)),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            padding: EdgeInsets.all(15.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    width: 320,
-                    child: TextFormField(
-                      obscureText: true,
-                      onChanged: (value) => {
-                        setState(() {
-                          currentPassword = value.toString();
-                        })
-                      },
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            currentPassword != defualtPassword) {
-                          return 'Incorrect password';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: mcl10,
+          title: Text('Change password', style: TextStyle(fontSize: 16)),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Container(
+              padding: EdgeInsets.all(15.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      width: 320,
+                      child: TextFormField(
+                        obscureText: true,
+                        onChanged: (value) => {
+                          setState(() {
+                            currentPassword = value.toString();
+                          })
+                        },
+                        validator: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              currentPassword != defualtPassword) {
+                            return 'Incorrect password';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                            isDense: true,
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5.0)),
+                            ),
+                            labelText: "Current password"),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 15.0),
+                      width: 320,
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: 'New password',
                           isDense: true,
                           border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0))),
-                          labelText: "Current password"),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 15.0),
-                    width: 320,
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'New password',
-                        isDense: true,
-                        border: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(5.0))),
+                                BorderRadius.all(Radius.circular(5.0)),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Your password must contain:';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) => {
+                          setState(() {
+                            password = value.toString();
+                          })
+                        },
+                        obscureText: true,
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Your password must contain:';
-                        }
-                        return null;
-                      },
-                      onChanged: (value) => {
-                        setState(() {
-                          password = value.toString();
-                        })
-                      },
-                      obscureText: true,
                     ),
-                  ),
-                  passwordRules(password),
-                  Container(
-                    margin: EdgeInsets.only(top: 15.0),
-                    width: 320,
-                    child: TextFormField(
-                      obscureText: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        border: OutlineInputBorder(
+                    passwordRules(password),
+                    Container(
+                      margin: EdgeInsets.only(top: 15.0),
+                      width: 320,
+                      child: TextFormField(
+                        obscureText: true,
+                        keyboardType: TextInputType.visiblePassword,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          border: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(5.0))),
-                        labelText: 'Confirm password',
+                                BorderRadius.all(Radius.circular(5.0)),
+                          ),
+                          labelText: 'Confirm password',
+                        ),
+                        validator: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              confirmPassword != password) {
+                            return 'Passwords do not match';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) => {
+                          setState(() {
+                            confirmPassword = value.toString();
+                          })
+                        },
                       ),
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            confirmPassword != password) {
-                          return 'Passwords do not match';
-                        }
-                        return null;
-                      },
-                      onChanged: (value) => {
-                        setState(() {
-                          confirmPassword = value.toString();
-                        })
-                      },
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 20.0),
-                    width: 320,
-                    child: MaterialButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
-                      },
-                      child: Text('Save'),
-                      color: Color(0xffffab40),
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(30.0))),
+                    Container(
+                      margin: EdgeInsets.only(top: 20.0),
+                      width: 320,
+                      child: MaterialButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {}
+                        },
+                        child: Text('Save'),
+                        color: mcl1,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
         ),
       ),
-    ),);
-    
+    );
   }
 
   Widget passwordRules(String password) {
@@ -144,7 +148,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               children: <Widget>[
                 Icon(
                   Icons.check,
-                  color: Color(0xff868686),
+                  color: mcl14,
                   size: 20,
                 ),
                 Text(
@@ -157,7 +161,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               children: <Widget>[
                 Icon(
                   Icons.check,
-                  color: Color(0xff868686),
+                  color: mcl14,
                   size: 20,
                 ),
                 Text(
@@ -170,7 +174,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               children: <Widget>[
                 Icon(
                   Icons.check,
-                  color: Color(0xff868686),
+                  color: mcl14,
                   size: 20,
                 ),
                 Text(

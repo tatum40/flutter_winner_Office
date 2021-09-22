@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import 'homeDetail.dart';
 
 List lessonData = [
@@ -73,7 +74,7 @@ class HomeMenu extends StatelessWidget {
                               ),
                               Container(
                                 child: MaterialButton(
-                                  color: Color(0xffffab40),
+                                  color: mcl1,
                                   onPressed: () => Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -166,7 +167,7 @@ class HomeMenu extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 5.0),
       margin: EdgeInsets.only(top: 10.0),
-      color: Color(0xffeeeeee),
+      color: mcl17,
     );
   }
 
@@ -203,7 +204,7 @@ class HomeMenu extends StatelessWidget {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: Color(0xffc4c4c4),
+                color: mcl6,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
             ),

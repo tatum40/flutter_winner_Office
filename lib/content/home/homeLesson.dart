@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import '../lesson/speaking.dart';
 import '../lesson/multipleChoice.dart';
 import '../../test.dart';
@@ -97,7 +98,7 @@ class HomeLesson extends StatelessWidget {
                     border: Border.all(
                         width: 4,
                         color:
-                            num != 3 ? Color(0xff7dd958) : Color(0xffd8d8d8)),
+                            num != 3 ? mcl19 : mcl20),
                     color: Colors.white),
                 child: MaterialButton(
                   shape: CircleBorder(),
@@ -162,7 +163,7 @@ class HomeLesson extends StatelessWidget {
                 ),
                 Icon(
                   Icons.star,
-                  color: num < 3 ? Color(0xffffab40) : Color(0xff9b9b9b),
+                  color: num < 3 ? mcl1 : mcl21,
                   size: 24,
                 ),
               ],
@@ -180,7 +181,7 @@ class HomeLesson extends StatelessWidget {
                 ),
                 Icon(
                   Icons.star,
-                  color: num < 3 ? Color(0xffffab40) : Color(0xff9b9b9b),
+                  color: num < 3 ? mcl1 : mcl21,
                   size: 30,
                 ),
               ],
@@ -198,7 +199,7 @@ class HomeLesson extends StatelessWidget {
                 ),
                 Icon(
                   Icons.star,
-                  color: num < 3 ? Color(0xffffab40) : Color(0xff9b9b9b),
+                  color: num < 3 ? mcl1 : mcl21,
                   size: 24,
                 ),
               ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 import '../main/home.dart';
 import 'homeLesson.dart';
 
@@ -62,14 +63,14 @@ class HomeDetail extends StatelessWidget {
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
                       side: BorderSide(
-                          color: Color(0xff01579b),
+                          color: mcl2,
                           width: 1,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(50)),
                   onPressed: () => Navigator.pop(context),
-                  child: const Text(
+                  child: Text(
                     'Cancel',
-                    style: TextStyle(color: Color(0xff01579b)),
+                    style: TextStyle(color: mcl2),
                   ),
                 ),
               ),
@@ -82,11 +83,11 @@ class HomeDetail extends StatelessWidget {
                     ),
                   ),
                   onPressed: () => {Navigator.pop(context), dialogBuy(context)},
-                  child: const Text(
+                  child: Text(
                     'Yes',
                     style: TextStyle(color: Colors.white),
                   ),
-                  color: Color(0xffffab40),
+                  color: mcl2,
                 ),
               )
             ],
@@ -100,7 +101,7 @@ class HomeDetail extends StatelessWidget {
     Widget _underLine() {
       return Container(
         padding: EdgeInsets.only(top: 2.0),
-        color: Color(0xffc4c4c4),
+        color: mcl6,
       );
     }
 
@@ -115,7 +116,7 @@ class HomeDetail extends StatelessWidget {
             '1 - tap buy',
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
-          color: Color(0xffffab40),
+          color: mcl1,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(30.0),
@@ -132,7 +133,7 @@ class HomeDetail extends StatelessWidget {
           textAlign: TextAlign.start,
           text: TextSpan(
             style:
-                TextStyle(fontSize: 12, height: 1.5, color: Color(0xff7a7a7a)),
+                TextStyle(fontSize: 12, height: 1.5, color: mcl18),
             children: <TextSpan>[
               TextSpan(
                 text:
@@ -205,7 +206,7 @@ class HomeDetail extends StatelessWidget {
                   width: 50,
                   height: 30,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xffc4c4c4), width: 2),
+                    border: Border.all(color: mcl6, width: 2),
                     borderRadius: BorderRadius.all(
                       Radius.circular(5.0),
                     ),
@@ -298,7 +299,7 @@ class HomeDetail extends StatelessWidget {
                 'Yes',
                 style: TextStyle(color: Colors.white),
               ),
-              color: Color(0xffffab40),
+              color: mcl1,
             ),
           ))
         ],
@@ -316,7 +317,7 @@ class HomeDetail extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.only(top: 5.0),
-                  color: Color(0xffeeeeee),
+                  color: mcl17,
                 ),
                 // header
                 headerBox(context),
@@ -374,7 +375,7 @@ class HomeDetail extends StatelessWidget {
           type: MaterialType.transparency,
           child: Ink(
             decoration: BoxDecoration(
-              border: Border.all(color: Color(0xff90a4ae), width: 2.0),
+              border: Border.all(color: mcl5, width: 2.0),
               color: Colors.white,
               shape: BoxShape.circle,
             ),
@@ -386,7 +387,7 @@ class HomeDetail extends StatelessWidget {
                 child: Icon(
                   iconName,
                   size: 20.0,
-                  color: Color(0xff90a4ae),
+                  color: mcl5,
                 ),
               ),
             ),
@@ -417,8 +418,8 @@ class HomeDetail extends StatelessWidget {
           child: Ink(
             decoration: BoxDecoration(
               border: detail['isLock'] == false
-                  ? Border.all(color: Color(0xff01579b), width: 2.0)
-                  : Border.all(color: Color(0xff90a4ae), width: 2.0),
+                  ? Border.all(color: mcl2, width: 2.0)
+                  : Border.all(color: mcl5, width: 2.0),
               color: Colors.white,
               shape: BoxShape.circle,
             ),
@@ -445,12 +446,12 @@ class HomeDetail extends StatelessWidget {
                     ? Icon(
                         Icons.arrow_forward,
                         size: 20.0,
-                        color: Color(0xff01579b),
+                        color: mcl2,
                       )
                     : Icon(
                         Icons.lock,
                         size: 20.0,
-                        color: Color(0xff90a4ae),
+                        color: mcl5,
                       ),
               ),
             ),
@@ -464,7 +465,7 @@ class HomeDetail extends StatelessWidget {
         Container(
           padding: EdgeInsets.only(top: 5.0),
           margin: EdgeInsets.only(top: 10.0),
-          color: Color(0xffeeeeee),
+          color: mcl17,
         ),
         Container(
           padding: EdgeInsets.all(10.0),

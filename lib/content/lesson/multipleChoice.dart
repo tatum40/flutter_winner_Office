@@ -47,16 +47,19 @@ List<dynamic> chats = [
   {
     "sentence": 'What time do you normally get up?\nปกติคุณตื่นนอนกี่โมง',
     "choice": [
-      'I',
       'usually',
-      'get up',
+      'around 9',
       'at six',
+      'weekends',
       'on',
+      'get up',
       'weekdays',
       'and',
-      'around 9',
+      'I',
       'at',
-      'weekends',
+    ],
+    "correctSentence": [
+      'I usually get up at six on weekdays and around 9 at weekends'
     ],
     "answer":
         'ปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดา และประมาณ 9 โมงเช้าในวันหยุด',
@@ -65,7 +68,8 @@ List<dynamic> chats = [
   },
 ];
 
-List<String> stackAnswer = [];
+List<dynamic> stackAnswer = [];
+bool isCorrect = false;
 
 int currentChoice = 1;
 int selectAnswer = 0;
@@ -84,7 +88,12 @@ class _MultipleState extends State<Multiple> {
       () {
         if (isSendAnswer == false) {
           isSendAnswer = true;
-          print(selectAnswer);
+          if (currentChoice == 4) {
+
+            List<String> myList = chats[currentChoice - 1]['correctSentence'];
+            String answer = stackAnswer.join(" ");
+            myList.contains(answer) ? isCorrect = true : isCorrect = false;
+          }
         } else {
           isSendAnswer = false;
           selectAnswer = 0;
@@ -367,7 +376,7 @@ class _MultipleState extends State<Multiple> {
 
   _myAppBar() {
     return AppBar(
-      backgroundColor: Color(0xfff4f4f4),
+      backgroundColor: mcl10,
       leading: IconButton(
         padding: EdgeInsets.all(0.0),
         icon: Icon(Icons.close),
@@ -399,7 +408,7 @@ class _MultipleState extends State<Multiple> {
         onPressed: () => !isSpeaking ? speakMessageSentence(sentence) : stop(),
         child: Icon(
           Icons.volume_up,
-          color: Color(0xffffffff),
+          color: mcl39,
         ),
         shape: CircleBorder(),
         minWidth: 20,
@@ -509,7 +518,7 @@ class _MultipleState extends State<Multiple> {
         child: Icon(
           Icons.account_circle_outlined,
           size: 35.0,
-          color: Color(0xffaaaaaa),
+          color: mcl38,
         ),
       );
 
@@ -704,24 +713,33 @@ class _MultipleState extends State<Multiple> {
           width: 100,
           height: 40,
           child: MaterialButton(
-            onPressed: () {
-              setState(
-                () {
-                  if (!stackAnswer.contains(item)) {
-                    stackAnswer.add(item);
-                  }
-                  chats[currentChoice - 1]["choice"].remove(item);
-                },
-              );
-            },
-            child: Text(item),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(25.0),
+              onPressed: !isSendAnswer
+                  ? () {
+                      setState(
+                        () {
+                          if (!stackAnswer.contains(item)) {
+                            stackAnswer.add(item);
+                          }
+                          chats[currentChoice - 1]["choice"].remove(item);
+                        },
+                      );
+                    }
+                  : () {},
+              child: Text(
+                item,
+                style: TextStyle(
+                    color: !isSendAnswer ? Colors.black : Colors.white),
               ),
-            ),
-            color: mcl5,
-          ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(25.0),
+                ),
+              ),
+              color: !isSendAnswer
+                  ? mcl5
+                  : !isCorrect
+                      ? Colors.red
+                      : mcl3),
         );
       }
 
@@ -730,16 +748,21 @@ class _MultipleState extends State<Multiple> {
           width: 25,
           height: 25,
           child: MaterialButton(
-            onPressed: () {
-              setState(
-                () {
-                  stackAnswer.remove(item);
-                  if (!chats[currentChoice - 1]["choice"].contains(item)) {
-                    chats[currentChoice - 1]["choice"].add(item);
+            onPressed: !isSendAnswer
+                ? () {
+                    setState(
+                      () {
+                        stackAnswer.remove(item);
+                        if (!chats[currentChoice - 1]["choice"]
+                            .contains(item)) {
+                          chats[currentChoice - 1]["choice"].add(item);
+                        }
+                        print(stackAnswer);
+                        print(chats[currentChoice - 1]["choice"]);
+                      },
+                    );
                   }
-                },
-              );
-            },
+                : () {},
             color: mcl11,
             child: Icon(
               Icons.close,

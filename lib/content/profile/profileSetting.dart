@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_office/content/login.dart';
+import 'package:flutter_winner_office/content/main/login.dart';
 import 'package:flutter_winner_office/content/profile/profileCamera.dart';
 import 'package:flutter_winner_office/content/profile/profileContact.dart';
 import 'package:flutter_winner_office/content/profile/profileCredit.dart';
@@ -8,16 +8,16 @@ import 'package:flutter_winner_office/content/profile/profilePassword.dart';
 import 'package:flutter_winner_office/theme/color.dart';
 
 List menuList = [
-  {"icon": Icons.face, "color": 0xffff8c8c, "message": "Personal Information"},
+  {"icon": Icons.face, "color": mcl28, "message": "Personal Information"},
   {
     "icon": Icons.account_balance_wallet,
-    "color": 0xffffd056,
+    "color": mcl32,
     "message": "Credit account"
   },
-  {"icon": Icons.lock, "color": 0xff87d6e8, "message": "Change password"},
-  {"icon": Icons.gavel, "color": 0xff8bde76, "message": "Terms and Conditions"},
-  {"icon": Icons.contact_support, "color": 0xffb880ff, "message": "Contact us"},
-  {"icon": Icons.logout, "color": 0xffff0000, "message": "Logout"},
+  {"icon": Icons.lock, "color": mcl33, "message": "Change password"},
+  {"icon": Icons.gavel, "color": mcl34, "message": "Terms and Conditions"},
+  {"icon": Icons.contact_support, "color": mcl35, "message": "Contact us"},
+  {"icon": Icons.logout, "color": mcl36, "message": "Logout"},
 ];
 
 class SettingPage extends StatelessWidget {
@@ -105,7 +105,7 @@ class SettingPage extends StatelessWidget {
           width: 122,
           height: 122,
           decoration:
-              BoxDecoration(shape: BoxShape.circle, color: Color(0xffe5e5e5)),
+              BoxDecoration(shape: BoxShape.circle, color: mcl23),
         ),
         Positioned(
           left: 80.0,
@@ -114,7 +114,7 @@ class SettingPage extends StatelessWidget {
             width: 40,
             height: 40,
             decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Color(0xffffab40)),
+                BoxDecoration(shape: BoxShape.circle, color: mcl1),
             child: Center(
               child: MaterialButton(
                 padding: EdgeInsets.all(0.0),
@@ -149,7 +149,7 @@ class SettingPage extends StatelessWidget {
                     Container(
                       child: Icon(
                         menuList[i]['icon'],
-                        color: Color(menuList[i]['color']),
+                        color: menuList[i]['color'],
                         size: 22,
                       ),
                     ),
@@ -169,7 +169,7 @@ class SettingPage extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 15.0),
           padding: EdgeInsets.only(top: 1.0),
-          color: Color(0xffe4e4e4),
+          color: mcl25,
         ),
       ],
     );

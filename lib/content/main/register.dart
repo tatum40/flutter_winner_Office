@@ -50,7 +50,7 @@ class _RegisterState extends State<Register> {
                                 child: Row(
                                   children: <Widget>[
                                     Radio(
-                                      activeColor: Colors.blueAccent,
+                                      activeColor: mcl2,
                                       value: 'Male',
                                       groupValue: gender,
                                       onChanged: (value) =>
@@ -64,7 +64,7 @@ class _RegisterState extends State<Register> {
                                 child: Row(
                                   children: <Widget>[
                                     Radio(
-                                      activeColor: Colors.blueAccent,
+                                      activeColor: mcl2,
                                       value: 'Female',
                                       groupValue: gender,
                                       onChanged: (value) =>
@@ -78,7 +78,7 @@ class _RegisterState extends State<Register> {
                                 child: Row(
                                   children: <Widget>[
                                     Radio(
-                                      activeColor: Colors.blueAccent,
+                                      activeColor: mcl2,
                                       value: 'Not specified',
                                       groupValue: gender,
                                       onChanged: (value) =>
@@ -185,7 +185,7 @@ class _RegisterState extends State<Register> {
                           if (_formKey.currentState!.validate()) {}
                         },
                         child: Text('Sign up'),
-                        color: Color(0xffffab40),
+                        color: mcl1,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30.0)),
                         ),
@@ -211,7 +211,7 @@ class _RegisterState extends State<Register> {
               children: <Widget>[
                 Icon(
                   Icons.check,
-                  color: Color(0xff868686),
+                  color: mcl14,
                   size: 20,
                 ),
                 Text(
@@ -224,7 +224,7 @@ class _RegisterState extends State<Register> {
               children: <Widget>[
                 Icon(
                   Icons.check,
-                  color: Color(0xff868686),
+                  color: mcl14,
                   size: 20,
                 ),
                 Text(
@@ -237,7 +237,7 @@ class _RegisterState extends State<Register> {
               children: <Widget>[
                 Icon(
                   Icons.check,
-                  color: Color(0xff868686),
+                  color: mcl14,
                   size: 20,
                 ),
                 Text(
