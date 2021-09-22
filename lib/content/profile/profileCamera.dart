@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Camera extends StatefulWidget {
   const Camera({Key? key}) : super(key: key);
@@ -9,6 +12,17 @@ class Camera extends StatefulWidget {
 }
 
 class _CameraState extends State<Camera> {
+  File? file;
+  Future<Null> createAvatar({ImageSource? source}) async {
+    try {
+      var result = await ImagePicker()
+          .getImage(source: source!, maxHeight: 800, maxWidth: 800);
+      setState(() {
+        file = File(result!.path);
+      });
+    } catch (e) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,27 +42,23 @@ class _CameraState extends State<Camera> {
                 Container(
                   color: mcl6,
                   child: IconButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CameraOn()),
-                    ),
+                    onPressed: () => createAvatar(source: ImageSource.camera),
                     icon: Icon(
                       Icons.photo_camera,
                       color: Colors.white,
                     ),
                   ),
                 ),
-                for (var i = 0; i < 6; i++)
-                  Container(
-                    color: mcl37,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.image,
-                        color: mcl6,
-                      ),
+                Container(
+                  color: mcl37,
+                  child: file == null? IconButton(
+                    onPressed: () => createAvatar(source: ImageSource.gallery),
+                    icon: Icon(
+                      Icons.image,
+                      color: mcl6,
                     ),
-                  ),
+                  ) :Container(),
+                ),
               ],
             ),
           ),

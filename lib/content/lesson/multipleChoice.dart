@@ -89,7 +89,6 @@ class _MultipleState extends State<Multiple> {
         if (isSendAnswer == false) {
           isSendAnswer = true;
           if (currentChoice == 4) {
-
             List<String> myList = chats[currentChoice - 1]['correctSentence'];
             String answer = stackAnswer.join(" ");
             myList.contains(answer) ? isCorrect = true : isCorrect = false;
@@ -404,30 +403,38 @@ class _MultipleState extends State<Multiple> {
       final sentence = chats[currentChoice - 1]['sentence'];
       final answer = chats[currentChoice - 1]['answer'];
       // ฟังเสียงปกติ
-      final listenButton = MaterialButton(
-        onPressed: () => !isSpeaking ? speakMessageSentence(sentence) : stop(),
-        child: Icon(
-          Icons.volume_up,
-          color: mcl39,
-        ),
-        shape: CircleBorder(),
-        minWidth: 20,
-        color: mcl2,
-      );
+      Widget listenButton() {
+        return MaterialButton(
+          onPressed: () =>
+              !isSpeaking ? speakMessageSentence(sentence) : stop(),
+          child: Icon(
+            Icons.volume_up,
+            color: mcl39,
+          ),
+          shape: CircleBorder(),
+          minWidth: 20,
+          color: mcl2,
+        );
+      }
+
+      Widget listenAnswerButton() {
+        if (isSendAnswer || multiType == 'multiSelect') {
+          return MaterialButton(
+            onPressed: () => !isSpeaking ? speakMessageAnswer(answer) : stop(),
+            child: Icon(
+              Icons.volume_up,
+              color: mcl2,
+            ),
+            shape: CircleBorder(),
+            minWidth: 20,
+            color: mcl4,
+          );
+        } else {
+          return Container();
+        }
+      }
+
       // ฟังเสียงคำตอบ
-      final listenAnswerButton = isSendAnswer || multiType == 'multiSelect'
-          ? MaterialButton(
-              onPressed: () =>
-                  !isSpeaking ? speakMessageAnswer(answer) : stop(),
-              child: Icon(
-                Icons.volume_up,
-                color: mcl2,
-              ),
-              shape: CircleBorder(),
-              minWidth: 20,
-              color: mcl4,
-            )
-          : Container();
 
       // ฟังเสียงแบบช้า
       // final slowButton = MaterialButton(
@@ -439,107 +446,113 @@ class _MultipleState extends State<Multiple> {
       // );
 
       // กล่องข้อความ
-      final msnBox = Container(
-        width: 300,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(5.0),
-            topRight: Radius.circular(20.0),
-            bottomLeft: Radius.circular(20.0),
-            bottomRight: Radius.circular(20.0),
+      Widget msnBox() {
+        return Container(
+          width: 300,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(5.0),
+              topRight: Radius.circular(20.0),
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0),
+            ),
+            color: mcl2,
           ),
-          color: mcl2,
-        ),
-        margin: EdgeInsets.only(top: 10.0, left: 5.0),
-        padding: EdgeInsets.all(10.0),
-        child: Text(
-          sentence,
-          style: TextStyle(fontSize: 16, color: Colors.white),
-        ),
-      );
+          margin: EdgeInsets.only(top: 10.0, left: 5.0),
+          padding: EdgeInsets.all(10.0),
+          child: Text(
+            sentence,
+            style: TextStyle(fontSize: 16, color: Colors.white),
+          ),
+        );
+      }
 
       //กล่องตอบ
-      final answerBox = Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(10.0),
-            margin: EdgeInsets.only(top: 10.0, right: 15.0),
-            width: isSendAnswer || multiType == 'multiSelect' ? 300 : 100,
-            height: isSendAnswer || multiType == 'multiSelect' ? null : 45,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20.0),
-                topRight: Radius.circular(5.0),
-                bottomLeft: Radius.circular(20.0),
-                bottomRight: Radius.circular(20.0),
+      Widget answerBox() {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.only(top: 10.0, right: 15.0),
+              width: isSendAnswer || multiType == 'multiSelect' ? 300 : 100,
+              height: isSendAnswer || multiType == 'multiSelect' ? null : 45,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(5.0),
+                  bottomLeft: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0),
+                ),
+                color: mcl4,
               ),
-              color: mcl4,
-            ),
-            child: isSendAnswer || multiType == 'multiSelect'
-                ? Container(
-                    child: Text(
-                      answer,
-                      style: TextStyle(fontSize: 16, color: Colors.black),
-                    ),
-                  )
-                : Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.lens,
-                          size: 12.0,
-                          color: mcl7,
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                          child: Icon(
+              child: isSendAnswer || multiType == 'multiSelect'
+                  ? Container(
+                      child: Text(
+                        answer,
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                      ),
+                    )
+                  : Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
                             Icons.lens,
                             size: 12.0,
                             color: mcl7,
                           ),
-                        ),
-                        Icon(
-                          Icons.lens,
-                          size: 12.0,
-                          color: mcl7,
-                        ),
-                      ],
+                          Container(
+                            margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                            child: Icon(
+                              Icons.lens,
+                              size: 12.0,
+                              color: mcl7,
+                            ),
+                          ),
+                          Icon(
+                            Icons.lens,
+                            size: 12.0,
+                            color: mcl7,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-          ),
-        ],
-      );
+            ),
+          ],
+        );
+      }
 
       // icon people
-      final iconPeople = Container(
-        margin: EdgeInsets.only(top: 10.0, left: 5.0),
-        child: Icon(
-          Icons.account_circle_outlined,
-          size: 35.0,
-          color: mcl38,
-        ),
-      );
+      Widget iconPeople() {
+        return Container(
+          margin: EdgeInsets.only(top: 10.0, left: 5.0),
+          child: Icon(
+            Icons.account_circle_outlined,
+            size: 35.0,
+            color: mcl38,
+          ),
+        );
+      }
 
       return Column(
         children: <Widget>[
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[iconPeople, msnBox],
+            children: <Widget>[iconPeople(), msnBox()],
           ),
           Container(
             margin: EdgeInsets.only(left: 50.0),
             child: Row(
-              children: <Widget>[listenButton],
+              children: <Widget>[listenButton()],
             ),
           ),
-          answerBox,
+          answerBox(),
           Container(
             margin: EdgeInsets.only(right: 15.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[listenAnswerButton],
+              children: <Widget>[listenAnswerButton()],
             ),
           ),
         ],

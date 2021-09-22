@@ -20,11 +20,16 @@ List menuList = [
   {"icon": Icons.logout, "color": mcl36, "message": "Logout"},
 ];
 
-class SettingPage extends StatelessWidget {
+class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
 
+  @override
+  _SettingPageState createState() => _SettingPageState();
+}
+
+class _SettingPageState extends State<SettingPage> {
   void goToMenuFunctionBtn(context, i) {
-//Personal Information
+    //Personal Information
     if (i == 0) {
       Navigator.push(
         context,
@@ -89,7 +94,7 @@ class SettingPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 contentCamera(context),
-                for (var i = 0; i < menuList.length; i++) menuBox(context , i),
+                for (var i = 0; i < menuList.length; i++) menuBox(context, i),
               ],
             ),
           ),
@@ -104,8 +109,7 @@ class SettingPage extends StatelessWidget {
         Container(
           width: 122,
           height: 122,
-          decoration:
-              BoxDecoration(shape: BoxShape.circle, color: mcl23),
+          decoration: BoxDecoration(shape: BoxShape.circle, color: mcl23),
         ),
         Positioned(
           left: 80.0,
@@ -113,8 +117,7 @@ class SettingPage extends StatelessWidget {
           child: Container(
             width: 40,
             height: 40,
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: mcl1),
+            decoration: BoxDecoration(shape: BoxShape.circle, color: mcl1),
             child: Center(
               child: MaterialButton(
                 padding: EdgeInsets.all(0.0),
@@ -133,7 +136,7 @@ class SettingPage extends StatelessWidget {
     );
   }
 
-  Widget menuBox(context , i) {
+  Widget menuBox(context, i) {
     return Column(
       children: <Widget>[
         GestureDetector(
