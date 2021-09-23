@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_winner_office/theme/color.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -12,15 +12,20 @@ class Camera extends StatefulWidget {
 }
 
 class _CameraState extends State<Camera> {
-  File? file;
-  Future<Null> createAvatar({ImageSource? source}) async {
+  File? image;
+  Future pickerImage(ImageSource source) async {
     try {
-      var result = await ImagePicker()
-          .getImage(source: source!, maxHeight: 800, maxWidth: 800);
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+
       setState(() {
-        file = File(result!.path);
+        this.image = imageTemporary;
       });
-    } catch (e) {}
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
   }
 
   @override
@@ -34,68 +39,92 @@ class _CameraState extends State<Camera> {
         ),
         body: Center(
           child: Container(
-            child: GridView.count(
-              crossAxisCount: 3,
-              mainAxisSpacing: 2,
-              crossAxisSpacing: 2,
+            child: Column(
               children: <Widget>[
-                Container(
-                  color: mcl6,
-                  child: IconButton(
-                    onPressed: () => createAvatar(source: ImageSource.camera),
-                    icon: Icon(
-                      Icons.photo_camera,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Container(
-                  color: mcl37,
-                  child: file == null? IconButton(
-                    onPressed: () => createAvatar(source: ImageSource.gallery),
-                    icon: Icon(
-                      Icons.image,
-                      color: mcl6,
-                    ),
-                  ) :Container(),
-                ),
+                _showImagePicker(),
+                imagePickButton(Icon(Icons.photo_camera), "Pick Camera", 1),
+                imagePickButton(Icon(Icons.image), "Pick Gallery", 2)
               ],
+            ),
+          ),
+        ),
+        floatingActionButton: Container(
+          margin: EdgeInsets.only(bottom: 15.0),
+          width: 120,
+          height: 40,
+          child: MaterialButton(
+            onPressed: () => Navigator.pop(context , image),
+            child: Text(
+              "ยืนยัน",
+              style: TextStyle(fontSize: 16),
+            ),
+            color: mcl1,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20.0),
+              ),
             ),
           ),
         ),
       ),
     );
   }
-}
 
-class CameraOn extends StatelessWidget {
-  const CameraOn({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(
-          child: Container(
-            height: double.infinity,
-            margin: EdgeInsets.only(left: 25.0, right: 25.0),
-            color: mcl24,
-            child: Image.asset(
-              'assets/images/cameraOn.png',
-              fit: BoxFit.contain,
+  Widget _showImagePicker() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 30.0),
+      width: 180,
+      height: 180,
+      color: mcl37,
+      child: image != null
+          ? Image.file(
+              image!,
+              width: 180,
+              height: 180,
+              fit: BoxFit.cover,
+            )
+          : Icon(
+              Icons.image,
+              color: mcl6,
             ),
-          ),
+    );
+  }
+
+  Widget imagePickButton(icon, textShow, numBtn) {
+    return Container(
+      margin: EdgeInsets.only(top: 15.0),
+      width: 300,
+      height: 45,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(10.0),
         ),
-        floatingActionButton: Container(
-          margin: EdgeInsets.only(right: 20.0),
-          width: 80,
-          height: 35,
-          child: FloatingActionButton.extended(
-            backgroundColor: mcl1,
-            onPressed: () => Navigator.pop(context),
-            label: Text('ถัดไป'),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: mcl6.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: Offset(0, 3), // changes position of shadow
           ),
+        ],
+      ),
+      child: MaterialButton(
+        onPressed: () {
+          if (numBtn == 1) {
+            pickerImage(ImageSource.camera);
+          } else {
+            pickerImage(ImageSource.gallery);
+          }
+        },
+        child: Row(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10.0),
+              child: icon,
+            ),
+            Container(child: Text(textShow))
+          ],
         ),
       ),
     );

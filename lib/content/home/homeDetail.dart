@@ -24,7 +24,7 @@ List detailData = [
     "isLock": true
   },
   {
-    "titleEng": "Do you have any brothers \nor sisters?",
+    "titleEng": "Do you have any brothers or sisters?",
     "titleTh": "คุณมีพี่ชายหรือพี่สาวไหม",
     "url": "assets/images/imageM4.png",
     "isLock": true
@@ -36,14 +36,14 @@ List detailData = [
     "isLock": true
   },
 ];
-
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 class HomeDetail extends StatelessWidget {
   const HomeDetail({Key? key}) : super(key: key);
 
-  void dialogUnlock(context) {
+  void dialogUnlock(context1) {
     showDialog<String>(
       barrierDismissible: false,
-      context: context,
+      context: context1,
       builder: (BuildContext context) => AlertDialog(
         title: Text(
           'Unlock Lesson',
@@ -62,12 +62,14 @@ class HomeDetail extends StatelessWidget {
                 child: MaterialButton(
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                          color: mcl2,
-                          width: 1,
-                          style: BorderStyle.solid),
-                      borderRadius: BorderRadius.circular(50)),
-                  onPressed: () => Navigator.pop(context),
+                    side: BorderSide(
+                      color: mcl2,
+                      width: 1,
+                      style: BorderStyle.solid,
+                    ),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  onPressed: () => Navigator.pop(context1),
                   child: Text(
                     'Cancel',
                     style: TextStyle(color: mcl2),
@@ -82,7 +84,7 @@ class HomeDetail extends StatelessWidget {
                       Radius.circular(30.0),
                     ),
                   ),
-                  onPressed: () => {Navigator.pop(context), dialogBuy(context)},
+                  onPressed: () => {Navigator.pop(context1), dialogBuy(context1)},
                   child: Text(
                     'Yes',
                     style: TextStyle(color: Colors.white),
@@ -97,7 +99,7 @@ class HomeDetail extends StatelessWidget {
     );
   }
 
-  void dialogBuy(context) {
+  void dialogBuy(context2) {
     Widget _underLine() {
       return Container(
         padding: EdgeInsets.only(top: 2.0),
@@ -111,7 +113,7 @@ class HomeDetail extends StatelessWidget {
         width: 320,
         height: 45,
         child: MaterialButton(
-          onPressed: () => {Navigator.pop(context), dialogConfirm(context)},
+          onPressed: () => {Navigator.pop(context2), dialogConfirm(context2)},
           child: Text(
             '1 - tap buy',
             style: TextStyle(color: Colors.white, fontSize: 18),
@@ -132,8 +134,7 @@ class HomeDetail extends StatelessWidget {
         child: RichText(
           textAlign: TextAlign.start,
           text: TextSpan(
-            style:
-                TextStyle(fontSize: 12, height: 1.5, color: mcl18),
+            style: TextStyle(fontSize: 12, height: 1.5, color: mcl18),
             children: <TextSpan>[
               TextSpan(
                 text:
@@ -228,8 +229,8 @@ class HomeDetail extends StatelessWidget {
     }
 
     showModalBottomSheet(
-        context: context,
-        builder: (context) {
+        context: context2,
+        builder: (context2) {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -271,11 +272,11 @@ class HomeDetail extends StatelessWidget {
         });
   }
 
-  void dialogConfirm(context) {
+  void dialogConfirm(context3) {
     showDialog<String>(
       barrierDismissible: false,
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
+      context: context3,
+      builder: (BuildContext context3) => AlertDialog(
         title: Text(
           'Thank You',
           textAlign: TextAlign.center,
@@ -286,22 +287,23 @@ class HomeDetail extends StatelessWidget {
         ),
         actions: <Widget>[
           Center(
-              child: Container(
-            margin: EdgeInsets.only(left: 10.0),
-            child: MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30.0),
+            child: Container(
+              margin: EdgeInsets.only(left: 10.0),
+              child: MaterialButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30.0),
+                  ),
                 ),
+                onPressed: () => {Navigator.pop(context3)},
+                child: const Text(
+                  'Yes',
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: mcl1,
               ),
-              onPressed: () => {Navigator.pop(context)},
-              child: const Text(
-                'Yes',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: mcl1,
             ),
-          ))
+          ),
         ],
       ),
     );
@@ -311,6 +313,7 @@ class HomeDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         body: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -403,8 +406,9 @@ class HomeDetail extends StatelessWidget {
               child: button(Icons.mic, 'mic'),
             ),
             Container(
-                padding: EdgeInsets.only(left: 10.0),
-                child: button(Icons.grid_view, 'grid')),
+              padding: EdgeInsets.only(left: 10.0),
+              child: button(Icons.grid_view, 'grid'),
+            ),
           ],
         ),
       );
@@ -478,6 +482,7 @@ class HomeDetail extends StatelessWidget {
                   children: <Widget>[
                     Image.asset(detail['url']),
                     Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
                       margin: EdgeInsets.only(left: 10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -485,12 +490,10 @@ class HomeDetail extends StatelessWidget {
                           Text(
                             detail['titleEng'],
                             style: TextStyle(fontSize: 16.0),
-                            overflow: TextOverflow.ellipsis,
                           ),
                           Text(
                             detail['titleTh'],
                             style: TextStyle(fontSize: 16.0),
-                            overflow: TextOverflow.ellipsis,
                           ),
                           _micAndGridBtn(),
                         ],

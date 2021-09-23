@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
 import 'profileSetting.dart';
@@ -23,15 +24,61 @@ List successDataBox = [
 ];
 
 List leagueDataBox = [
-  {"name": "Jane", "star": 23, "rang": 1},
-  {"name": "Tom", "star": 21, "rang": 2},
-  {"name": "Bow", "star": 20, "rang": 3},
-  {"name": "Bob", "star": 18, "rang": 4},
-  {"name": "Fabin", "star": 17, "rang": 5},
+  {
+    "name": "Jane",
+    "star": 23,
+    "rang": 1,
+    "url": "https://freepngimg.com/thumb/girls/41-woman-girl-png-image.png"
+  },
+  {
+    "name": "Tom",
+    "star": 21,
+    "rang": 2,
+    "url":
+        "https://freepngimg.com/thumb/allu_arjun/29723-7-allu-arjun-transparent.png"
+  },
+  {
+    "name": "Bow",
+    "star": 20,
+    "rang": 3,
+    "url":
+        "https://freepngimg.com/thumb/girls/1-woman-girl-png-image.png"
+  },
+  {
+    "name": "Bob",
+    "star": 18,
+    "rang": 4,
+    "url": "https://freepngimg.com/thumb/allu_arjun/29714-2-allu-arjun-file.png"
+  },
+  {
+    "name": "Fabin",
+    "star": 17,
+    "rang": 5,
+    "url": "https://freepngimg.com/thumb/man/28-man-png-image.png"
+  },
 ];
 
-class ProfileMenu extends StatelessWidget {
+class ProfileMenu extends StatefulWidget {
   const ProfileMenu({Key? key}) : super(key: key);
+
+  @override
+  _ProfileMenuState createState() => _ProfileMenuState();
+}
+
+class _ProfileMenuState extends State<ProfileMenu> {
+  File? image;
+
+  navigatorImage(BuildContext context) async {
+    var result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SettingPage(),
+      ),
+    );
+    setState(() {
+      image = result;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +91,9 @@ class ProfileMenu extends StatelessWidget {
           child: Center(
             child: Column(
               children: <Widget>[
-                // MaterialButton(onPressed: () {}),
                 headerBox(context),
                 allStar(),
-                successBox(),
+                successBox(context),
                 leagueBox(),
               ],
             ),
@@ -70,12 +116,7 @@ class ProfileMenu extends StatelessWidget {
                   BoxDecoration(shape: BoxShape.circle, color: Colors.white),
               child: IconButton(
                 color: mcl1,
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SettingPage(),
-                  ),
-                ),
+                onPressed: () => navigatorImage(context),
                 icon: Icon(Icons.settings),
               ),
             ),
@@ -88,6 +129,15 @@ class ProfileMenu extends StatelessWidget {
       return Container(
         width: 70,
         height: 70,
+        child: image != null
+            ? ClipRRect(
+                borderRadius: BorderRadius.circular(100.0),
+                child: Image.file(
+                  image!,
+                  fit: BoxFit.cover,
+                ),
+              )
+            : Image.asset("assets/images/icontest.png"),
         decoration: BoxDecoration(shape: BoxShape.circle, color: mcl23),
       );
     }
@@ -95,7 +145,7 @@ class ProfileMenu extends StatelessWidget {
     Widget dataProfile() {
       return Container(
         margin: EdgeInsets.only(left: 10.0),
-        width: MediaQuery.of(context).size.width * 0.67,
+        width: MediaQuery.of(context).size.width * 0.63,
         child: Column(
           children: <Widget>[
             Row(
@@ -278,7 +328,7 @@ class ProfileMenu extends StatelessWidget {
     );
   }
 
-  Widget successBox() {
+  Widget successBox(context) {
     return Container(
       padding: EdgeInsets.only(left: 10.0, right: 10.0),
       margin: EdgeInsets.only(top: 15.0),
@@ -315,6 +365,7 @@ class ProfileMenu extends StatelessWidget {
               height: 60,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     width: 50,
@@ -336,7 +387,7 @@ class ProfileMenu extends StatelessWidget {
                           margin: EdgeInsets.only(top: 5.0),
                           child: LinearPercentIndicator(
                             padding: EdgeInsets.symmetric(horizontal: 5.0),
-                            width: 235,
+                            width: MediaQuery.of(context).size.width * 0.63,
                             lineHeight: 10.0,
                             percent: successDataBox[i]['total'] / 10,
                             backgroundColor: mcl23,
@@ -432,6 +483,7 @@ class ProfileMenu extends StatelessWidget {
                             margin: EdgeInsets.only(left: 10.0),
                             width: 30,
                             height: 30,
+                             child: Image.network(leagueDataBox[i]['url'].toString()),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: mcl23,

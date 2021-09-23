@@ -57,6 +57,7 @@ class HomeMenu extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     Container(
+                      width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.all(10.0),
                       child: Column(
                         children: <Widget>[
