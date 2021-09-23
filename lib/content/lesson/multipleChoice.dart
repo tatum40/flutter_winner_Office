@@ -1,3 +1,4 @@
+
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -50,13 +51,13 @@ List<dynamic> chats = [
       'usually',
       'around 9',
       'at six',
+      'I',
       'weekends',
       'on',
       'get up',
+      'at',
       'weekdays',
       'and',
-      'I',
-      'at',
     ],
     "correctSentence": [
       'I usually get up at six on weekdays and around 9 at weekends'
@@ -387,7 +388,7 @@ class _MultipleState extends State<Multiple> {
       title: Container(
         child: LinearPercentIndicator(
             padding: EdgeInsets.all(0.0),
-            width: 280,
+             width: MediaQuery.of(context).size.width*0.7,
             lineHeight: 10,
             backgroundColor: mcl4,
             progressColor: mcl5,
@@ -723,36 +724,37 @@ class _MultipleState extends State<Multiple> {
       Widget selectButton() {
         return Container(
           margin: EdgeInsets.all(5.0),
-          width: 100,
           height: 40,
-          child: MaterialButton(
-              onPressed: !isSendAnswer
-                  ? () {
-                      setState(
-                        () {
-                          if (!stackAnswer.contains(item)) {
-                            stackAnswer.add(item);
-                          }
-                          chats[currentChoice - 1]["choice"].remove(item);
-                        },
-                      );
-                    }
-                  : () {},
-              child: Text(
-                item,
-                style: TextStyle(
-                    color: !isSendAnswer ? Colors.black : Colors.white),
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(25.0),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25.0),
+                  ),
                 ),
-              ),
-              color: !isSendAnswer
-                  ? mcl5
-                  : !isCorrect
-                      ? Colors.red
-                      : mcl3),
+                primary: !isSendAnswer
+                    ? mcl5
+                    : !isCorrect
+                        ? Colors.red
+                        : mcl3),
+            child: Text(
+              item,
+              style:
+                  TextStyle(color: !isSendAnswer ? Colors.black : Colors.white),
+            ),
+            onPressed: !isSendAnswer
+                ? () {
+                    setState(
+                      () {
+                        if (!stackAnswer.contains(item)) {
+                          stackAnswer.add(item);
+                        }
+                        chats[currentChoice - 1]["choice"].remove(item);
+                      },
+                    );
+                  }
+                : () {},
+          ),
         );
       }
 
@@ -789,6 +791,7 @@ class _MultipleState extends State<Multiple> {
       }
 
       return Stack(
+        alignment: Alignment.topRight,
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(top: 6.0),
@@ -796,7 +799,6 @@ class _MultipleState extends State<Multiple> {
           ),
           Positioned(
             child: unSelectButton(),
-            left: 80,
           )
         ],
       );

@@ -114,7 +114,7 @@ class _SpeakingState extends State<Speaking> {
           ),
           title: Container(
             child: LinearPercentIndicator(
-              width: 280,
+              width: MediaQuery.of(context).size.width*0.7,
               padding: EdgeInsets.all(0.0),
               lineHeight: 10,
               backgroundColor: mcl4,

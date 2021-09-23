@@ -84,6 +84,7 @@ flutter:
     - "assets/audios/sound2.wav"
     - "assets/images/twitchIcon.png"
     - "assets/images/fbIcon.png"
+    - "assets/images/icontest.png"
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

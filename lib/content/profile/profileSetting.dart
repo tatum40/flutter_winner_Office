@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/content/main/login.dart';
 import 'package:flutter_winner_office/content/profile/profileCamera.dart';
@@ -21,13 +22,29 @@ List menuList = [
 ];
 
 class SettingPage extends StatefulWidget {
-  const SettingPage({Key? key}) : super(key: key);
+  const SettingPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _SettingPageState createState() => _SettingPageState();
 }
 
 class _SettingPageState extends State<SettingPage> {
+  File? image;
+
+  navigatorImage(BuildContext context) async {
+    var result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Camera(),
+      ),
+    );
+    setState(() {
+      image = result;
+    });
+  }
+
   void goToMenuFunctionBtn(context, i) {
     //Personal Information
     if (i == 0) {
@@ -84,6 +101,11 @@ class _SettingPageState extends State<SettingPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            padding: EdgeInsets.all(0.0),
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context, image),
+          ),
           backgroundColor: mcl10,
           title: Text('Setting', style: TextStyle(fontSize: 16)),
           centerTitle: true,
@@ -107,6 +129,15 @@ class _SettingPageState extends State<SettingPage> {
     return Stack(
       children: <Widget>[
         Container(
+          child: image != null
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(100.0),
+                  child: Image.file(
+                    image!,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              : null,
           width: 122,
           height: 122,
           decoration: BoxDecoration(shape: BoxShape.circle, color: mcl23),
@@ -121,12 +152,7 @@ class _SettingPageState extends State<SettingPage> {
             child: Center(
               child: MaterialButton(
                 padding: EdgeInsets.all(0.0),
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Camera(),
-                  ),
-                ),
+                onPressed: () => navigatorImage(context),
                 child: Icon(Icons.photo_camera, size: 24, color: Colors.white),
               ),
             ),
