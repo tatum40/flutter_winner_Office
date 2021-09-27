@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/theme/color.dart';
 
 class DatePickerWidget extends StatefulWidget {
   const DatePickerWidget(
@@ -36,7 +37,8 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
           decoration: InputDecoration(
             isDense: true,
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5.0))),
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            ),
             labelText: widget.labelText,
           ),
         ),
@@ -49,6 +51,23 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       initialDate: initialDate,
       firstDate: DateTime(DateTime.now().year - 5),
       lastDate: DateTime(DateTime.now().year + 10),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: mcl1, // header background color
+              onPrimary: Colors.black, // header text color
+              onSurface: Colors.black, // body text color
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: mcl1, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
 
     if (newDate == null) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
+import 'package:flutter_winner_office/widget/widget_function.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({Key? key}) : super(key: key);
@@ -119,7 +120,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                       width: 320,
                       child: MaterialButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {}
+                          if (_formKey.currentState!.validate()) {
+                            dialogNotify(
+                                context, "Password was successfully changed");
+                          }
                         },
                         child: Text('Save'),
                         color: mcl1,
@@ -139,7 +143,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   }
 
   Widget passwordRules(String password) {
-    if (password.length < 8) {
+    if (password != "" && password.length < 8) {
       return Container(
         margin: EdgeInsets.only(left: 25.0, top: 5.0),
         child: Column(

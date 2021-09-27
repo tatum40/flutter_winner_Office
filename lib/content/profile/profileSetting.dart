@@ -87,12 +87,10 @@ class _SettingPageState extends State<SettingPage> {
     }
     //Logout
     else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Login(),
-        ),
-      );
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => Login()),
+          (Route<dynamic> route) => false);
     }
   }
 
@@ -110,14 +108,16 @@ class _SettingPageState extends State<SettingPage> {
           title: Text('Setting', style: TextStyle(fontSize: 16)),
           centerTitle: true,
         ),
-        body: Center(
-          child: Container(
-            padding: EdgeInsets.only(top: 30.0),
-            child: Column(
-              children: <Widget>[
-                contentCamera(context),
-                for (var i = 0; i < menuList.length; i++) menuBox(context, i),
-              ],
+        body: SingleChildScrollView(
+          child: Center(
+            child: Container(
+              padding: EdgeInsets.only(top: 30.0),
+              child: Column(
+                children: <Widget>[
+                  contentCamera(context),
+                  for (var i = 0; i < menuList.length; i++) menuBox(context, i),
+                ],
+              ),
             ),
           ),
         ),

@@ -1,4 +1,3 @@
-
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -224,8 +223,7 @@ class _MultipleState extends State<Multiple> {
           shape: CircleBorder(),
           onPressed: () => {
             num == 1
-                ? Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Home()))
+                ? Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Home()), (Route <dynamic>route) => false)
                 : num == 2
                     ? setState(() {
                         currentChoice = 1;
@@ -388,7 +386,7 @@ class _MultipleState extends State<Multiple> {
       title: Container(
         child: LinearPercentIndicator(
             padding: EdgeInsets.all(0.0),
-             width: MediaQuery.of(context).size.width*0.7,
+            width: MediaQuery.of(context).size.width * 0.7,
             lineHeight: 10,
             backgroundColor: mcl4,
             progressColor: mcl5,

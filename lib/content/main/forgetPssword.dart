@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/content/main/login.dart';
 import 'package:flutter_winner_office/theme/color.dart';
-import 'login.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({Key? key}) : super(key: key);
@@ -19,12 +19,10 @@ class ForgetPassword extends StatelessWidget {
                   Radius.circular(30.0),
                 ),
               ),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MyHomePage(title: ''),
-                ),
-              ),
+              onPressed: () => {
+                Navigator.pop(context),
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Login()), (Route<dynamic> route) => false)
+              },
               child: const Text('OK'),
               color: mcl1,
             ),
@@ -33,6 +31,7 @@ class ForgetPassword extends StatelessWidget {
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {

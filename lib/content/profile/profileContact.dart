@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
+import 'package:flutter_winner_office/widget/widget_function.dart';
 
 class ContactUs extends StatelessWidget {
   const ContactUs({Key? key}) : super(key: key);
@@ -49,7 +50,7 @@ class ContactUs extends StatelessWidget {
       width: 280,
       height: 35,
       child: MaterialButton(
-        onPressed: () => {Navigator.pop(context)},
+        onPressed: () => dialogNotify(context, "Message was successfully sent"),
         child: Text(
           'Send',
           style: TextStyle(fontSize: 16),

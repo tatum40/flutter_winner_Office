@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
+import 'package:flutter_winner_office/widget/pickDate_widget.dart';
+import 'package:flutter_winner_office/widget/widget_function.dart';
 
 // ----------หน้าสมัคร
 class Information extends StatefulWidget {
@@ -14,7 +16,7 @@ class _InformationState extends State<Information> {
 
   String password = "";
 
-  String gender = '';
+  String gender = "Male";
   void _setGender(String value) {
     setState(() {
       gender = value;
@@ -131,21 +133,9 @@ class _InformationState extends State<Information> {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 15.0),
-                      width: 320,
-                      child: TextField(
-                        onTap: () {},
-                        keyboardType: TextInputType.datetime,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                          ),
-                          hintText: 'Date of birth (DD/MM/YYYY)',
-                        ),
-                      ),
+                   DatePickerWidget(
+                      labelText: 'Date of birth (DD/MM/YYYY)',
+                      pickerType: 'edit profile',
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 15.0),
@@ -177,7 +167,7 @@ class _InformationState extends State<Information> {
                       margin: EdgeInsets.only(top: 15.0),
                       width: 320,
                       child: TextFormField(
-                        keyboardType: TextInputType.phone,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           isDense: true,
                           border: OutlineInputBorder(
@@ -193,7 +183,10 @@ class _InformationState extends State<Information> {
                       width: 320,
                       child: MaterialButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {}
+                          if (_formKey.currentState!.validate()) {
+                            dialogNotify(context,
+                                "Your profile information updated successfully");
+                          }
                         },
                         child: Text('Save'),
                         color: mcl1,

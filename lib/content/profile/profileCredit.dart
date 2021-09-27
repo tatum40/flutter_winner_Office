@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
+import 'package:flutter_winner_office/widget/widget_function.dart';
 import '../../widget/pickDate_widget.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class Credit extends StatefulWidget {
   const Credit({Key? key}) : super(key: key);
@@ -142,8 +144,17 @@ class _CreditState extends State<Credit> {
   }
 }
 
-class Setcredit extends StatelessWidget {
+class Setcredit extends StatefulWidget {
   const Setcredit({Key? key}) : super(key: key);
+
+  @override
+  _SetcreditState createState() => _SetcreditState();
+}
+
+class _SetcreditState extends State<Setcredit> {
+
+  var credirCrad = new MaskTextInputFormatter(
+      mask: '#### #### #### ####', filter: {"#": RegExp(r'[0-9]')});
 
   @override
   Widget build(BuildContext context) {
@@ -194,6 +205,7 @@ class Setcredit extends StatelessWidget {
                       margin: EdgeInsets.only(top: 20.0),
                       width: 320,
                       child: TextFormField(
+                        inputFormatters: [credirCrad],
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                             isDense: true,
@@ -302,7 +314,8 @@ class Setcredit extends StatelessWidget {
       width: 320,
       height: 35,
       child: MaterialButton(
-        onPressed: () => Navigator.pop(context),
+        onPressed: () =>
+            dialogNotify(context, "Bank account was successfully added"),
         child: Text(
           'Save',
           style: TextStyle(fontSize: 16),

@@ -41,8 +41,7 @@ List leagueDataBox = [
     "name": "Bow",
     "star": 20,
     "rang": 3,
-    "url":
-        "https://freepngimg.com/thumb/girls/1-woman-girl-png-image.png"
+    "url": "https://freepngimg.com/thumb/girls/1-woman-girl-png-image.png"
   },
   {
     "name": "Bob",
@@ -56,7 +55,44 @@ List leagueDataBox = [
     "rang": 5,
     "url": "https://freepngimg.com/thumb/man/28-man-png-image.png"
   },
+  {
+    "name": "Mona",
+    "star": 15,
+    "rang": 6,
+    "url":
+        "https://freepngimg.com/thumb/emma_roberts/20211-6-emma-roberts-photos.png"
+  },
+  {
+    "name": "Rafh",
+    "star": 15,
+    "rang": 7,
+    "url":
+        "https://freepngimg.com/thumb/johnny_depp/33719-3-johnny-depp-transparent-background.png"
+  },
+  {
+    "name": "Oven",
+    "star": 13,
+    "rang": 8,
+    "url":
+        "https://freepngimg.com/thumb/samuel_l_jackson/33346-7-samuel-l-jackson-clipart.png"
+  },
+  {
+    "name": "Hally",
+    "star": 10,
+    "rang": 9,
+    "url":
+        "https://freepngimg.com/thumb/emily_rudd/35324-2-emily-rudd-transparent-image.png"
+  },
+  {
+    "name": "Emma",
+    "star": 8,
+    "rang": 10,
+    "url":
+        "https://freepngimg.com/thumb/emma_stone/20126-2-emma-stone-transparent-picture.png"
+  },
 ];
+
+bool isVisible = true;
 
 class ProfileMenu extends StatefulWidget {
   const ProfileMenu({Key? key}) : super(key: key);
@@ -423,7 +459,6 @@ class _ProfileMenuState extends State<ProfileMenu> {
       margin: EdgeInsets.only(top: 15.0, bottom: 10.0),
       padding: EdgeInsets.all(10.0),
       width: 360,
-      height: 345,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -453,83 +488,97 @@ class _ProfileMenuState extends State<ProfileMenu> {
             ),
           ),
           for (var i = 0; i < leagueDataBox.length; i++)
-            Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0, right: 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            width: 30,
-                            child: leagueDataBox[i]['rang'] < 4
-                                ? Icon(
-                                    Icons.emoji_events,
-                                    color: mcl6,
-                                  )
-                                : leagueDataBox[i]['rang'] == 4
-                                    ? Text(
-                                        '4',
-                                        textAlign: TextAlign.center,
+            Visibility(
+              visible: isVisible
+                  ? leagueDataBox[i]['rang'] < 6
+                  : leagueDataBox[i]['rang'] > 0,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    padding:
+                        EdgeInsets.only(top: 10.0, bottom: 10.0, right: 5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Container(
+                                width: 30,
+                                child: leagueDataBox[i]['rang'] < 4
+                                    ? Icon(
+                                        Icons.emoji_events,
+                                        color: mcl6,
                                       )
-                                    : Text(
-                                        '5',
-                                        textAlign: TextAlign.center,
-                                      ),
+                                    : Container(
+                                        margin: EdgeInsets.only(left: 10.0),
+                                        child: Text(leagueDataBox[i]['rang']
+                                            .toString()),
+                                      )),
+                            Container(
+                              margin: EdgeInsets.only(left: 10.0),
+                              width: 30,
+                              height: 30,
+                              child: Image.network(
+                                  leagueDataBox[i]['url'].toString()),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: mcl23,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 15.0),
+                              child: Text(
+                                leagueDataBox[i]['name'],
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            )
+                          ],
+                        ),
+                        Container(
+                          width: 45,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Container(
+                                child: Icon(
+                                  Icons.star,
+                                  color: mcl1,
+                                  size: 16,
+                                ),
+                              ),
+                              Container(
+                                child: Text(
+                                  leagueDataBox[i]['star'].toString(),
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              )
+                            ],
                           ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10.0),
-                            width: 30,
-                            height: 30,
-                             child: Image.network(leagueDataBox[i]['url'].toString()),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: mcl23,
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 15.0),
-                            child: Text(
-                              leagueDataBox[i]['name'],
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(right: 5.0),
-                            child: Icon(
-                              Icons.star,
-                              color: mcl1,
-                              size: 16,
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              leagueDataBox[i]['star'].toString(),
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          )
-                        ],
-                      )
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 1.0),
-                  color: mcl25,
-                )
-              ],
+                  Container(
+                    padding: EdgeInsets.only(top: 1.0),
+                    color: mcl25,
+                  )
+                ],
+              ),
             ),
           Container(
             margin: EdgeInsets.only(top: 7.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[Text('ดูทั้งหมด')],
+              children: <Widget>[
+                GestureDetector(
+                  child: Text(isVisible ? 'ดูทั้งหมด' : 'ย่อส่วนขยาย'),
+                  onTap: () {
+                    setState(() {
+                      isVisible = !isVisible;
+                    });
+                  },
+                )
+              ],
             ),
           )
         ],

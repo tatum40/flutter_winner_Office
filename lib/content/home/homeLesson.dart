@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
 import '../lesson/speaking.dart';
 import '../lesson/multipleChoice.dart';
-import '../../test.dart';
 
 class HomeLesson extends StatelessWidget {
   const HomeLesson({
@@ -110,10 +109,7 @@ class HomeLesson extends StatelessWidget {
                     } else if (num == 3) {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Multiple()));
-                    } else {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => TestPage()));
-                    }
+                    } 
                   },
                   child: num == 1
                       ? Image.asset('assets/images/expression.png')

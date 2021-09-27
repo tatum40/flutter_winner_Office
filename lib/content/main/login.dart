@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter_winner_office/Notifytest.dart';
+import 'package:flutter_winner_office/test.dart';
 import 'package:flutter_winner_office/theme/color.dart';
 import 'forgetPssword.dart';
 import 'signupWith.dart';
@@ -160,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => NotifyTest(),
+            builder: (context) => TestPage(),
           ),
         ),
         child: Text(
