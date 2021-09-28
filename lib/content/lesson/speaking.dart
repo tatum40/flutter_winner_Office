@@ -18,6 +18,7 @@ class _SpeakingState extends State<Speaking> {
   int dataful = 2;
   bool isRecord = false;
   bool finishTest = false;
+  bool isNext = false;
   List<dynamic> chats = [
     {
       "sentence": "What time do you normally get up? \nปกติคุณตื่นนอนกี่โมง",
@@ -30,7 +31,7 @@ class _SpeakingState extends State<Speaking> {
           "I usually get up at six on weekdays and around 9 at weekends.\nปกติฉันตื่นนอนตอน 6 โมงเช้าในวันธรรมดาและประมาณ 9 โมงเช้าในวันหยุด",
       "user": "receiver",
       "step": 1,
-      "urlSound": "assets/audios/sound2.wav"
+      "urlSound": ""
     },
     {
       "sentence":
@@ -43,6 +44,7 @@ class _SpeakingState extends State<Speaking> {
           "I eat fried rice for breakfast. \nฉันกินข้าวผัดเป็นอาหารเช้า",
       "user": "receiver",
       "step": 2,
+      "urlSound": ""
     },
   ];
   final playAudios = AssetsAudioPlayer();
@@ -114,7 +116,7 @@ class _SpeakingState extends State<Speaking> {
           ),
           title: Container(
             child: LinearPercentIndicator(
-              width: MediaQuery.of(context).size.width*0.7,
+              width: MediaQuery.of(context).size.width * 0.7,
               padding: EdgeInsets.all(0.0),
               lineHeight: 10,
               backgroundColor: mcl4,
@@ -152,7 +154,8 @@ class _SpeakingState extends State<Speaking> {
   Widget _buildBottomBar() {
     // ฟังเสียง
     final listenButton = MaterialButton(
-      onPressed: countRecord != 0 && countRecord % 2 == 0 ? () => {} : null,
+      onPressed:
+          countRecord != 0 && countRecord % 2 == 0 && isNext ? () => {} : null,
       minWidth: 80,
       height: 45,
       color: Colors.white,
@@ -160,13 +163,17 @@ class _SpeakingState extends State<Speaking> {
         children: <Widget>[
           Icon(
             Icons.play_arrow,
-            color: countRecord == 0 || countRecord % 2 != 0 ? mcl12 : mcl2,
+            color: countRecord == 0 || countRecord % 2 != 0 || !isNext
+                ? mcl12
+                : mcl2,
             size: 30,
           ),
           Text(
             'ฟัง',
             style: TextStyle(
-                color: countRecord == 0 || countRecord % 2 != 0 ? mcl12 : mcl2,
+                color: countRecord == 0 || countRecord % 2 != 0 || !isNext
+                    ? mcl12
+                    : mcl2,
                 fontSize: 16),
           )
         ],
@@ -176,7 +183,9 @@ class _SpeakingState extends State<Speaking> {
           Radius.circular(20.0),
         ),
         borderSide: BorderSide(
-          color: countRecord == 0 || countRecord % 2 != 0 ? mcl12 : mcl2,
+          color: countRecord == 0 || countRecord % 2 != 0 || !isNext
+              ? mcl12
+              : mcl2,
           width: 2,
         ),
       ),
@@ -184,17 +193,25 @@ class _SpeakingState extends State<Speaking> {
 
     // อัดเสียง
     final recordSoundButton = MaterialButton(
-      onPressed: () => {
-        setState(
-          () {
-            isRecord = !isRecord;
-            countRecord++;
-            if (countRecord == 4) {
-              finishTest = true;
-            }
-          },
-        ),
-      },
+      onPressed: countRecord == 2 && isNext
+          ? () {}
+          : () => {
+                setState(
+                  () {
+                    countRecord++;
+                    isRecord = !isRecord;
+                    isNext = true;
+                    if (countRecord == 4) {
+                      finishTest = true;
+                      chats[3]['urlSound'] = "url2";
+                    } else {
+                      if (countRecord == 2) {
+                        chats[1]['urlSound'] = "url1";
+                      }
+                    }
+                  },
+                ),
+              },
       minWidth: 80,
       height: 80,
       color: mcl1,
@@ -236,12 +253,13 @@ class _SpeakingState extends State<Speaking> {
 
     // ข้อถัดไป
     final nextChoiceButton = MaterialButton(
-      onPressed: countRecord != 0 && !isRecord
+      onPressed: countRecord != 0 && !isRecord && isNext
           ? () => {
                 setState(() {
                   if (currentChoice != dataful) {
                     currentChoice++;
                   }
+                  isNext = false;
                 })
               }
           : null,
@@ -253,7 +271,9 @@ class _SpeakingState extends State<Speaking> {
           Text(
             'ถัดไป',
             style: TextStyle(
-                color: countRecord == 0 || countRecord % 2 != 0 ? mcl12 : mcl2,
+                color: countRecord == 0 || countRecord % 2 != 0 || !isNext
+                    ? mcl12
+                    : mcl2,
                 fontSize: 16),
           )
         ],
@@ -263,7 +283,9 @@ class _SpeakingState extends State<Speaking> {
           Radius.circular(20.0),
         ),
         borderSide: BorderSide(
-            color: countRecord == 0 || countRecord % 2 != 0 ? mcl12 : mcl2,
+            color: countRecord == 0 || countRecord % 2 != 0 || !isNext
+                ? mcl12
+                : mcl2,
             width: 2),
       ),
     );
@@ -311,6 +333,9 @@ class _SpeakingState extends State<Speaking> {
           countRecord = 0;
           finishTest = false;
           isRecord = false;
+          isNext = false;
+          chats[1]["urlSound"] = "";
+          chats[3]["urlSound"] = "";
         });
       },
       minWidth: 140,
@@ -410,31 +435,53 @@ class _SpeakingState extends State<Speaking> {
     );
 
     // เล่นเสียงที่อัดเข้าไป
-    final playButton = MaterialButton(
-      onPressed: () {},
-      child: Icon(
-        Icons.play_arrow,
-        color: user == 'sender' ? mcl39 : mcl2,
-      ),
-      shape: CircleBorder(),
-      minWidth: 20,
-      color: user == 'sender' ? mcl2 : mcl4,
-    );
+    Widget playButton() {
+      if (step == 1) {
+        if (chats[1]["urlSound"] != "") {
+          return MaterialButton(
+            onPressed: () {},
+            child: Icon(
+              Icons.play_arrow,
+              color: user == 'sender' ? mcl39 : mcl2,
+            ),
+            shape: CircleBorder(),
+            minWidth: 20,
+            color: user == 'sender' ? mcl2 : mcl4,
+          );
+        } else {
+          return Container();
+        }
+      } else {
+        if (chats[3]["urlSound"] != "") {
+          return MaterialButton(
+            onPressed: () {},
+            child: Icon(
+              Icons.play_arrow,
+              color: user == 'sender' ? mcl39 : mcl2,
+            ),
+            shape: CircleBorder(),
+            minWidth: 20,
+            color: user == 'sender' ? mcl2 : mcl4,
+          );
+        } else {
+          return Container();
+        }
+      }
+    }
 
-    final _playButton =
-        user == 'receiver' && countRecord % 2 == 0 && countRecord != 0
-            ? Row(
-                mainAxisAlignment: user == 'sender'
-                    ? MainAxisAlignment.start
-                    : MainAxisAlignment.end,
-                children: <Widget>[playButton, listenButton, slowButton],
-              )
-            : Row(
-                mainAxisAlignment: user == 'sender'
-                    ? MainAxisAlignment.start
-                    : MainAxisAlignment.end,
-                children: <Widget>[listenButton, slowButton],
-              );
+    final _playButton = user == 'receiver' && countRecord != 0
+        ? Row(
+            mainAxisAlignment: user == 'sender'
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.end,
+            children: <Widget>[playButton(), listenButton, slowButton],
+          )
+        : Row(
+            mainAxisAlignment: user == 'sender'
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.end,
+            children: <Widget>[listenButton, slowButton],
+          );
 
     final msnBox = Column(
       children: <Widget>[
