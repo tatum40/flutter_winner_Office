@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_winner_office/content/category/categoryGame.dart';
 import 'package:flutter_winner_office/theme/color.dart';
 import 'categVocab.dart';
 
@@ -36,7 +37,17 @@ class CategoryMenu extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryVocab()),
+                          builder: (context) => CategoryVocab(),
+                        ),
+                      ),
+                    }
+                  else if (i == 3)
+                    {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CategoryGame(),
+                        ),
                       ),
                     }
                 },
