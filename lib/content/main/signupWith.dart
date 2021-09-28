@@ -231,7 +231,7 @@ class SignupWith extends StatelessWidget {
                 ..onTap = () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MyHomePage(title: ''),
+                        builder: (context) => MyHomePage(),
                       ),
                     ),
               style: TextStyle(color: mcl2, fontSize: 16),

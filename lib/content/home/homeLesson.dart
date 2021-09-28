@@ -55,8 +55,9 @@ class HomeLesson extends StatelessWidget {
           Row(
             children: <Widget>[
               IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: Icon(Icons.arrow_back)),
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.arrow_back),
+              ),
             ],
           ),
           Container(
@@ -94,10 +95,8 @@ class HomeLesson extends StatelessWidget {
                 height: 170,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(
-                        width: 4,
-                        color:
-                            num != 3 ? mcl19 : mcl20),
+                    border:
+                        Border.all(width: 4, color: num != 3 ? mcl19 : mcl20),
                     color: Colors.white),
                 child: MaterialButton(
                   shape: CircleBorder(),
@@ -109,7 +108,7 @@ class HomeLesson extends StatelessWidget {
                     } else if (num == 3) {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Multiple()));
-                    } 
+                    }
                   },
                   child: num == 1
                       ? Image.asset('assets/images/expression.png')
