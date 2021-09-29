@@ -346,7 +346,7 @@ class HomeDetail extends StatelessWidget {
               onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Home(),
+                      builder: (context) => Home(googleAccountData : null,),
                     ),
                   ),
               icon: Icon(Icons.arrow_back)),

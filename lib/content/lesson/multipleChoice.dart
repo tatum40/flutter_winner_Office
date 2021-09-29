@@ -223,7 +223,7 @@ class _MultipleState extends State<Multiple> {
           shape: CircleBorder(),
           onPressed: () => {
             num == 1
-                ? Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Home()), (Route <dynamic>route) => false)
+                ? Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Home(googleAccountData: null,)), (Route <dynamic>route) => false)
                 : num == 2
                     ? setState(() {
                         currentChoice = 1;

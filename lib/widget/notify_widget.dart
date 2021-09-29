@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
 
-Widget test() {
-  return Container(
-    width: 100,
-    height: 60,
-    color: mcl1,
-    child: MaterialButton(
-      onPressed: () => {},
-      child: Text("check"),
-    ),
-  );
-}
-
 //notify show
 void dialogNotify(context, msn) {
   showGeneralDialog(

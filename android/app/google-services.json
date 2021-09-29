@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "870762422458",
+    "project_id": "aerobic-cosmos-327409",
+    "storage_bucket": "aerobic-cosmos-327409.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870762422458:android:643683dd4660fbd6ec2283",
+        "android_client_info": {
+          "package_name": "com.example.flutter_winner_office"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870762422458-6ooqt7nttm24dmbbrc6e4rotfte7vcjr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_winner_office",
+            "certificate_hash": "d9bf0784154c33d6b1cf7b54aa10fd70efca3c24"
+          }
+        },
+        {
+          "client_id": "870762422458-epllejht6cac5p2p2gdjn7batomlp3f1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoDSgVwoppZksQ6ggNrYwDBD73cfZx5Zc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870762422458-epllejht6cac5p2p2gdjn7batomlp3f1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

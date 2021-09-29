@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_winner_office/test.dart';
 import 'package:flutter_winner_office/theme/color.dart';
+import 'package:flutter_winner_office/widget/SigninGoogle_widget.dart';
 import 'forgetPssword.dart';
 import 'signupWith.dart';
 import 'home.dart';
@@ -186,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Home(),
+            builder: (context) => Home(googleAccountData: null),
           ),
         ),
         child: Text('Log in'),
@@ -201,7 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget faceBookGoogleBtn() {
-    Widget socialBtn(socialName) {
+    Widget fbBtn(socialName) {
       return Container(
         width: 60,
         height: 60,
@@ -225,8 +226,8 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          socialBtn('facebook'),
-          socialBtn('google'),
+          fbBtn('facebook'),
+          SignInGoogle()
         ],
       ),
     );

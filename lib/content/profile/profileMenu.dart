@@ -95,7 +95,9 @@ List leagueDataBox = [
 bool isVisible = true;
 
 class ProfileMenu extends StatefulWidget {
-  const ProfileMenu({Key? key}) : super(key: key);
+  const ProfileMenu({Key? key, required this.test}) : super(key: key);
+
+  final test;
 
   @override
   _ProfileMenuState createState() => _ProfileMenuState();
@@ -103,6 +105,11 @@ class ProfileMenu extends StatefulWidget {
 
 class _ProfileMenuState extends State<ProfileMenu> {
   File? image;
+
+  void initState() {
+    super.initState();
+    print(widget.test);
+  }
 
   navigatorImage(BuildContext context) async {
     var result = await Navigator.push(
