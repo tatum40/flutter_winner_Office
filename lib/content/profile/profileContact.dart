@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
-import 'package:flutter_winner_office/widget/notify_widget.dart';
+import 'package:flutter_winner_office/main_widget/notify_widget.dart';
 
 class ContactUs extends StatelessWidget {
   const ContactUs({Key? key}) : super(key: key);

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_winner_office/theme/color.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'profileSetting.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -95,9 +96,7 @@ List leagueDataBox = [
 bool isVisible = true;
 
 class ProfileMenu extends StatefulWidget {
-  const ProfileMenu({Key? key, required this.test}) : super(key: key);
-
-  final test;
+  const ProfileMenu({Key? key}) : super(key: key);
 
   @override
   _ProfileMenuState createState() => _ProfileMenuState();
@@ -105,10 +104,24 @@ class ProfileMenu extends StatefulWidget {
 
 class _ProfileMenuState extends State<ProfileMenu> {
   File? image;
+  String userName = "";
+  String imgUrl = "";
 
   void initState() {
     super.initState();
-    print(widget.test);
+    loadData();
+  }
+
+  Future<void> loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.getString("displayName") != null
+          ? userName = prefs.getString("displayName").toString()
+          : userName = 'Pajaree Kittisupaluck';
+      prefs.getString("photoUrl") != null
+          ? imgUrl = prefs.getString("photoUrl").toString()
+          : imgUrl = "";
+    });
   }
 
   navigatorImage(BuildContext context) async {
@@ -180,7 +193,15 @@ class _ProfileMenuState extends State<ProfileMenu> {
                   fit: BoxFit.cover,
                 ),
               )
-            : Image.asset("assets/images/icontest.png"),
+            : imgUrl != ""
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(100.0),
+                    child: Image.network(
+                      imgUrl,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : null,
         decoration: BoxDecoration(shape: BoxShape.circle, color: mcl23),
       );
     }
@@ -194,7 +215,7 @@ class _ProfileMenuState extends State<ProfileMenu> {
             Row(
               children: <Widget>[
                 Text(
-                  'Pajaree Kittisupaluck',
+                  userName,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 )
               ],

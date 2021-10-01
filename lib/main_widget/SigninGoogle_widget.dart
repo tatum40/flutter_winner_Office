@@ -59,4 +59,8 @@ class _SignInGoogleState extends State<SignInGoogle> {
       print(error);
     }
   }
+
+  // Future<void> _handleSignOut() async {
+  //   await _googleSignIn.disconnect();
+  // }
 }

@@ -1,12 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_winner_office/content/main/login.dart';
+import 'package:flutter_winner_office/content/login/login.dart';
 import 'package:flutter_winner_office/content/profile/profileCamera.dart';
 import 'package:flutter_winner_office/content/profile/profileContact.dart';
 import 'package:flutter_winner_office/content/profile/profileCredit.dart';
 import 'package:flutter_winner_office/content/profile/profileInformation.dart';
 import 'package:flutter_winner_office/content/profile/profilePassword.dart';
 import 'package:flutter_winner_office/theme/color.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 List menuList = [
   {"icon": Icons.face, "color": mcl28, "message": "Personal Information"},
@@ -32,6 +33,7 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   File? image;
+  String imgUrl = "";
 
   navigatorImage(BuildContext context) async {
     var result = await Navigator.push(
@@ -42,6 +44,20 @@ class _SettingPageState extends State<SettingPage> {
     );
     setState(() {
       image = result;
+    });
+  }
+
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  Future loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.getString("photoUrl") != null
+          ? imgUrl = prefs.getString("photoUrl").toString()
+          : imgUrl = "";
     });
   }
 
@@ -129,6 +145,9 @@ class _SettingPageState extends State<SettingPage> {
     return Stack(
       children: <Widget>[
         Container(
+          width: 122,
+          height: 122,
+          decoration: BoxDecoration(shape: BoxShape.circle, color: mcl23),
           child: image != null
               ? ClipRRect(
                   borderRadius: BorderRadius.circular(100.0),
@@ -137,10 +156,15 @@ class _SettingPageState extends State<SettingPage> {
                     fit: BoxFit.cover,
                   ),
                 )
-              : null,
-          width: 122,
-          height: 122,
-          decoration: BoxDecoration(shape: BoxShape.circle, color: mcl23),
+              : imgUrl != ""
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(100.0),
+                      child: Image.network(
+                        imgUrl,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : null,
         ),
         Positioned(
           left: 80.0,
