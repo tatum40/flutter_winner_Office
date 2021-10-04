@@ -201,7 +201,13 @@ class _ProfileMenuState extends State<ProfileMenu> {
                       fit: BoxFit.cover,
                     ),
                   )
-                : null,
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(100.0),
+                    child: Image.asset(
+                      "assets/images/icontest.png",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
         decoration: BoxDecoration(shape: BoxShape.circle, color: mcl23),
       );
     }
